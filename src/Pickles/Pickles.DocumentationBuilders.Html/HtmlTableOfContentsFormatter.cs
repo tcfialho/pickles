@@ -89,7 +89,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
 
             string nodeText = "Home";
 
-            bool fileIsActuallyTheRoot = this.DetermineWhetherFileIsTheRootFile(file, rootfile);
+            bool fileIsActuallyTheRoot = this.DetermineWhetherFileIsTheRootFile(file, (FileInfoBase)rootfile);
             if (fileIsActuallyTheRoot)
             {
                 xElement.Add(new XElement(xmlns + "span", new XAttribute("class", "current"), nodeText));
@@ -98,7 +98,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             {
                 xElement.Add(new XElement(
                     xmlns + "a",
-                    new XAttribute("href", file.GetUriForTargetRelativeToMe(rootfile, ".html")),
+                    new XAttribute("href", file.GetUriForTargetRelativeToMe((FileSystemInfoBase)rootfile, ".html")),
                     nodeText));
             }
 

@@ -91,7 +91,7 @@ namespace PicklesDoc.Pickles.Extensions
         public static IEnumerable<FileInfoBase> GetAllFilesFromPathAndFileNameWithOptionalSemicolonsAndWildCards(string fileFullName, IFileSystem fileSystem)
         {
             var files = fileFullName.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            return files.SelectMany(f => GetAllFilesFromPathAndFileNameWithOptionalWildCards(f, fileSystem))
+            return (IEnumerable<FileInfoBase>)files.SelectMany(f => GetAllFilesFromPathAndFileNameWithOptionalWildCards(f, fileSystem))
                     .Distinct()
                     .Select(f => fileSystem.FileInfo.FromFileName(f));
         }

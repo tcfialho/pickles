@@ -98,7 +98,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
         {
             List<INode> collectedNodes = new List<INode>();
 
-            foreach (FileInfoBase file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant(file)))
+            foreach (FileInfoBase file in directory.GetFiles().Where(file => this.relevantFileDetector.IsRelevant((FileInfoBase)file)))
             {
                 INode node = this.featureNodeFactory.Create(rootNode.OriginalLocation, file, parsingReport);
                 if(node != null)

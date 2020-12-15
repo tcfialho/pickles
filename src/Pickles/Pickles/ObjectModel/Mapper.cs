@@ -226,7 +226,7 @@ namespace PicklesDoc.Pickles.ObjectModel
             };
         }
 
-        public ScenarioOutline MapToScenarioOutline(G.ScenarioOutline scenarioOutline, params string[] tagsToHide)
+        public ScenarioOutline MapToScenarioOutline(G.Scenario scenarioOutline, params string[] tagsToHide)
         {
             if (scenarioOutline == null)
             {
@@ -289,7 +289,7 @@ namespace PicklesDoc.Pickles.ObjectModel
 
             foreach (var featureElement in gherkinDocument.Feature.Children.Where(c => !(c is G.Background)))
             {
-                feature.AddFeatureElement(this.MapToFeatureElement(featureElement, tagsToHide));
+                feature.AddFeatureElement(this.MapToFeatureElement((G.Scenario)featureElement, tagsToHide));
             }
 
             feature.Name = gherkinDocument.Feature.Name;
@@ -341,7 +341,7 @@ namespace PicklesDoc.Pickles.ObjectModel
             return feature;
         }
 
-        private IFeatureElement MapToFeatureElement(G.ScenarioDefinition sd,params string[] tagsToHide)
+        private IFeatureElement MapToFeatureElement(G.Scenario sd,params string[] tagsToHide)
         {
             if (sd == null)
             {
@@ -354,13 +354,13 @@ namespace PicklesDoc.Pickles.ObjectModel
                 return this.MapToScenario(scenario, tagsToHide);
             }
 
-            var scenarioOutline = sd as G.ScenarioOutline;
+            var scenarioOutline = sd as G.Scenario;
             if (scenarioOutline != null)
             {
                 return this.MapToScenarioOutline(scenarioOutline, tagsToHide);
             }
 
-            var background = sd as G.Background;
+            var background = sd; //as G.Background;
             if (background != null)
             {
                 return this.MapToScenario(background);
