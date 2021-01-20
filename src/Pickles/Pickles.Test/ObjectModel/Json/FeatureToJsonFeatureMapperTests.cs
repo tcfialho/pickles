@@ -20,7 +20,9 @@
 
 using System;
 using System.Collections.Generic;
+
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Json;
@@ -37,7 +39,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         {
             var mapper = CreateMapper();
 
-            JsonFeature actual = mapper.Map(null);
+            var actual = mapper.Map(null);
 
             Check.That(actual).IsNull();
         }

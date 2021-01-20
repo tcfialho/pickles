@@ -20,18 +20,20 @@
 
 
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using TechTalk.SpecFlow;
+
+using Autofac;
+
+using NFluent;
+
+using PicklesDoc.Pickles;
+using PicklesDoc.Pickles.DataStructures;
+using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.Cucumber;
 using PicklesDoc.Pickles.Test;
-using PicklesDoc.Pickles.DataStructures;
-using PicklesDoc.Pickles;
-using System.IO;
-using PicklesDoc.Pickles.DirectoryCrawler;
-using Autofac;
-using NFluent;
+
+using TechTalk.SpecFlow;
 
 namespace Pickles.DocumentationBuilders.Cucumber.UnitTests.AutomationLayer
 {
@@ -45,7 +47,7 @@ namespace Pickles.DocumentationBuilders.Cucumber.UnitTests.AutomationLayer
         public void IHaveThisFeatureDescription(string featureDescription)
         {
             var configuration = this.Configuration;
-            FeatureParser parser = new FeatureParser(configuration);
+            var parser = new FeatureParser(configuration);
 
             var feature = parser.Parse(new StringReader(featureDescription));
 

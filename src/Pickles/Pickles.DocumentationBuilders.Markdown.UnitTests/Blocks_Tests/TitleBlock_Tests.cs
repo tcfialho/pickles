@@ -18,9 +18,11 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using NUnit.Framework;
-using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 using NFluent;
+
+using NUnit.Framework;
+
+using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
@@ -34,7 +36,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             var mockStyle = new MockStylist();
 
             var titleBlock = new TitleBlock(mockStyle);
-            string actualString = titleBlock.ToString();
+            var actualString = titleBlock.ToString();
 
             Check.That(actualString).Contains(expectedString);
         }
@@ -46,7 +48,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             var mockStyle = new MockStylist();
 
             var titleBlock = new TitleBlock(mockStyle);
-            string actualString = titleBlock.ToString();
+            var actualString = titleBlock.ToString();
 
             Check.That(actualString).Contains(expectedString);
         }

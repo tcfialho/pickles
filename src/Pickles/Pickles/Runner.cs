@@ -21,8 +21,11 @@
 using System;
 using System.Linq;
 using System.Reflection;
+
 using Autofac;
+
 using NLog;
+
 using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders;
@@ -45,7 +48,7 @@ namespace PicklesDoc.Pickles
             var featureCrawler = container.Resolve<DirectoryTreeCrawler>();
             var parsingReport = new ParsingReport();
 
-            Tree features = featureCrawler.Crawl(configuration.FeatureFolder, parsingReport);
+            var features = featureCrawler.Crawl(configuration.FeatureFolder, parsingReport);
 
             if (parsingReport.Any())
             {
@@ -119,8 +122,10 @@ namespace PicklesDoc.Pickles
                 {
                     foreach (var example in scenarioOutline.Examples.SelectMany(e => e.TableArgument.DataRows).Cast<TableRowWithTestResult>())
                     {
-                        if(example!=null)
+                        if (example != null)
+                        {
                             example.Result = testResults.GetExampleResult(scenarioOutline, example.Cells.ToArray());
+                        }
                     }
 
                     scenarioOutline.Result =

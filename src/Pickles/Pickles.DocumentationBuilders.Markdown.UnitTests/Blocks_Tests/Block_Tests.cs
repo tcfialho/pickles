@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests.Blocks_Tests

@@ -20,30 +20,25 @@
 
 using System;
 using System.IO.Abstractions;
+
 using PicklesDoc.Pickles.Extensions;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class FolderNode : INode
     {
-        public FolderNode(FileSystemInfoBase location, string relativePathFromRoot)
+        public FolderNode(IFileSystemInfo location, string relativePathFromRoot)
         {
             this.OriginalLocation = location;
             this.OriginalLocationUrl = location.ToUri();
             this.RelativePathFromRoot = relativePathFromRoot;
         }
 
-        public NodeType NodeType
-        {
-            get { return NodeType.Structure; }
-        }
+        public NodeType NodeType => NodeType.Structure;
 
-        public string Name
-        {
-            get { return this.OriginalLocation.Name.ExpandWikiWord(); }
-        }
+        public string Name => this.OriginalLocation.Name.ExpandWikiWord();
 
-        public FileSystemInfoBase OriginalLocation { get; }
+        public IFileSystemInfo OriginalLocation { get; }
 
         public Uri OriginalLocationUrl { get; }
 
@@ -51,16 +46,16 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public string GetRelativeUriTo(Uri other, string newExtension)
         {
-            bool areSameLocation = this.OriginalLocation.FullName == other.LocalPath;
+            var areSameLocation = this.OriginalLocation.FullName == other.LocalPath;
 
             if (areSameLocation)
             {
                 return "#";
             }
 
-            string result = other.MakeRelativeUri(this.OriginalLocationUrl).ToString();
+            var result = other.MakeRelativeUri(this.OriginalLocationUrl).ToString();
 
-            string oldExtension = this.OriginalLocation.Extension;
+            var oldExtension = this.OriginalLocation.Extension;
 
             if (!string.IsNullOrEmpty(oldExtension))
             {

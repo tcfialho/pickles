@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 using PicklesDoc.Pickles.ObjectModel;
-using System;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
@@ -41,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
                 Name = "Hello, World"
             };
 
-            var scenarioOutlineBlock = new ScenarioOutlineBlock(scenarioOutline,mockStyle);
+            var scenarioOutlineBlock = new ScenarioOutlineBlock(scenarioOutline, mockStyle);
             var actualString = scenarioOutlineBlock.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
             Assert.AreEqual(expectedString, actualString[0]);
@@ -131,7 +133,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 
             var examplesTable = new ObjectModel.ExampleTable
             {
-                HeaderRow = new ObjectModel.TableRow(new string[] { "example","val_one", "val_two"}),
+                HeaderRow = new ObjectModel.TableRow(new string[] { "example", "val_one", "val_two" }),
 
                 DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>()
             };

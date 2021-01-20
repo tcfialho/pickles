@@ -18,9 +18,8 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.Word.Extensions;
 using PicklesDoc.Pickles.ObjectModel;
@@ -57,13 +56,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
         public void Format(Body body, FeatureNode featureNode)
         {
-            Feature feature = featureNode.Feature;
+            var feature = featureNode.Feature;
 
             body.InsertPageBreak();
 
             if (this.configuration.HasTestResults)
             {
-                TestResult testResult = this.testResults.GetFeatureResult(feature);
+                var testResult = this.testResults.GetFeatureResult(feature);
                 if (testResult == TestResult.Passed)
                 {
                     body.GenerateParagraph("Passed", "Passed");
@@ -76,10 +75,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             body.GenerateParagraph(feature.Name, "Heading1");
 
-            if ( feature.Tags.Count != 0 )
+            if (feature.Tags.Count != 0)
             {
-                var paragraph = new Paragraph(new ParagraphProperties(new ParagraphStyleId {Val = "Normal"}));
-                var tagrunProp = new RunProperties(new Italic(), new Color {ThemeColor = ThemeColorValues.Text2}) {Bold = new Bold() {Val = false}};
+                var paragraph = new Paragraph(new ParagraphProperties(new ParagraphStyleId { Val = "Normal" }));
+                var tagrunProp = new RunProperties(new Italic(), new Color { ThemeColor = ThemeColorValues.Text2 }) { Bold = new Bold() { Val = false } };
                 paragraph.Append(new Run(tagrunProp, new Text("(Tags: " + string.Join(", ", feature.Tags) + ")")));
                 body.Append(paragraph);
             }
@@ -91,7 +90,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 this.wordBackgroundFormatter.Format(body, feature.Background);
             }
 
-            foreach (IFeatureElement featureElement in feature.FeatureElements)
+            foreach (var featureElement in feature.FeatureElements)
             {
                 var scenario = featureElement as Scenario;
                 if (scenario != null)

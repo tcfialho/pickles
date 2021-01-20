@@ -141,12 +141,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
         internal static string NameAttribute(this XElement element)
         {
-            return element.Attribute("name")?.Value ?? String.Empty;
+            return element.Attribute("name")?.Value ?? string.Empty;
         }
 
         internal static List<string> DetermineValuesInScenario(this XElement element)
         {
-            List<string> valuesInScenario = new List<string>();
+            var valuesInScenario = new List<string>();
 
             foreach (var property in element.Descendants(Ns + "Property"))
             {

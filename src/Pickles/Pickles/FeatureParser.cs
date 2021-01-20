@@ -19,7 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+
 using Gherkin;
+
 using PicklesDoc.Pickles.ObjectModel;
 
 using TextReader = System.IO.TextReader;
@@ -49,16 +51,18 @@ namespace PicklesDoc.Pickles
 
             try
             {
-                Gherkin.Ast.GherkinDocument gherkinDocument = gherkinParser.Parse(
+                var gherkinDocument = gherkinParser.Parse(
                     new Gherkin.TokenScanner(featureFileReader),
                     new Gherkin.TokenMatcher(dialectProvider));
 
                 var languageServices = this.languageServicesRegistry.GetLanguageServicesForLanguage(gherkinDocument.Feature.Language);
-                Feature result = new Mapper(this.configuration, languageServices).MapToFeature(gherkinDocument);
+                var result = new Mapper(this.configuration, languageServices).MapToFeature(gherkinDocument);
                 result = new FeatureFilter(result, this.configuration.ExcludeTags).ExcludeScenariosByTags();
 
                 if (result != null)
+                {
                     this.descriptionProcessor.Process(result);
+                }
 
                 return result;
             }

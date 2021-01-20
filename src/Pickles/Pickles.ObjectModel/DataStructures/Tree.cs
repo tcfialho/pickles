@@ -33,7 +33,10 @@ namespace PicklesDoc.Pickles.DataStructures
 
         public Tree(INode currentNode)
         {
-            if (currentNode == null) throw new ArgumentNullException(nameof(currentNode));
+            if (currentNode == null)
+            {
+                throw new ArgumentNullException(nameof(currentNode));
+            }
 
             this.currentNode = currentNode;
             this.ChildNodes = new List<Tree>();
@@ -41,20 +44,16 @@ namespace PicklesDoc.Pickles.DataStructures
 
         public IList<Tree> ChildNodes { get; }
 
-        public INode Data
-        {
-            get
-            {
-                return this.currentNode;
-            }
-        }
+        public INode Data => this.currentNode;
 
         public IEnumerator<INode> GetEnumerator()
         {
-            List<INode> result = new List<INode>();
-            result.Add(this.currentNode);
+            var result = new List<INode>
+            {
+                this.currentNode
+            };
 
-            foreach(var childNode in this.ChildNodes.OrderBy(n => n.Data.Name))
+            foreach (var childNode in this.ChildNodes.OrderBy(n => n.Data.Name))
             {
                 using (var enumerator = childNode.GetEnumerator())
                 {
@@ -75,14 +74,20 @@ namespace PicklesDoc.Pickles.DataStructures
 
         public void Add(Tree node)
         {
-            if (node == null) throw new ArgumentNullException(nameof(node));
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
 
             this.ChildNodes.Add(node);
         }
 
         public Tree Add(INode node)
         {
-            if (node == null) throw new ArgumentNullException(nameof(node));
+            if (node == null)
+            {
+                throw new ArgumentNullException(nameof(node));
+            }
 
             var tree = new Tree(node);
             this.Add(tree);

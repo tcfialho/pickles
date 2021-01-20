@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+
 using NFluent;
 
 namespace PicklesDoc.Pickles.Test.Helpers

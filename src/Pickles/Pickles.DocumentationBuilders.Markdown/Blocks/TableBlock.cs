@@ -18,22 +18,23 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using PicklesDoc.Pickles.ObjectModel;
 using System.Collections.Generic;
+
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 {
-    class TableBlock : Block
+    internal class TableBlock : Block
     {
-        readonly Table table;
+        private readonly Table table;
 
         private readonly bool hasResults;
 
-        public TableBlock(Table table, Stylist style) : this(table,style,false)
+        public TableBlock(Table table, Stylist style) : this(table, style, false)
         {
         }
 
-        public TableBlock(Table table, Stylist style, bool withResults): base(style)
+        public TableBlock(Table table, Stylist style, bool withResults) : base(style)
         {
             this.table = table;
             this.hasResults = withResults;
@@ -93,9 +94,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 
         private Lines TableRow(TableRow row)
         {
-            if(hasResults)
+            if (hasResults)
             {
-                string result = style.AsResult((row as TableRowWithTestResult).Result);
+                var result = style.AsResult((row as TableRowWithTestResult).Result);
 
                 row.Cells.Add(result);
             }

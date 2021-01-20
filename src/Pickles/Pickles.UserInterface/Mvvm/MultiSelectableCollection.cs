@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,9 +34,6 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
         {
         }
 
-        public IEnumerable<T> Selected
-        {
-            get { return this.Where(item => item.IsSelected).Select(item => item.Item); }
-        }
+        public IEnumerable<T> Selected => this.Where(item => item.IsSelected).Select(item => item.Item);
     }
 }

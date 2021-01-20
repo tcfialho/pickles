@@ -18,11 +18,14 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
+
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
+
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
@@ -37,7 +40,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            Feature result = mapper.MapToFeature(null);
+            var result = mapper.MapToFeature(null);
 
             Check.That(result).IsNull();
         }
@@ -61,7 +64,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var gherkinDocument = this.factory.CreateGherkinDocument(
                 "My Feature",
                 string.Empty,
-                scenarioDefinitions: new G.ScenarioDefinition[]
+                scenarioDefinitions: new G.Scenario[]
                 {
                     this.factory.CreateScenario(new string[0], "My scenario", string.Empty, new G.Step[0]),
                     this.factory.CreateScenarioOutline(new string[0], "My scenario outline", string.Empty, new G.Step[0], new G.Examples[0])
@@ -131,7 +134,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                     this.factory.CreateComment("# line comment before the last step", 10, 4),
                     this.factory.CreateComment("# line comment after the last step", 12, 4),
                 },
-                scenarioDefinitions: new G.ScenarioDefinition[]
+                scenarioDefinitions: new G.Scenario[]
                 {
                     this.factory.CreateScenario(
                         new string[0], "My scenario", string.Empty,
@@ -188,7 +191,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                     this.factory.CreateComment("# line comment before the last step", 10, 4),
                     this.factory.CreateComment("# line comment after the last step", 12, 4),
                 },
-                scenarioDefinitions: new G.ScenarioDefinition[]
+                scenarioDefinitions: new G.Scenario[]
                 {
                     this.factory.CreateScenario(
                         new string[0], "My scenario", string.Empty,

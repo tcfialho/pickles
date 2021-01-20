@@ -3,19 +3,16 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>PicklesDoc.Pickles.CommandLine</RootNamespace>
-    <AssemblyName>Pickles</AssemblyName>
+    <AssemblyName>Tickles</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Pickles\</SolutionDir>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>tickles</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>PicklesDoc.Pickles.CommandLine.Program</StartupObject>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
@@ -41,6 +38,6 @@
     <PackageReference Include="NLog.Config" Version="4.7.6" />
     <PackageReference Include="NLog.Schema" Version="4.7.6" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.IO.Abstractions" Version="13.2.5" />
+    <PackageReference Include="System.IO.Abstractions" Version="13.2.9" />
   </ItemGroup>
 </Project>

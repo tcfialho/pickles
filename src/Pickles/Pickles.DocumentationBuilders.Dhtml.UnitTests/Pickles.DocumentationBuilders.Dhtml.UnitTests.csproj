@@ -23,10 +23,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="NFluent" Version="2.2.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NFluent" Version="2.7.1" />
+    <PackageReference Include="NUnit" Version="3.13.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.IO.Abstractions" Version="13.2.5" />
-    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="13.2.5" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="13.2.9" />
   </ItemGroup>
 </Project>

@@ -19,17 +19,21 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+
 using Autofac;
+
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DocumentationBuilders;
+using PicklesDoc.Pickles.DocumentationBuilders.Cucumber;
 using PicklesDoc.Pickles.DocumentationBuilders.Dhtml;
 using PicklesDoc.Pickles.DocumentationBuilders.Excel;
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
 using PicklesDoc.Pickles.DocumentationBuilders.Json;
-using PicklesDoc.Pickles.DocumentationBuilders.Word;
-using PicklesDoc.Pickles.DocumentationBuilders.Cucumber;
 using PicklesDoc.Pickles.DocumentationBuilders.Markdown;
+using PicklesDoc.Pickles.DocumentationBuilders.Word;
 
 namespace PicklesDoc.Pickles.Test
 {

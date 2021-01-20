@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
@@ -28,7 +29,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
     {
         [Test]
         public void A_Stylist_Can_Style_A_Title()
-        { 
+        {
             var expectedStyle = "# Title";
             var style = new Stylist();
 

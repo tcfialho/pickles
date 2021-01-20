@@ -18,15 +18,15 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
 using Autofac;
+
 using NFluent;
+
 using NUnit.Framework;
-using PicklesDoc.Pickles.DataStructures;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
 using PicklesDoc.Pickles.Test.Helpers;
@@ -45,7 +45,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
 
             this.AddFakeFolderStructures();
 
-            Tree features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath, new ParsingReport());
+            var features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath, new ParsingReport());
 
             var formatter = new HtmlTableOfContentsFormatter(null, this.FileSystem);
             this.toc = formatter.Format(
@@ -59,15 +59,15 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             this.Setup();
 
-            XElement ul = this.toc.FindFirstDescendantWithName("ul");
-            XElement ul2 = ul.FindFirstDescendantWithName("ul");
+            var ul = this.toc.FindFirstDescendantWithName("ul");
+            var ul2 = ul.FindFirstDescendantWithName("ul");
             Check.That(ul2.HasElements).IsTrue();
 
             // Assert that a feature file is appropriately set deeper down in the TOC
-            XElement li2 = ul2.FindFirstDescendantWithName("li");
+            var li2 = ul2.FindFirstDescendantWithName("li");
             Check.That(li2).IsNotNull();
 
-            XElement anchorInLI2 = li2.Elements().First();
+            var anchorInLI2 = li2.Elements().First();
             Check.That(anchorInLI2.HasAttributes).IsTrue();
             Check.That(anchorInLI2.Attribute("href").Value).IsEqualTo("SubLevelOne/LevelOneSublevelOne.html");
             Check.That(anchorInLI2.Value).IsEqualTo("Addition");
@@ -78,7 +78,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             this.Setup();
 
-            XElement home =
+            var home =
                 this.toc.Descendants().SingleOrDefault(
                     d => d.Attributes().Any(a => a.Name.LocalName == "id" && a.Value == "root"));
 
@@ -90,7 +90,7 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             this.Setup();
 
-            XElement span =
+            var span =
                 this.toc.Descendants().Where(e => e.Name.LocalName == "span").SingleOrDefault(
                     e => e.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "current"));
 
@@ -102,15 +102,15 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             this.Setup();
 
-            XElement directory =
+            var directory =
                 this.toc.Descendants().First(
                     d =>
                         d.Name.LocalName == "div" &&
                         d.Attributes().Any(a => a.Name.LocalName == "class" && a.Value == "directory"));
-            XElement link = directory.Descendants().First();
+            var link = directory.Descendants().First();
 
             Check.That(link.Name.LocalName).IsEqualTo("a");
-            XAttribute href = link.Attributes().Single(a => a.Name.LocalName == "href");
+            var href = link.Attributes().Single(a => a.Name.LocalName == "href");
             Check.That(href.Value).IsEqualTo("SubLevelOne/index.html");
         }
 
@@ -119,10 +119,10 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             this.Setup();
 
-            IEnumerable<XElement> childrenOfUl = this.toc.Elements().First().Elements();
+            var childrenOfUl = this.toc.Elements().First().Elements();
 
-            int numberOfChildren = childrenOfUl.Count();
-            int numberOfLiChildren = childrenOfUl.Count(e => e.Name.LocalName == "li");
+            var numberOfChildren = childrenOfUl.Count();
+            var numberOfLiChildren = childrenOfUl.Count(e => e.Name.LocalName == "li");
 
             Check.That(numberOfLiChildren).IsEqualTo(numberOfChildren);
         }
@@ -132,16 +132,16 @@ namespace PicklesDoc.Pickles.Test.Formatters
         {
             this.Setup();
 
-            XElement ul = this.toc.FindFirstDescendantWithName("ul");
+            var ul = this.toc.FindFirstDescendantWithName("ul");
 
             // Assert that the first feature is appropriately set in the TOC
             Check.That(ul).IsNotNull();
             Check.That(ul.HasElements).IsTrue();
 
-            XElement li1 = ul.Descendants().FirstOrDefault(d => d.Name.LocalName == "li");
+            var li1 = ul.Descendants().FirstOrDefault(d => d.Name.LocalName == "li");
             Check.That(li1).IsNotNull();
 
-            XElement anchorInLI1 = li1.Elements().First();
+            var anchorInLI1 = li1.Elements().First();
             Check.That(anchorInLI1.HasAttributes).IsTrue();
             Check.That(anchorInLI1.Attribute("class").Value).IsEqualTo("current");
             Check.That(anchorInLI1.Value).IsEqualTo("Home");

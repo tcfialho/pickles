@@ -45,17 +45,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
           </ul>
        <div>
        */
-            var directoryInfo = node.OriginalLocation as DirectoryInfoBase;
+            var directoryInfo = node.OriginalLocation as IDirectoryInfo;
 
             if (directoryInfo == null)
             {
                 throw new ArgumentOutOfRangeException("node", "Argument node must contain a DirectoryInfo.");
             }
 
-            string[] files = directoryInfo.GetFiles().Select(f => f.FullName).ToArray();
+            var files = directoryInfo.GetFiles().Select(f => f.FullName).ToArray();
 
-            INode[] featuresThatAreDirectChildrenOfFolder =
-                features.Where(f => f.OriginalLocation is FileInfoBase).Where(
+            var featuresThatAreDirectChildrenOfFolder =
+                features.Where(f => f.OriginalLocation is IFileInfo).Where(
                     f => files.Contains(f.OriginalLocation.FullName)).ToArray();
 
             var div = new XElement(
@@ -63,7 +63,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
                 new XAttribute("id", "feature"),
                 new XElement(this.xmlns + "h1", node.Name));
 
-            MarkdownNode markdownNode =
+            var markdownNode =
                 featuresThatAreDirectChildrenOfFolder.Where(n => n.IsIndexMarkDownNode()).OfType<MarkdownNode>().FirstOrDefault();
             if (markdownNode != null)
             {
@@ -85,7 +85,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             var list = new XElement(this.xmlns + "ul", new XAttribute("class", "list"));
 
             foreach (
-                XElement li in
+                var li in
                     items.Select(
                         item =>
                             this.FormatListItem(item.GetRelativeUriTo(node.OriginalLocationUrl), item.Feature.Name, item.Feature.Description)))

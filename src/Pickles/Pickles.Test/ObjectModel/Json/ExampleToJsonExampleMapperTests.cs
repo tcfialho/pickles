@@ -19,10 +19,11 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+
 using NFluent;
+
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.DocumentationBuilders.Json;
 using PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -38,7 +39,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         {
             var mapper = CreateMapper();
 
-            JsonExample actual = mapper.Map(null, LanguageDoesNotMatter);
+            var actual = mapper.Map(null, LanguageDoesNotMatter);
 
             Check.That(actual).IsNull();
         }
@@ -63,7 +64,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         [Test]
         public void Map_AnExampleWithName_ReturnsAJsonExampleWithName()
         {
-            var example = new Example { Name = "Some name"};
+            var example = new Example { Name = "Some name" };
 
             var mapper = CreateMapper();
 

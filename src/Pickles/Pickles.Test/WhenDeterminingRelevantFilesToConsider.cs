@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using Autofac;
+
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 
 namespace PicklesDoc.Pickles.Test

@@ -9,7 +9,7 @@
 //  No 3rd party code was included.
 //  * No code of customer projects was used to create this project.
 //  * TechTalk had the full rights to publish the initial codebase.
-    
+
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
 //  * Redistributions of source code must retain the above copyright
@@ -20,7 +20,7 @@
 //  * Neither the name of the SpecFlow project nor the
 //  names of its contributors may be used to endorse or promote products
 //  derived from this software without specific prior written permission.
-    
+
 //  THIS SOFTWARE IS PROVIDED ''AS IS'' AND ANY
 //  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 //  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -35,7 +35,6 @@
 //  --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace TechTalk.SpecFlow.Tracing
@@ -54,18 +53,22 @@ namespace TechTalk.SpecFlow.Tracing
 
         public static string ToIdentifier(this string text)
         {
-            string identifier = ToIdentifierPart(text);
+            var identifier = ToIdentifierPart(text);
             if (identifier.Length > 0 && char.IsDigit(identifier[0]))
+            {
                 identifier = "_" + identifier;
+            }
 
             return identifier;
         }
 
         public static string ToIdentifierCamelCase(this string text)
         {
-            string identifier = ToIdentifier(text);
+            var identifier = ToIdentifier(text);
             if (identifier.Length > 0)
+            {
                 identifier = identifier.Substring(0, 1).ToLower() + identifier.Substring(1);
+            }
 
             return identifier;
         }
@@ -84,7 +87,9 @@ namespace TechTalk.SpecFlow.Tracing
             text = RemoveAccentAndPunctuationChars(text);
 
             if (text.Length > 0)
+            {
                 text = text.Substring(0, 1).ToUpper() + text.Substring(1);
+            }
 
             return text;
         }
@@ -92,14 +97,16 @@ namespace TechTalk.SpecFlow.Tracing
         public static string TrimEllipse(this string text, int maxLength)
         {
             if (text == null || text.Length <= maxLength)
+            {
                 return text;
+            }
 
             const string ellipse = "...";
             return text.Substring(0, maxLength - ellipse.Length) + ellipse;
         }
 
         #region Accent replacements
-        static private Dictionary<string, string> accentReplacements = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> accentReplacements = new Dictionary<string, string>()
                                                                 {
                                                                     {"\u00C0", "A"},
                                                                     {"\u00C1", "A"},
@@ -223,14 +230,16 @@ namespace TechTalk.SpecFlow.Tracing
 
         public static string RemoveAccentAndPunctuationChars(string text)
         {
-            var nonIdRemoved = nonIdentifierRe.Replace(text, String.Empty);
+            var nonIdRemoved = nonIdentifierRe.Replace(text, string.Empty);
 
             return nonLatinRe.Replace(nonIdRemoved, match =>
             {
-                string result;
                 // if there is a Latin substitute, we use that
-                if (accentReplacements.TryGetValue(match.Value, out result))
+                if (accentReplacements.TryGetValue(match.Value, out var result))
+                {
                     return result;
+                }
+
                 return match.Value;
             });
         }
@@ -239,7 +248,7 @@ namespace TechTalk.SpecFlow.Tracing
 
         public static string RemoveQuotationCharacters(string text)
         {
-            return singleAndDoubleQuotes.Replace(text, String.Empty);
+            return singleAndDoubleQuotes.Replace(text, string.Empty);
         }
     }
 }

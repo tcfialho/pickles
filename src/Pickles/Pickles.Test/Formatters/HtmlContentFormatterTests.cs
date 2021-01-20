@@ -19,9 +19,13 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+
 using NFluent;
+
 using NSubstitute;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
 using PicklesDoc.Pickles.ObjectModel;

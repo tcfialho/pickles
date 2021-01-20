@@ -18,9 +18,10 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using NFluent;
+
 using NUnit.Framework;
+
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
@@ -35,7 +36,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            string result = mapper.MapToString((G.Tag)null);
+            var result = mapper.MapToString((G.Tag)null);
 
             Check.That(result).IsNull();
         }
@@ -45,7 +46,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            string result = mapper.MapToString(this.factory.CreateTag("myTag"));
+            var result = mapper.MapToString(this.factory.CreateTag("myTag"));
 
             Check.That(result).IsEqualTo("myTag");
         }

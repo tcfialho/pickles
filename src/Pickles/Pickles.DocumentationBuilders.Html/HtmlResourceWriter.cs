@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Html
@@ -32,7 +31,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
 
         public void WriteTo(string folder)
         {
-            string cssFolder = this.FileSystem.Path.Combine(folder, "css");
+            var cssFolder = this.FileSystem.Path.Combine(folder, "css");
             this.EnsureFolder(cssFolder);
             this.WriteStyleSheet(cssFolder, "master.css");
             this.WriteStyleSheet(cssFolder, "reset.css");
@@ -41,18 +40,18 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             this.WriteStyleSheet(cssFolder, "print.css");
             this.WriteStyleSheet(cssFolder, "font-awesome.css");
 
-            string imagesFolder = this.FileSystem.Path.Combine(folder, "img");
+            var imagesFolder = this.FileSystem.Path.Combine(folder, "img");
             this.EnsureFolder(imagesFolder);
             this.WriteImage(imagesFolder, "success.png");
             this.WriteImage(imagesFolder, "failure.png");
             this.WriteImage(imagesFolder, "inconclusive.png");
 
-            string scriptsFolder = this.FileSystem.Path.Combine(folder, "js");
+            var scriptsFolder = this.FileSystem.Path.Combine(folder, "js");
             this.EnsureFolder(scriptsFolder);
             this.WriteScript(scriptsFolder, "jquery.js");
             this.WriteScript(scriptsFolder, "scripts.js");
 
-            string fontsFolder = this.FileSystem.Path.Combine(cssFolder, "fonts");
+            var fontsFolder = this.FileSystem.Path.Combine(cssFolder, "fonts");
             this.EnsureFolder(fontsFolder);
             this.WriteFont(fontsFolder, "FontAwesome.ttf");
             this.WriteFont(fontsFolder, "fontawesome-webfont.eot");

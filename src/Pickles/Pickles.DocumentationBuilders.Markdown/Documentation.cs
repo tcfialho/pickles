@@ -24,7 +24,7 @@ using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
 {
-    class Documentation
+    internal class Documentation
     {
         private readonly Stylist style = new Stylist();
 

@@ -18,9 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Linq;
-using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Word.Extensions;
@@ -49,7 +46,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         {
             if (this.configuration.HasTestResults)
             {
-                TestResult testResult = this.testResults.GetScenarioOutlineResult(scenarioOutline);
+                var testResult = this.testResults.GetScenarioOutlineResult(scenarioOutline);
                 if (testResult == TestResult.Passed)
                 {
                     body.GenerateParagraph("Passed", "Passed");
@@ -73,7 +70,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 body.GenerateParagraph(scenarioOutline.Description, "Normal");
             }
 
-            foreach (Step step in scenarioOutline.Steps)
+            foreach (var step in scenarioOutline.Steps)
             {
                 this.wordStepFormatter.Format(body, step);
             }
@@ -98,7 +95,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                                               new Run(new Text(example.Description))));
                 }
 
-                this.wordTableFormatter.Format( body, example.TableArgument );
+                this.wordTableFormatter.Format(body, example.TableArgument);
             }
         }
     }

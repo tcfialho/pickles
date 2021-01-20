@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
@@ -74,18 +73,9 @@ namespace PicklesDoc.Pickles.Test
             return mockFileSystem;
         }
 
-        protected MockFileSystem FileSystem
-        {
-            get { return (MockFileSystem)this.Container.Resolve<IFileSystem>(); }
-        }
+        protected MockFileSystem FileSystem => (MockFileSystem)this.Container.Resolve<IFileSystem>();
 
-        protected IConfiguration Configuration
-        {
-            get
-            {
-                return this.Container.Resolve<IConfiguration>();
-            }
-        }
+        protected IConfiguration Configuration => this.Container.Resolve<IConfiguration>();
 
         [TearDown]
         public void TearDown()
@@ -108,14 +98,14 @@ namespace PicklesDoc.Pickles.Test
             this.AddFakeFolderAndFiles(@"FeatureCrawlerTests\SubLevelOne\SubLevelTwo\IgnoreThisDirectory", new[] { "IgnoreThisFile.ignore" });
 
             this.AddFakeFolderAndFiles(@"OrderingTests", new string[0]);
-            this.AddFakeFolderAndFiles(@"OrderingTests\A", new [] {"a-a.feature", "a-b.feature"});
-            this.AddFakeFolderAndFiles(@"OrderingTests\B", new [] {"b-a.feature", "b-b.feature"});
+            this.AddFakeFolderAndFiles(@"OrderingTests\A", new[] { "a-a.feature", "a-b.feature" });
+            this.AddFakeFolderAndFiles(@"OrderingTests\B", new[] { "b-a.feature", "b-b.feature" });
         }
 
         protected void AddFakeFolderAndFiles(string directoryName, IEnumerable<string> fileNames)
         {
-            string directoryPath = FileSystemPrefix + directoryName + @"\";
-            string resourceIdentifier = ResourcePrefix + directoryName.Replace(@"\", ".") + ".";
+            var directoryPath = FileSystemPrefix + directoryName + @"\";
+            var resourceIdentifier = ResourcePrefix + directoryName.Replace(@"\", ".") + ".";
 
             this.FileSystem.AddDirectory(directoryPath);
 
@@ -131,7 +121,7 @@ namespace PicklesDoc.Pickles.Test
         {
             string resultFile;
 
-            System.IO.Stream manifestResourceStream =
+            var manifestResourceStream =
                 Assembly.GetCallingAssembly().GetManifestResourceStream(resourceName);
 
             using (var reader = new System.IO.StreamReader(manifestResourceStream))

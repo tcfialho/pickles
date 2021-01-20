@@ -19,8 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NFluent;
+
 using NUnit.Framework;
-using PicklesDoc.Pickles.ObjectModel;
+
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
@@ -37,7 +38,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            string result = mapper.MapToString(cell);
+            var result = mapper.MapToString(cell);
 
             Check.That(result).IsEqualTo("My cell value");
         }
@@ -47,7 +48,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = factory.CreateMapper();
 
-            string result = mapper.MapToString((G.TableCell)null);
+            var result = mapper.MapToString((G.TableCell)null);
 
             Check.That(result).IsNull();
         }
@@ -57,7 +58,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = factory.CreateMapper();
 
-            TableRow result = mapper.MapToTableRow(null);
+            var result = mapper.MapToTableRow(null);
 
             Check.That(result).IsNull();
         }
@@ -65,7 +66,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTableRow_RowWithCellValues_ReturnsRowContainingThoseValues()
         {
-            G.TableRow row = this.factory.CreateGherkinTableRow(
+            var row = this.factory.CreateGherkinTableRow(
                 new[]
                 {
                     "first cell",
@@ -84,7 +85,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = factory.CreateMapper();
 
-            Table result = mapper.MapToTable((G.DataTable) null);
+            var result = mapper.MapToTable((G.DataTable)null);
 
             Check.That(result).IsNull();
         }
@@ -92,7 +93,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToTable_DataTableWithThreeRows_ReturnsTableWithHeaderRowAndTwoRows()
         {
-            G.DataTable dataTable = this.factory.CreateGherkinDataTable(new[]
+            var dataTable = this.factory.CreateGherkinDataTable(new[]
             {
                 new[] { "Header row, first cell", "Header row, second cell" },
                 new[] { "First row, first cell", "First row, second cell" },

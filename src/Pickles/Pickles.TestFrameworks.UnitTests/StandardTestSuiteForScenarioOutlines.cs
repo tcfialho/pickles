@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+
 using NFluent;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -44,16 +45,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where all scenarios pass", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass_3" });
+            var exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass_3" });
             Check.That(exampleResult3).IsEqualTo(TestResult.Passed);
         }
 
@@ -65,16 +66,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario is inconclusive", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(this.valueForInconclusive);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
+            var exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
             Check.That(exampleResult3).IsEqualTo(this.valueForInconclusive);
         }
 
@@ -86,16 +87,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline where one scenario fails", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
+            var exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
             Check.That(exampleResult3).IsEqualTo(TestResult.Failed);
         }
 
@@ -107,25 +108,25 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new ScenarioOutline { Name = "And we can go totally bonkers with multiple example sections.", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "pass_1" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "pass_2" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
+            var exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_1" });
             Check.That(exampleResult3).IsEqualTo(this.valueForInconclusive);
 
-            TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
+            var exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive_2" });
             Check.That(exampleResult4).IsEqualTo(this.valueForInconclusive);
 
-            TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
+            var exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "fail_1" });
             Check.That(exampleResult5).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail_2" });
+            var exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail_2" });
             Check.That(exampleResult6).IsEqualTo(TestResult.Failed);
         }
 
@@ -160,28 +161,28 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
                 }
             };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "**" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "**" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "++" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "++" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { ".*" });
+            var exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { ".*" });
             Check.That(exampleResult3).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "[]" });
+            var exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "[]" });
             Check.That(exampleResult4).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "{}" });
+            var exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "{}" });
             Check.That(exampleResult5).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "()" });
+            var exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "()" });
             Check.That(exampleResult6).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult7 = results.GetExampleResult(scenarioOutline, new[] { @"^.*(?<foo>BAR)\s[^0-9]{3,4}A+$" });
+            var exampleResult7 = results.GetExampleResult(scenarioOutline, new[] { @"^.*(?<foo>BAR)\s[^0-9]{3,4}A+$" });
             Check.That(exampleResult7).IsEqualTo(TestResult.Passed);
         }
 
@@ -193,10 +194,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with overlong example values", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "Please enter a valid two letter country code (e.g. DE)!", "This is just a very very very veery long error message!" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "Please enter a valid two letter country code (e.g. DE)!", "This is just a very very very veery long error message!" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
         }
 
@@ -229,22 +230,22 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
                 }
             };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult0 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult0 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult0).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive" });
             Check.That(exampleResult2).IsEqualTo(this.valueForInconclusive);
 
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult3).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult4).IsEqualTo(TestResult.Failed);
         }
 
@@ -288,28 +289,28 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
                 }
             };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult0 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult0 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult0).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult3).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult4).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive" });
+            var exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive" });
             Check.That(exampleResult5).IsEqualTo(this.valueForInconclusive);
 
-            TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult6).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult7 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult7 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult7).IsEqualTo(TestResult.Passed);
         }
 
@@ -351,16 +352,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
                 }
             };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult0 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult0 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult0).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive" });
             Check.That(exampleResult2).IsEqualTo(this.valueForInconclusive);
         }
 
@@ -406,28 +407,28 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
                 }
             };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult0 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult0 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult0).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult3 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult3).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult4 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult4).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive" });
+            var exampleResult5 = results.GetExampleResult(scenarioOutline, new[] { "inconclusive" });
             Check.That(exampleResult5).IsEqualTo(this.valueForInconclusive);
 
-            TestResult exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
+            var exampleResult6 = results.GetExampleResult(scenarioOutline, new[] { "fail" });
             Check.That(exampleResult6).IsEqualTo(TestResult.Failed);
 
-            TestResult exampleResult7 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
+            var exampleResult7 = results.GetExampleResult(scenarioOutline, new[] { "pass" });
             Check.That(exampleResult7).IsEqualTo(TestResult.Passed);
         }
     }

@@ -36,9 +36,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
         [Test]
         public void Adding_A_Line_Increases_Count()
         {
-            var lines = new Lines();
-
-            lines.Add("Hello, World");
+            var lines = new Lines
+            {
+                "Hello, World"
+            };
 
             Assert.AreEqual(1, lines.Count);
         }
@@ -46,12 +47,16 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
         [Test]
         public void Adding_A_Lines_Object_Together_Combines_Them()
         {
-            var lines = new Lines();
-            lines.Add("Hello, World");
+            var lines = new Lines
+            {
+                "Hello, World"
+            };
 
-            var moreLines = new Lines();
-            moreLines.Add("Hello");
-            moreLines.Add("World");
+            var moreLines = new Lines
+            {
+                "Hello",
+                "World"
+            };
 
             lines.Add(moreLines);
 
@@ -62,9 +67,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
         [Test]
         public void Converting_Lines_Object_To_String_Returns_All_Lines_With_NewLine_Seperator()
         {
-            var lines = new Lines();
-            lines.Add("Hello");
-            lines.Add("World");
+            var lines = new Lines
+            {
+                "Hello",
+                "World"
+            };
 
             Assert.AreEqual("Hello\r\nWorld\r\n", lines.ToString());
         }

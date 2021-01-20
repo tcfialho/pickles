@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Pickles.CommandLine": {
+      "commandName": "Project",
+      "commandLineArgs": "-l=pt -df=cucumber -o=result",
+      "workingDirectory": "D:\\Users\\tcfialho\\Documents\\ASPNETCore5-REST_API-xUnit-SpecFlow-Swagger-Docker_JurosCompostos"
+    }
+  }
+}

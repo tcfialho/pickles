@@ -18,10 +18,10 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using Autofac;
+
 using NUnit.Framework;
-using PicklesDoc.Pickles.DataStructures;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.Json;
 using PicklesDoc.Pickles.Test.Helpers;
@@ -39,7 +39,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
 
             this.AddFakeFolderStructures();
 
-            Tree features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath, new ParsingReport());
+            var features = Container.Resolve<DirectoryTreeCrawler>().Crawl(rootPath, new ParsingReport());
 
             var outputDirectory = FileSystem.DirectoryInfo.FromDirectoryName(OutputDirectory);
             if (!outputDirectory.Exists)
@@ -62,7 +62,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         {
             this.Setup();
 
-            string content = FileSystem.File.ReadAllText(this.FileSystem.Path.Combine(OutputDirectory, JsonDocumentationBuilder.JsonFileName));
+            var content = FileSystem.File.ReadAllText(this.FileSystem.Path.Combine(OutputDirectory, JsonDocumentationBuilder.JsonFileName));
             content.AssertJsonKeyValue("Name", "Addition");
         }
     }

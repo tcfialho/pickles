@@ -158,200 +158,170 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
         public string PicklesVersion
         {
-            get { return this.picklesVersion; }
-            set { this.Set(() => this.PicklesVersion, ref this.picklesVersion, value); }
+            get => this.picklesVersion;
+            set => this.Set(() => this.PicklesVersion, ref this.picklesVersion, value);
         }
 
         public string FeatureFolder
         {
-            get { return this.featureFolder; }
-            set { this.Set(() => this.FeatureFolder, ref this.featureFolder, value); }
+            get => this.featureFolder;
+            set => this.Set(() => this.FeatureFolder, ref this.featureFolder, value);
         }
 
         public string OutputFolder
         {
-            get { return this.outputFolder; }
-            set { this.Set(() => this.OutputFolder, ref this.outputFolder, value); }
+            get => this.outputFolder;
+            set => this.Set(() => this.OutputFolder, ref this.outputFolder, value);
         }
 
-        public MultiSelectableCollection<DocumentationFormat> DocumentationFormatValues
-        {
-            get { return this.documentationFormats; }
-        }
+        public MultiSelectableCollection<DocumentationFormat> DocumentationFormatValues => this.documentationFormats;
 
         public string ProjectName
         {
-            get { return this.projectName; }
-            set { this.Set(() => this.ProjectName, ref this.projectName, value); }
+            get => this.projectName;
+            set => this.Set(() => this.ProjectName, ref this.projectName, value);
         }
 
         public string ProjectVersion
         {
-            get { return this.projectVersion; }
-            set { this.Set(() => this.ProjectVersion, ref this.projectVersion, value); }
+            get => this.projectVersion;
+            set => this.Set(() => this.ProjectVersion, ref this.projectVersion, value);
         }
 
         public string TestResultsFile
         {
-            get { return this.testResultsFile; }
+            get => this.testResultsFile;
 
-            set { this.Set(() => this.TestResultsFile, ref this.testResultsFile, value); }
+            set => this.Set(() => this.TestResultsFile, ref this.testResultsFile, value);
         }
 
-        public IEnumerable<TestResultsFormat> TestResultsFormatValues
-        {
-            get { return this.testResultsFormats; }
-        }
+        public IEnumerable<TestResultsFormat> TestResultsFormatValues => this.testResultsFormats;
 
         public TestResultsFormat SelectedTestResultsFormat
         {
-            get { return this.selectedTestResultsFormat; }
-            set { this.Set(() => this.SelectedTestResultsFormat, ref this.selectedTestResultsFormat, value); }
+            get => this.selectedTestResultsFormat;
+            set => this.Set(() => this.SelectedTestResultsFormat, ref this.selectedTestResultsFormat, value);
         }
 
         public CultureInfo SelectedLanguage
         {
-            get { return this.selectedLanguage; }
-            set { this.Set(() => this.SelectedLanguage, ref this.selectedLanguage, value); }
+            get => this.selectedLanguage;
+            set => this.Set(() => this.SelectedLanguage, ref this.selectedLanguage, value);
         }
 
-        public IEnumerable<CultureInfo> LanguageValues
-        {
-            get { return this.neutralCultures; }
-        }
+        public IEnumerable<CultureInfo> LanguageValues => this.neutralCultures;
 
         public bool IncludeTests
         {
-            get { return this.includeTests; }
-            set { this.Set(() => this.IncludeTests, ref this.includeTests, value); }
+            get => this.includeTests;
+            set => this.Set(() => this.IncludeTests, ref this.includeTests, value);
         }
 
         public string ExcludeTags
         {
-            get { return this.excludeTags; }
+            get => this.excludeTags;
 
-            set { this.Set(nameof(this.ExcludeTags), ref this.excludeTags, value); }
+            set => this.Set(nameof(this.ExcludeTags), ref this.excludeTags, value);
         }
 
         public string HideTags
         {
-            get { return this.hideTags; }
+            get => this.hideTags;
 
-            set { this.Set(nameof(this.HideTags), ref this.hideTags, value); }
+            set => this.Set(nameof(this.HideTags), ref this.hideTags, value);
         }
 
-        public ICommand GeneratePickles
-        {
-            get { return this.generateCommand; }
-        }
+        public ICommand GeneratePickles => this.generateCommand;
 
-        public ICommand GeneratePowerShellCommand
-        {
-            get { return this.generatePowerShellCommandCommand; }
-        }
+        public ICommand GeneratePowerShellCommand => this.generatePowerShellCommandCommand;
 
-        public ICommand GenerateCLICommand
-        {
-            get { return this.generateCLICommandCommand; }
-        }
+        public ICommand GenerateCLICommand => this.generateCLICommandCommand;
 
-        public ICommand BrowseForFeatureFolder
-        {
-            get { return this.browseForFeatureFolderCommand; }
-        }
+        public ICommand BrowseForFeatureFolder => this.browseForFeatureFolderCommand;
 
-        public ICommand BrowseForOutputFolder
-        {
-            get { return this.browseForOutputFolderCommand; }
-        }
+        public ICommand BrowseForOutputFolder => this.browseForOutputFolderCommand;
 
-        public ICommand BrowseForTestResultsFile
-        {
-            get { return this.browseForTestResultsFileCommand; }
-        }
+        public ICommand BrowseForTestResultsFile => this.browseForTestResultsFileCommand;
 
-        public RelayCommand OpenOutputDirectory
-        {
-            get { return this.openOutputDirectory; }
-        }
+        public RelayCommand OpenOutputDirectory => this.openOutputDirectory;
 
         public bool IsRunning
         {
-            get { return this.isRunning; }
-            set { this.Set(() => this.IsRunning, ref this.isRunning, value); }
+            get => this.isRunning;
+            set => this.Set(() => this.IsRunning, ref this.isRunning, value);
         }
 
         public bool IsFeatureDirectoryValid
         {
-            get { return this.isFeatureDirectoryValid; }
+            get => this.isFeatureDirectoryValid;
 
-            set { this.Set(() => this.IsFeatureDirectoryValid, ref this.isFeatureDirectoryValid, value); }
+            set => this.Set(() => this.IsFeatureDirectoryValid, ref this.isFeatureDirectoryValid, value);
         }
 
         public bool IsDocumentationFormatValid
         {
-            get { return this.isDocumentationFormatValid; }
+            get => this.isDocumentationFormatValid;
 
-            set { this.Set(() => this.IsDocumentationFormatValid, ref this.isDocumentationFormatValid, value); }
+            set => this.Set(() => this.IsDocumentationFormatValid, ref this.isDocumentationFormatValid, value);
         }
 
         public bool IsOutputDirectoryValid
         {
-            get { return this.isOutputDirectoryValid; }
-            set { this.Set(() => this.IsOutputDirectoryValid, ref this.isOutputDirectoryValid, value); }
+            get => this.isOutputDirectoryValid;
+            set => this.Set(() => this.IsOutputDirectoryValid, ref this.isOutputDirectoryValid, value);
         }
 
         public bool IsProjectNameValid
         {
-            get { return this.isProjectNameValid; }
-            set { this.Set(() => this.IsProjectNameValid, ref this.isProjectNameValid, value); }
+            get => this.isProjectNameValid;
+            set => this.Set(() => this.IsProjectNameValid, ref this.isProjectNameValid, value);
         }
 
         public bool IsProjectVersionValid
         {
-            get { return this.isProjectVersionValid; }
-            set { this.Set(() => this.IsProjectVersionValid, ref this.isProjectVersionValid, value); }
+            get => this.isProjectVersionValid;
+            set => this.Set(() => this.IsProjectVersionValid, ref this.isProjectVersionValid, value);
         }
 
         public bool IsTestResultsFileValid
         {
-            get { return this.isTestResultsFileValid; }
-            set { this.Set(() => this.IsTestResultsFileValid, ref this.isTestResultsFileValid, value); }
+            get => this.isTestResultsFileValid;
+            set => this.Set(() => this.IsTestResultsFileValid, ref this.isTestResultsFileValid, value);
         }
 
         public bool IsTestResultsFormatValid
         {
-            get { return this.isTestResultsFormatValid; }
-            set { this.Set(() => this.IsTestResultsFormatValid, ref this.isTestResultsFormatValid, value); }
+            get => this.isTestResultsFormatValid;
+            set => this.Set(() => this.IsTestResultsFormatValid, ref this.isTestResultsFormatValid, value);
         }
 
         public bool IsLanguageValid
         {
-            get { return this.isLanguageValid; }
-            set { this.Set(() => this.IsLanguageValid, ref this.isLanguageValid, value); }
+            get => this.isLanguageValid;
+            set => this.Set(() => this.IsLanguageValid, ref this.isLanguageValid, value);
         }
 
         public bool CreateDirectoryForEachOutputFormat
         {
-            get { return this.createDirectoryForEachOutputFormat; }
-            set { this.Set(() => this.CreateDirectoryForEachOutputFormat, ref this.createDirectoryForEachOutputFormat, value); }
+            get => this.createDirectoryForEachOutputFormat;
+            set => this.Set(() => this.CreateDirectoryForEachOutputFormat, ref this.createDirectoryForEachOutputFormat, value);
         }
 
         public bool IncludeExperimentalFeatures
         {
-            get { return this.includeExperimentalFeatures; }
-            set { this.Set(nameof(this.IncludeExperimentalFeatures), ref this.includeExperimentalFeatures, value); }
+            get => this.includeExperimentalFeatures;
+            set => this.Set(nameof(this.IncludeExperimentalFeatures), ref this.includeExperimentalFeatures, value);
         }
 
         public bool EnableComments
         {
-            get { return this.enableComments; }
-            set { this.Set(nameof(this.enableComments), ref this.enableComments, value); }
+            get => this.enableComments;
+            set => this.Set(nameof(this.enableComments), ref this.enableComments, value);
         }
 
         public void SaveToSettings()
         {
-            MainModel mainModel = new MainModel
+            var mainModel = new MainModel
             {
                 FeatureDirectory = this.featureFolder,
                 OutputDirectory = this.outputFolder,
@@ -375,7 +345,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
         public void LoadFromSettings()
         {
-            MainModel mainModel = this.mainModelSerializer.Read();
+            var mainModel = this.mainModelSerializer.Read();
 
             if (mainModel == null)
             {
@@ -530,8 +500,9 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             DoGenerateCommandLine(new CLICommandGenerator());
         }
 
-        private MainModel CreateMainModel() =>
-            new MainModel
+        private MainModel CreateMainModel()
+        {
+            return new MainModel
             {
                 FeatureDirectory = this.featureFolder,
                 OutputDirectory = this.outputFolder,
@@ -548,6 +519,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
                 EnableComments = this.enableComments,
                 IncludeExperimentalFeatures = this.includeExperimentalFeatures
             };
+        }
 
         private void DoGenerate()
         {
@@ -565,7 +537,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
         private void DoWork()
         {
-            foreach (DocumentationFormat documentationFormat in this.documentationFormats.Selected)
+            foreach (var documentationFormat in this.documentationFormats.Selected)
             {
                 var builder = new ContainerBuilder();
                 builder.RegisterAssemblyTypes(typeof(Runner).Assembly);
@@ -630,8 +602,10 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
 
         private void DoBrowseForTestResultsFile()
         {
-            var dlg = new Ookii.Dialogs.Wpf.VistaOpenFileDialog();
-            dlg.Multiselect = true;
+            var dlg = new Ookii.Dialogs.Wpf.VistaOpenFileDialog
+            {
+                Multiselect = true
+            };
             var result = dlg.ShowDialog();
             if (result == true)
             {

@@ -18,11 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
+
 using Autofac;
+
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
@@ -67,11 +68,11 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [Test]
         public void Li_Element_Must_Not_Have_Id_Attribute()
         {
-            Scenario scenario = this.BuildMinimalScenario();
+            var scenario = this.BuildMinimalScenario();
 
-            XElement li = this.formatter.Format(scenario, 1);
+            var li = this.formatter.Format(scenario, 1);
 
-            XAttribute idAttribute = li.Attribute("id");
+            var idAttribute = li.Attribute("id");
 
             Check.That(idAttribute).IsNull();
         }

@@ -18,8 +18,8 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
+
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -41,10 +41,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             }
 
             // Get the paragraph properties element of the paragraph.
-            ParagraphProperties pPr = p.Elements<ParagraphProperties>().First();
+            var pPr = p.Elements<ParagraphProperties>().First();
 
             // Get the Styles part for this document.
-            StyleDefinitionsPart part =
+            var part =
                 doc.MainDocumentPart.StyleDefinitionsPart;
 
             // If the Styles part does not exist, add it and then add the style.
@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 if (this.IsStyleIdInDocument(doc, styleid) != true)
                 {
                     // No match on styleid, so let's try style name.
-                    string styleidFromName = this.GetStyleIdFromStyleName(doc, stylename);
+                    var styleidFromName = this.GetStyleIdFromStyleName(doc, stylename);
                     if (styleidFromName == null)
                     {
                         AddNewStyle(part, styleid, stylename);
@@ -79,17 +79,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         public bool IsStyleIdInDocument(WordprocessingDocument doc, string styleid)
         {
             // Get access to the Styles element for this document.
-            Styles s = doc.MainDocumentPart.StyleDefinitionsPart.Styles;
+            var s = doc.MainDocumentPart.StyleDefinitionsPart.Styles;
 
             // Check that there are styles and how many.
-            int n = s.Elements<Style>().Count();
+            var n = s.Elements<Style>().Count();
             if (n == 0)
             {
                 return false;
             }
 
             // Look for a match on styleid.
-            Style style = s.Elements<Style>()
+            var style = s.Elements<Style>()
                 .Where(st => (st.StyleId == styleid) && (st.Type == StyleValues.Paragraph))
                 .FirstOrDefault();
             if (style == null)
@@ -103,7 +103,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         // Return styleid that matches the styleName, or null when there's no match.
         public string GetStyleIdFromStyleName(WordprocessingDocument doc, string styleName)
         {
-            StyleDefinitionsPart stylePart = doc.MainDocumentPart.StyleDefinitionsPart;
+            var stylePart = doc.MainDocumentPart.StyleDefinitionsPart;
             string styleId = stylePart.Styles.Descendants<StyleName>()
                 .Where(s => s.Val.Value.Equals(styleName) &&
                             (((Style)s.Parent).Type == StyleValues.Paragraph))
@@ -116,7 +116,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         private static void AddNewStyle(StyleDefinitionsPart styleDefinitionsPart, string styleid, string stylename)
         {
             // Get access to the root element of the styles part.
-            Styles styles = styleDefinitionsPart.Styles;
+            var styles = styleDefinitionsPart.Styles;
 
             // Create a new paragraph style and specify some of the properties.
             var style = new Style

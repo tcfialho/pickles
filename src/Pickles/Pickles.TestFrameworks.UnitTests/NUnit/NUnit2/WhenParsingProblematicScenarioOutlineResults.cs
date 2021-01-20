@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using NFluent;
 
 using NUnit.Framework;
@@ -46,10 +44,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
 
             var scenarioOutline = new ScenarioOutline { Name = "Login", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult = results.GetExampleResult(scenarioOutline, new[] { "special characters", "$$$" });
+            var exampleResult = results.GetExampleResult(scenarioOutline, new[] { "special characters", "$$$" });
             Check.That(exampleResult).IsEqualTo(TestResult.Passed);
         }
     }

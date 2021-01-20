@@ -20,7 +20,9 @@
 
 using System;
 using System.Linq;
+
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
@@ -35,7 +37,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var htmlResources = this.CreateHtmlResourceSet();
 
-            HtmlResource[] images = htmlResources.Images.ToArray();
+            var images = htmlResources.Images.ToArray();
 
             Check.That(images.Length).IsEqualTo(3);
             Check.That(images.Select(image => image.File == "success.png")).Not.IsEmpty();
@@ -55,7 +57,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var htmlResources = this.CreateHtmlResourceSet();
 
-            HtmlResource[] resources = htmlResources.All.ToArray();
+            var resources = htmlResources.All.ToArray();
 
             Check.That(resources.Length).IsEqualTo(9);
             Check.That(resources.Select(resource => resource.File == "success.png")).Not.IsEmpty();
@@ -74,7 +76,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var htmlResources = this.CreateHtmlResourceSet();
 
-            HtmlResource[] scripts = htmlResources.Scripts.ToArray();
+            var scripts = htmlResources.Scripts.ToArray();
 
             Check.That(scripts.Length).IsEqualTo(2);
             Check.That(scripts.Select(script => script.File == "jquery.js")).Not.IsEmpty();
@@ -86,7 +88,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var htmlResources = this.CreateHtmlResourceSet();
 
-            HtmlResource[] stylesheets = htmlResources.Stylesheets.ToArray();
+            var stylesheets = htmlResources.Stylesheets.ToArray();
 
             Check.That(stylesheets.Length).IsEqualTo(6);
             Check.That(stylesheets.Select(stylesheet => stylesheet.File == "global.css")).Not.IsEmpty();

@@ -21,10 +21,13 @@
 using System;
 using System.Linq;
 using System.Reflection;
+
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.Extensions;
-using PicklesDoc.Pickles.Test;
+
 using StringWriter = System.IO.StringWriter;
 using TextWriter = System.IO.TextWriter;
 
@@ -79,7 +82,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.DocumentationFormat).IsEqualTo(DocumentationFormat.Excel);
@@ -92,7 +95,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.DocumentationFormat).IsEqualTo(DocumentationFormat.Excel);
@@ -106,7 +109,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
             var configuration = new Configuration();
             var writer = new StringWriter();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
             var actual = RetrieveString(writer);
             var expected = ExpectedHelpString.ComparisonNormalize();
@@ -127,7 +130,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
             var configuration = new Configuration();
             var writer = new StringWriter();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
             var actual = RetrieveString(writer);
             Check.That(actual).Contains(ExpectedHelpString.ComparisonNormalize());
@@ -142,7 +145,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
             var configuration = new Configuration();
             var writer = new StringWriter();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
             var actual = RetrieveString(writer);
             Check.That(actual).Contains(ExpectedHelpString.ComparisonNormalize());
@@ -156,7 +159,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.FeatureFolder.FullName).IsEqualTo(@"c:\features");
@@ -171,7 +174,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -187,7 +190,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -205,7 +208,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -221,7 +224,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -238,7 +241,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -256,7 +259,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -275,7 +278,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -294,7 +297,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -312,7 +315,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -330,7 +333,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsFalse();
@@ -344,7 +347,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -361,7 +364,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsTrue();
@@ -375,7 +378,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.FeatureFolder.FullName).IsEqualTo(@"c:\features");
@@ -390,7 +393,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
             var configuration = new Configuration();
             var writer = new StringWriter();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
             var actual = RetrieveString(writer);
             Check.That(actual).Contains(ExpectedVersionString.ComparisonNormalize());
@@ -405,7 +408,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
             var configuration = new Configuration();
             var writer = new StringWriter();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, writer);
 
             var actual = RetrieveString(writer);
             Check.That(actual).Contains(ExpectedVersionString.ComparisonNormalize());
@@ -422,7 +425,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
             commandLineArgumentParser.Parse(args, configuration, writer);
 
-            string currentDirectory = Assembly.GetExecutingAssembly().Location;
+            var currentDirectory = Assembly.GetExecutingAssembly().Location;
 
             Check.That(configuration.FeatureFolder.FullName).IsEqualTo(currentDirectory);
             Check.That(configuration.OutputFolder.FullName).IsEqualTo(currentDirectory);
@@ -436,7 +439,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HasTestResults).IsFalse();
@@ -462,7 +465,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             IConfiguration configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.ExcludeTags).IsEqualTo("exclude-tag");
@@ -475,7 +478,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             IConfiguration configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.ExcludeTags).IsEqualTo("exclude-tag");
@@ -488,7 +491,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             IConfiguration configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HideTags).IsEqualTo("hide-tag");
@@ -501,7 +504,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             IConfiguration configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.HideTags).IsEqualTo("hide-tag");
@@ -539,7 +542,7 @@ namespace PicklesDoc.Pickles.CommandLine.UnitTests
 
             var configuration = new Configuration();
             var commandLineArgumentParser = new CommandLineArgumentParser(FileSystem);
-            bool shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
+            var shouldContinue = commandLineArgumentParser.Parse(args, configuration, TextWriter.Null);
 
             Check.That(shouldContinue).IsTrue();
             Check.That(configuration.TestResultsFormat).IsEqualTo(expectedResultsFormat);

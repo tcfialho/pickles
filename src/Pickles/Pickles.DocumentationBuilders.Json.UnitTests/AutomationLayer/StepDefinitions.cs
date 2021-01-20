@@ -20,6 +20,7 @@
 
 using System.IO;
 using System.Text.RegularExpressions;
+
 using Autofac;
 
 using NFluent;
@@ -42,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.UnitTests.AutomationLaye
         public void IHaveThisFeatureDescription(string featureDescription)
         {
             var configuration = this.Configuration;
-            FeatureParser parser = new FeatureParser(configuration);
+            var parser = new FeatureParser(configuration);
 
             var feature = parser.Parse(new StringReader(featureDescription));
 

@@ -73,7 +73,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
 
             var featureExecutionIds = scenarios.ExecutionIdElements();
 
-            TestResult result = this.GetExecutionResult(featureExecutionIds);
+            var result = this.GetExecutionResult(featureExecutionIds);
 
             return result;
         }
@@ -91,14 +91,13 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
 
         private TestResult GetExecutionResult(IEnumerable<Guid> featureExecutionIds)
         {
-            TestResult result = featureExecutionIds.Select(this.GetExecutionResult).Merge();
+            var result = featureExecutionIds.Select(this.GetExecutionResult).Merge();
             return result;
         }
 
         private TestResult GetExecutionResult(Guid scenarioExecutionId)
         {
-            TestResult result;
-            this.executionOutcomes.TryGetValue(scenarioExecutionId, out result);
+            this.executionOutcomes.TryGetValue(scenarioExecutionId, out var result);
 
             return result;
         }
@@ -109,7 +108,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
 
             var executionIds = scenarios.Select(scenario => scenario.ExecutionIdElement());
 
-            TestResult result = this.GetExecutionResult(executionIds);
+            var result = this.GetExecutionResult(executionIds);
 
             return result;
         }
@@ -127,9 +126,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
         {
             var scenarios = this.GetScenariosForScenario(scenario);
 
-            Guid executionId = scenarios.Select(s => s.ExecutionIdElement()).FirstOrDefault();
+            var executionId = scenarios.Select(s => s.ExecutionIdElement()).FirstOrDefault();
 
-            TestResult testResult = this.GetExecutionResult(executionId);
+            var testResult = this.GetExecutionResult(executionId);
 
             return testResult;
         }
@@ -150,9 +149,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
 
             var theScenario = this.GetScenarioThatMatchesTheExampleValues(scenario, exampleValues, scenarioElements);
 
-            Guid executionId = theScenario.ExecutionIdElement();
+            var executionId = theScenario.ExecutionIdElement();
 
-            TestResult testResult = this.GetExecutionResult(executionId);
+            var testResult = this.GetExecutionResult(executionId);
 
             return testResult;
         }

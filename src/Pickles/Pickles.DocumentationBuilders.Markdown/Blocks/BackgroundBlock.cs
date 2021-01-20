@@ -22,9 +22,9 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 {
-    class BackgroundBlock : ScenarioBlock
+    internal class BackgroundBlock : ScenarioBlock
     {
-        public BackgroundBlock(Scenario scenario, Stylist style) : base(scenario,style)
+        public BackgroundBlock(Scenario scenario, Stylist style) : base(scenario, style)
         {
         }
 

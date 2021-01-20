@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Text.RegularExpressions;
 
 using PicklesDoc.Pickles.ObjectModel;

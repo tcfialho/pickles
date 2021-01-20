@@ -121,11 +121,11 @@ namespace PicklesDoc.Pickles.ObjectModel
             return new Step
             {
                 Location = this.MapToLocation(step.Location),
-                DocStringArgument = step.Argument is G.DocString ? this.MapToString((G.DocString) step.Argument) : null,
+                DocStringArgument = step.Argument is G.DocString ? this.MapToString((G.DocString)step.Argument) : null,
                 Keyword = this.MapToKeyword(step.Keyword),
                 NativeKeyword = step.Keyword,
                 Name = step.Text,
-                TableArgument = step.Argument is G.DataTable ? this.MapToTable((G.DataTable) step.Argument) : null,
+                TableArgument = step.Argument is G.DataTable ? this.MapToTable((G.DataTable)step.Argument) : null,
             };
         }
 
@@ -204,7 +204,7 @@ namespace PicklesDoc.Pickles.ObjectModel
                 Description = scenario.Description ?? string.Empty,
                 Location = this.MapToLocation(scenario.Location),
                 Name = scenario.Name,
-                Slug = scenario.Name.ToSlug(),
+                Slug = scenario.Name,
                 Steps = scenario.Steps.Select(this.MapToStep).ToList(),
                 Tags = visibleTags
             };
@@ -221,7 +221,7 @@ namespace PicklesDoc.Pickles.ObjectModel
             {
                 Description = examples.Description,
                 Name = examples.Name,
-                TableArgument = this.MapToExampleTable(((G.IHasRows) examples).Rows),
+                TableArgument = this.MapToExampleTable(((G.IHasRows)examples).Rows),
                 Tags = examples.Tags?.Select(this.MapToString).ToList()
             };
         }
@@ -295,7 +295,7 @@ namespace PicklesDoc.Pickles.ObjectModel
             feature.Name = gherkinDocument.Feature.Name;
 
 
-            List<string> tags = RetrieveOnlyVisibleTags(gherkinDocument.Feature.Tags, tagsToHide);
+            var tags = RetrieveOnlyVisibleTags(gherkinDocument.Feature.Tags, tagsToHide);
             feature.Tags.AddRange(tags);
 
             foreach (var comment in feature.Comments.ToArray())
@@ -341,20 +341,20 @@ namespace PicklesDoc.Pickles.ObjectModel
             return feature;
         }
 
-        private IFeatureElement MapToFeatureElement(G.Scenario sd,params string[] tagsToHide)
+        private IFeatureElement MapToFeatureElement(G.Scenario sd, params string[] tagsToHide)
         {
             if (sd == null)
             {
                 return null;
             }
 
-            var scenario = sd as G.Scenario;
+            var scenario = sd;
             if (scenario != null)
             {
                 return this.MapToScenario(scenario, tagsToHide);
             }
 
-            var scenarioOutline = sd as G.Scenario;
+            var scenarioOutline = sd;
             if (scenarioOutline != null)
             {
                 return this.MapToScenarioOutline(scenarioOutline, tagsToHide);
@@ -369,7 +369,7 @@ namespace PicklesDoc.Pickles.ObjectModel
             throw new ArgumentException("Only arguments of type Scenario, ScenarioOutline and Background are supported.");
         }
 
-        private List<string> RetrieveOnlyVisibleTags(IEnumerable<G.Tag> originalTags,params string[] tagsToHide)
+        private List<string> RetrieveOnlyVisibleTags(IEnumerable<G.Tag> originalTags, params string[] tagsToHide)
         {
             var usableTags = new List<string>();
             foreach (var tag in originalTags)

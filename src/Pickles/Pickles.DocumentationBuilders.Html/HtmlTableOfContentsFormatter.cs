@@ -25,7 +25,6 @@ using System.Xml.Linq;
 using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.Extensions;
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Html
 {
@@ -81,15 +80,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             return xElement;
         }
 
-        private XElement AddNodeForHome(XNamespace xmlns, Uri file, DirectoryInfoBase rootFolder)
+        private XElement AddNodeForHome(XNamespace xmlns, Uri file, IDirectoryInfo rootFolder)
         {
             var rootfile = this.fileSystem.FileInfo.FromFileName(this.fileSystem.Path.Combine(rootFolder.FullName, "index.html"));
 
             var xElement = new XElement(xmlns + "li", new XAttribute("class", "file"), new XAttribute("id", "root"));
 
-            string nodeText = "Home";
+            var nodeText = "Home";
 
-            bool fileIsActuallyTheRoot = this.DetermineWhetherFileIsTheRootFile(file, (FileInfoBase)rootfile);
+            var fileIsActuallyTheRoot = this.DetermineWhetherFileIsTheRootFile(file, rootfile);
             if (fileIsActuallyTheRoot)
             {
                 xElement.Add(new XElement(xmlns + "span", new XAttribute("class", "current"), nodeText));
@@ -98,14 +97,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             {
                 xElement.Add(new XElement(
                     xmlns + "a",
-                    new XAttribute("href", file.GetUriForTargetRelativeToMe((FileSystemInfoBase)rootfile, ".html")),
+                    new XAttribute("href", file.GetUriForTargetRelativeToMe(rootfile, ".html")),
                     nodeText));
             }
 
             return xElement;
         }
 
-        private bool DetermineWhetherFileIsTheRootFile(Uri file, FileInfoBase rootfile)
+        private bool DetermineWhetherFileIsTheRootFile(Uri file, IFileInfo rootfile)
         {
             var fileInfo = this.fileSystem.FileInfo.FromFileName(file.LocalPath);
 
@@ -136,7 +135,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         {
             var xElement = new XElement(xmlns + "li", new XAttribute("class", "file"));
 
-            string nodeText = childNode.Data.Name;
+            var nodeText = childNode.Data.Name;
             if (childNode.Data.OriginalLocationUrl == file)
             {
                 xElement.Add(new XElement(xmlns + "span", new XAttribute("class", "current"), nodeText));
@@ -149,9 +148,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             var featureNode = childNode.Data as FeatureNode;
             if (featureNode != null && this.imageResultFormatter != null)
             {
-                Feature feature = featureNode.Feature;
+                var feature = featureNode.Feature;
 
-                XElement formatForToC = this.imageResultFormatter.FormatForToC(feature);
+                var formatForToC = this.imageResultFormatter.FormatForToC(feature);
 
                 if (formatForToC != null)
                 {
@@ -171,11 +170,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
                 new XText("«"));
         }
 
-        public XElement Format(Uri file, Tree features, DirectoryInfoBase outputFolder)
+        public XElement Format(Uri file, Tree features, IDirectoryInfo outputFolder)
         {
-            XNamespace xmlns = HtmlNamespace.Xhtml;
+            var xmlns = HtmlNamespace.Xhtml;
 
-            XElement ul = this.BuildListItems(xmlns, file, features);
+            var ul = this.BuildListItems(xmlns, file, features);
             ul.AddFirst(this.AddNodeForHome(xmlns, file, outputFolder));
 
             return new XElement(

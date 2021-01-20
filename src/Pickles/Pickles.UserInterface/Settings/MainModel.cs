@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Runtime.Serialization;
 
 namespace PicklesDoc.Pickles.UserInterface.Settings
@@ -67,6 +66,6 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
 
         [DataMember(Name = "HideTags", IsRequired = false)]
         public string HideTags { get; set; }
-        
+
     }
 }

@@ -102,14 +102,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit
                 }
             }
 
-            bool wasExecuted = element.IsAttributeSetToValue("executed", "true");
+            var wasExecuted = element.IsAttributeSetToValue("executed", "true");
 
             if (!wasExecuted)
             {
                 return TestResult.Inconclusive;
             }
 
-            bool wasSuccessful = element.IsAttributeSetToValue("success", "true");
+            var wasSuccessful = element.IsAttributeSetToValue("success", "true");
 
             return wasSuccessful ? TestResult.Passed : TestResult.Failed;
         }

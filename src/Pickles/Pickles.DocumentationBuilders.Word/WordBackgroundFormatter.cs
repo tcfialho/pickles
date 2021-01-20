@@ -19,8 +19,11 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System.Linq;
+
 using DocumentFormat.OpenXml.Wordprocessing;
+
 using PicklesDoc.Pickles.ObjectModel;
+
 using Table = DocumentFormat.OpenXml.Wordprocessing.Table;
 using TableRow = DocumentFormat.OpenXml.Wordprocessing.TableRow;
 

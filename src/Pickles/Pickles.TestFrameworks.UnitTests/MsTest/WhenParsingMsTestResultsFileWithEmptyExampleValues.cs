@@ -19,10 +19,12 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 
+using System.Collections.Generic;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
-using System.Collections.Generic;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 {
@@ -43,8 +45,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
             var scenarioOutline = new ScenarioOutline { Name = "Testing test", Feature = feature };
             scenarioOutline.Steps = new List<Step>();
 
-            var examples = new ExampleTable();
-            examples.HeaderRow = new TableRow();
+            var examples = new ExampleTable
+            {
+                HeaderRow = new TableRow()
+            };
             examples.HeaderRow.Cells.Add("result1");
             examples.HeaderRow.Cells.Add("result2");
             examples.HeaderRow.Cells.Add("result3");
@@ -52,16 +56,20 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
             row.Cells.Add("1");
             row.Cells.Add("2");
             row.Cells.Add("3");
-            examples.DataRows = new List<TableRow>();
-            examples.DataRows.Add(row);
+            examples.DataRows = new List<TableRow>
+            {
+                row
+            };
             row = new TableRowWithTestResult();
             row.Cells.Add("1");
             row.Cells.Add("");
             row.Cells.Add("4");
             examples.DataRows.Add(row);
 
-            scenarioOutline.Examples = new List<Example>();
-            scenarioOutline.Examples.Add(new Example() { TableArgument = examples });
+            scenarioOutline.Examples = new List<Example>
+            {
+                new Example() { TableArgument = examples }
+            };
 
             var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "1", "", "4" });
         }

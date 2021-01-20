@@ -41,11 +41,11 @@ namespace PicklesDoc.Pickles.Test.DataStructures
         {
             var tree = CreateTree("root");
 
-            Tree treeB = tree.Add(new MyNode("B"));
+            var treeB = tree.Add(new MyNode("B"));
             treeB.Add(new MyNode("b-b"));
             treeB.Add(new MyNode("b-a"));
 
-            Tree treeA = tree.Add(new MyNode("A"));
+            var treeA = tree.Add(new MyNode("A"));
             treeA.Add(new MyNode("a-b"));
             treeA.Add(new MyNode("a-a"));
 
@@ -102,7 +102,7 @@ namespace PicklesDoc.Pickles.Test.DataStructures
 
             public string Name { get; }
 
-            public FileSystemInfoBase OriginalLocation { get; }
+            public IFileSystemInfo OriginalLocation { get; }
 
             public Uri OriginalLocationUrl { get; }
 

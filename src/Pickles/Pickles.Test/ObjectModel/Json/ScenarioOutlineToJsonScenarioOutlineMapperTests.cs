@@ -19,10 +19,11 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+
 using NFluent;
+
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.DocumentationBuilders.Json;
 using PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -36,7 +37,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         {
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(null);
+            var actual = mapper.Map(null);
 
             Check.That(actual).IsNull();
         }
@@ -53,7 +54,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual).IsNotNull();
         }
@@ -65,7 +66,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Examples.Count).IsEqualTo(0);
         }
@@ -77,7 +78,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Steps.Count).IsEqualTo(0);
         }
@@ -89,7 +90,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Tags.Count).IsEqualTo(0);
         }
@@ -101,7 +102,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Name).IsEqualTo("Some name");
         }
@@ -113,7 +114,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Description).IsEqualTo("Some description");
         }
@@ -125,7 +126,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Slug).IsEqualTo("i-am-a-slug");
         }
@@ -137,7 +138,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Result.WasExecuted).IsTrue();
             Check.That(actual.Result.WasSuccessful).IsTrue();
@@ -153,7 +154,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Feature).IsNull();
         }
@@ -171,7 +172,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Steps[0].Name).IsEqualTo("I perform a step");
         }
@@ -190,7 +191,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Tags).ContainsExactly("tag1", "tag2");
         }
@@ -208,7 +209,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonScenarioOutline actual = mapper.Map(scenarioOutline);
+            var actual = mapper.Map(scenarioOutline);
 
             Check.That(actual.Examples[0].Name).IsEqualTo("Name of the example");
         }

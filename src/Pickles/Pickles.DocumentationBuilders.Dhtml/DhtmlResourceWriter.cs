@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
@@ -44,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Dhtml
 
             if (this.configuration.ShouldIncludeExperimentalFeatures)
             {
-                string mathScript = @"    <script type=""text/x-mathjax-config"">
+                var mathScript = @"    <script type=""text/x-mathjax-config"">
         MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(','\\)']]}
 });
     </script>
@@ -60,19 +59,19 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Dhtml
             }
             this.WriteTextFile(folder, "pickledFeatures.js");
 
-            string cssFolder = this.FileSystem.Path.Combine(folder, "css");
+            var cssFolder = this.FileSystem.Path.Combine(folder, "css");
             this.EnsureFolder(cssFolder);
             this.WriteStyleSheet(cssFolder, "bootstrap.min.css");
             this.WriteStyleSheet(cssFolder, "print.css");
             this.WriteStyleSheet(cssFolder, "styles.css");
 
-            string imagesFolder = this.FileSystem.Path.Combine(folder, "img");
+            var imagesFolder = this.FileSystem.Path.Combine(folder, "img");
             this.EnsureFolder(imagesFolder);
             this.WriteImage(imagesFolder, "glyphicons-halflings-white.png");
             this.WriteImage(imagesFolder, "glyphicons-halflings.png");
             this.WriteImage(imagesFolder, "link.png");
 
-            string scriptsFolder = this.FileSystem.Path.Combine(folder, "js");
+            var scriptsFolder = this.FileSystem.Path.Combine(folder, "js");
             this.EnsureFolder(scriptsFolder);
             this.WriteScript(scriptsFolder, "bootstrap.min.js");
             this.WriteScript(scriptsFolder, "featureSearch.js");

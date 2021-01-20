@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -69,14 +68,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             div.Add(this.htmlDescriptionFormatter.Format(feature.Description));
 
             var scenarios = new XElement(this.xmlns + "ul", new XAttribute("id", "scenarios"));
-            int id = 0;
+            var id = 0;
 
             if (feature.Background != null)
             {
                 scenarios.Add(this.htmlScenarioFormatter.Format(feature.Background, id++));
             }
 
-            foreach (IFeatureElement featureElement in feature.FeatureElements)
+            foreach (var featureElement in feature.FeatureElements)
             {
                 var scenario = featureElement as Scenario;
                 if (scenario != null)

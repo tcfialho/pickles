@@ -18,11 +18,11 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
-using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
@@ -46,7 +46,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            G.Step step = this.factory.CreateStep("Given", "I enter '50' in the calculator");
+            var step = this.factory.CreateStep("Given", "I enter '50' in the calculator");
 
             var result = mapper.MapToStep(step);
 
@@ -64,7 +64,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            G.Step step = this.factory.CreateStep("When", "I press 'enter'");
+            var step = this.factory.CreateStep("When", "I press 'enter'");
 
             var result = mapper.MapToStep(step);
 
@@ -82,7 +82,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            Keyword result = mapper.MapToKeyword("Given");
+            var result = mapper.MapToKeyword("Given");
 
             Check.That(result).IsEqualTo(Keyword.Given);
         }
@@ -92,7 +92,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            Keyword result = mapper.MapToKeyword("Then");
+            var result = mapper.MapToKeyword("Then");
 
             Check.That(result).IsEqualTo(Keyword.Then);
         }
@@ -102,7 +102,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            G.Step step = this.factory.CreateStep("Then", "I see this value on the screen", "120");
+            var step = this.factory.CreateStep("Then", "I see this value on the screen", "120");
 
             var result = mapper.MapToStep(step);
 
@@ -120,7 +120,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            G.Step step = this.factory.CreateStep(
+            var step = this.factory.CreateStep(
                 "When",
                 "I use this table",
                 new[]
@@ -147,7 +147,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            G.Step step = this.factory.CreateStep(
+            var step = this.factory.CreateStep(
                 "Given", "I am on a step", 3, 4
             );
 

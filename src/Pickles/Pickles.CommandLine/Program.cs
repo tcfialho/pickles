@@ -21,7 +21,9 @@
 using System;
 using System.IO.Abstractions;
 using System.Reflection;
+
 using Autofac;
+
 using NLog;
 
 namespace PicklesDoc.Pickles.CommandLine

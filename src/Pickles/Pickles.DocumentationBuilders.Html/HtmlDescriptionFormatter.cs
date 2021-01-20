@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Html.Extensions;
@@ -44,8 +43,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
                 return null;
             }
 
-            string markdownResult = "<div>" + this.markdown.Transform(descriptionText) + "</div>";
-            XElement descriptionElements = XElement.Parse(markdownResult);
+            var markdownResult = "<div>" + this.markdown.Transform(descriptionText) + "</div>";
+            var descriptionElements = XElement.Parse(markdownResult);
             descriptionElements.SetAttributeValue("class", "description");
 
             descriptionElements.MoveToNamespace(this.xmlns);

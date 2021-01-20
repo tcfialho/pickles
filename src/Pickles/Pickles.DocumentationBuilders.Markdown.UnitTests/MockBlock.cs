@@ -22,7 +22,7 @@ using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
-    class MockBlock : Block
+    internal class MockBlock : Block
     {
 
         public MockBlock(Stylist style) : base(style)

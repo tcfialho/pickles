@@ -38,7 +38,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit
             stringBuilder.Append(name).Append("\\(");
 
             foreach (var value in row.Select(v => v.Length > MaxExampleValueLength ? new { Value = v.Substring(0, MaxExampleValueLength), Ellipsis = "..." } : new { Value = v, Ellipsis = "" }))
+            {
                 stringBuilder.AppendFormat("(.*): \"{0}\"{1}, ", Regex.Escape(value.Value), value.Ellipsis);
+            }
 
             stringBuilder.Remove(stringBuilder.Length - 2, 2);
 

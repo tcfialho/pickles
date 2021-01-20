@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using NFluent;
 
 using NUnit.Framework;
@@ -42,7 +40,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.VsTest
         {
             var results = ParseResultsFile();
 
-            TestResult result = results.GetFeatureResult(new Feature { Name = "Failing" });
+            var result = results.GetFeatureResult(new Feature { Name = "Failing" });
 
             Check.That(result).IsEqualTo(TestResult.Failed);
         }

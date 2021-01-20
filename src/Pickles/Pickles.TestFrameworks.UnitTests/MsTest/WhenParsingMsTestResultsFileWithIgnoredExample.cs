@@ -19,11 +19,14 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 
+using System.Collections.Generic;
+
+using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.TestFrameworks.MsTest;
-using System.Collections.Generic;
-using NFluent;
 
 namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
 {
@@ -44,16 +47,22 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.MsTest
             var scenarioOutline = new ScenarioOutline { Name = "Add two numbers", Feature = feature };
             scenarioOutline.Steps = new List<Step>();
 
-            var examples = new ExampleTable();
-            examples.HeaderRow = new TableRow();
+            var examples = new ExampleTable
+            {
+                HeaderRow = new TableRow()
+            };
             examples.HeaderRow.Cells.Add("TestCase");
             var row = new TableRowWithTestResult();
             row.Cells.Add("1");
-            examples.DataRows = new List<TableRow>();
-            examples.DataRows.Add(row);
+            examples.DataRows = new List<TableRow>
+            {
+                row
+            };
 
-            scenarioOutline.Examples = new List<Example>();
-            scenarioOutline.Examples.Add(new Example() { TableArgument = examples });
+            scenarioOutline.Examples = new List<Example>
+            {
+                new Example() { TableArgument = examples }
+            };
 
             var matchedExampleResult = results.GetExampleResult(scenarioOutline, new string[] { "1" });
             Check.That(matchedExampleResult).IsEqualTo(TestResult.Passed);

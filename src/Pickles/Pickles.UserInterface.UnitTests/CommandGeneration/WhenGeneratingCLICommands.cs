@@ -19,8 +19,11 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.UserInterface.CommandGeneration;
 using PicklesDoc.Pickles.UserInterface.Settings;
 

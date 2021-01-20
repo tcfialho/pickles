@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -98,10 +97,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
 
         internal static XNode[] CreateTagElements(string[] tags, XNamespace xNamespace)
         {
-            List<XNode> result = new List<XNode>();
-
-            result.Add(new XText("Tags: "));
-            result.Add(new XElement(xNamespace + "span", tags.First()));
+            var result = new List<XNode>
+            {
+                new XText("Tags: "),
+                new XElement(xNamespace + "span", tags.First())
+            };
 
             foreach (var tag in tags.Skip(1))
             {

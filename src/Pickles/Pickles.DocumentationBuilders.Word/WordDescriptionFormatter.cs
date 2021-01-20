@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+
 using DocumentFormat.OpenXml.Wordprocessing;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Word.Extensions;

@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Xml.Linq;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Html
@@ -27,7 +26,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
     {
         public XElement Format()
         {
-            XNamespace xmlns = HtmlNamespace.Xhtml;
+            var xmlns = HtmlNamespace.Xhtml;
             return new XElement(xmlns + "div", new XAttribute("id", "top"));
         }
     }

@@ -19,9 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NFluent;
+
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.DocumentationBuilders.Json;
 using PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -35,7 +35,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         {
             var mapper = CreateMapper();
 
-            JsonComment result = mapper.Map(null);
+            var result = mapper.Map(null);
 
             Check.That(result).IsNull();
         }
@@ -48,7 +48,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         [Test]
         public void Map_NotNull_ReturnsJsonCommentWithSameText()
         {
-            Comment comment = new Comment { Text = "Some comment" };
+            var comment = new Comment { Text = "Some comment" };
 
             var mapper = CreateMapper();
 

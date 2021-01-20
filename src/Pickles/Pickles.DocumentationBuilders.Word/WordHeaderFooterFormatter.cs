@@ -18,8 +18,8 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Reflection;
+
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -64,8 +64,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
             paragraphProperties1.Append(paragraphStyleId1);
 
             var run1 = new Run();
-            var text1 = new Text();
-            text1.Text = "Generated with Pickles " + Assembly.GetExecutingAssembly().GetName().Version;
+            var text1 = new Text
+            {
+                Text = "Generated with Pickles " + Assembly.GetExecutingAssembly().GetName().Version
+            };
 
             run1.Append(text1);
 

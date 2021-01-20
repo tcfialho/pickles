@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.ObjectModel;

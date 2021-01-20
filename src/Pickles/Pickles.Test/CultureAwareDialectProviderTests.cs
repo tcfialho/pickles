@@ -18,10 +18,11 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using Gherkin;
 using Gherkin.Ast;
+
 using NFluent;
+
 using NUnit.Framework;
 
 namespace PicklesDoc.Pickles.Test

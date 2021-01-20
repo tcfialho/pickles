@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
     [TestFixture]
-    class Localization_Tests
+    internal class Localization_Tests
     {
         [Test]
         public void Localization_Has_String_For_Title()

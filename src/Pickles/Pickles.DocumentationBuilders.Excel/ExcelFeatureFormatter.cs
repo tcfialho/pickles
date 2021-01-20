@@ -18,11 +18,13 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Reflection;
+
 using ClosedXML.Excel;
+
 using NLog;
+
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
@@ -56,7 +58,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
             if (feature.Tags != null && feature.Tags.Count != 0)
             {
                 worksheet.Cell("B2").Value = "Tags:";
-                worksheet.Cell("C2").Value = String.Join(", ", feature.Tags);
+                worksheet.Cell("C2").Value = string.Join(", ", feature.Tags);
                 worksheet.Range("B2:C2").Style.Font.Italic = true;
                 worksheet.Range("B2:C2").Style.Font.FontColor = XLColor.DavysGrey;
             }

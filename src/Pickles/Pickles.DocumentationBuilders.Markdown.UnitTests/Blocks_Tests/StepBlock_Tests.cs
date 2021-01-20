@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 using PicklesDoc.Pickles.ObjectModel;
-using System;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
@@ -53,9 +55,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             };
             var step = new Step() { NativeKeyword = "Natkey ", Name = "I am a step" };
 
-            var stepTable = new Table();
-            stepTable.HeaderRow = new TableRow(new[] { "Col1", "Col2" });
-            stepTable.DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>();
+            var stepTable = new Table
+            {
+                HeaderRow = new TableRow(new[] { "Col1", "Col2" }),
+                DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>()
+            };
             stepTable.DataRows.Add(new TableRow(new[] { "Col1Row1", "Col2Row1" }));
             stepTable.DataRows.Add(new TableRow(new[] { "Col1Row2", "Col2Row2" }));
             step.TableArgument = stepTable;

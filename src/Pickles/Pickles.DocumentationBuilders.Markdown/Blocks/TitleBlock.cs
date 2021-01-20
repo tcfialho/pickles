@@ -22,7 +22,7 @@ using System;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 {
-    class TitleBlock : Block
+    internal class TitleBlock : Block
     {
         public TitleBlock(Stylist style) : base(style)
         {

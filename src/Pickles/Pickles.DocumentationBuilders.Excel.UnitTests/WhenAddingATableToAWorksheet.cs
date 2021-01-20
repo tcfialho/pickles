@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 using Autofac;
@@ -41,15 +40,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
         public void ThenTableAddedSuccessfully()
         {
             var excelTableFormatter = Container.Resolve<ExcelTableFormatter>();
-            var table = new Table();
-            table.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
-            table.DataRows =
-                new List<TableRow>(new[] { new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8") });
+            var table = new Table
+            {
+                HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
+                DataRows =
+                new List<TableRow>(new[] { new TableRow("1", "2", "3", "4"), new TableRow("5", "6", "7", "8") })
+            };
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 6;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 6;
                 excelTableFormatter.Format(worksheet, table, ref row);
 
                 Check.That(worksheet.Cell("D6").Value).IsEqualTo("Var1");

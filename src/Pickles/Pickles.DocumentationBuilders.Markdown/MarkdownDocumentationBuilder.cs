@@ -18,11 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using PicklesDoc.Pickles.DataStructures;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.IO.Abstractions;
+
+using PicklesDoc.Pickles.DataStructures;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
 {
@@ -79,7 +80,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
         {
             var fileName = "features.md";
 
-            string defaultOutputFile = string.Empty;
+            var defaultOutputFile = string.Empty;
             defaultOutputFile = Path.Combine(outputFolder, fileName);
 
             return defaultOutputFile;
@@ -89,9 +90,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
 
         private void WriteImage(string folder, string sourcefilename, string targetfilename)
         {
-            string path = this.fileSystem.Path.Combine(folder, targetfilename);
+            var path = this.fileSystem.Path.Combine(folder, targetfilename);
 
-            using (Image image = Image.FromStream(this.GetResourceStream(this.namespaceOfResources + sourcefilename)))
+            using (var image = Image.FromStream(this.GetResourceStream(this.namespaceOfResources + sourcefilename)))
             {
                 using (var stream = this.fileSystem.File.Create(path))
                 {

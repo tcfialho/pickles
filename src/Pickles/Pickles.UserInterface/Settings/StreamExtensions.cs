@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Runtime.Serialization;
 using System.Xml;
 
@@ -28,7 +27,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
     {
         internal static void Serialize<T>(this System.IO.Stream stream, T item)
         {
-            using (XmlWriter writer = XmlWriter.Create(stream, new XmlWriterSettings { Indent = true }))
+            using (var writer = XmlWriter.Create(stream, new XmlWriterSettings { Indent = true }))
             {
                 new DataContractSerializer(typeof(T)).WriteObject(writer, item);
             }
@@ -38,7 +37,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
         {
             T result;
 
-            using (XmlReader reader = XmlReader.Create(stream))
+            using (var reader = XmlReader.Create(stream))
             {
                 result = (T)new DataContractSerializer(typeof(T)).ReadObject(reader);
             }

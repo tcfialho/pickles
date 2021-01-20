@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 namespace PicklesDoc.Pickles.DocumentationBuilders.Json
 {
     public class JsonTestResult

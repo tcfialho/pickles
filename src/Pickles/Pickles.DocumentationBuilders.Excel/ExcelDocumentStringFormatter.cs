@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+
 using ClosedXML.Excel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
@@ -27,11 +28,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
     {
         public void Format(IXLWorksheet worksheet, string documentString, ref int row)
         {
-            string[] documentStringLines = documentString.Split(
+            var documentStringLines = documentString.Split(
                 new[] { "\n", "\r" },
                 StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (string line in documentStringLines)
+            foreach (var line in documentStringLines)
             {
                 worksheet.Cell(row++, 4).Value = line;
             }

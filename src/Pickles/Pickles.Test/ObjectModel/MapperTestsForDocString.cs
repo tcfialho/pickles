@@ -17,9 +17,10 @@
 //  limitations under the License.
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
-using System;
 using NFluent;
+
 using NUnit.Framework;
+
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
@@ -34,7 +35,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            string result = mapper.MapToString((G.DocString)null);
+            var result = mapper.MapToString((G.DocString)null);
 
             Check.That(result).IsNull();
         }
@@ -46,7 +47,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            string result = mapper.MapToString(docString);
+            var result = mapper.MapToString(docString);
 
             Check.That(result).IsEqualTo(@"My doc string line 1
 My doc string line 2");

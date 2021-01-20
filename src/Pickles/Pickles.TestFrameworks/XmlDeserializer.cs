@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.Xml;
@@ -32,7 +31,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
     public class XmlDeserializer<TItem>
         where TItem : class
     {
-        public TItem Load(FileInfoBase fileInfo)
+        public TItem Load(IFileInfo fileInfo)
         {
             TItem document;
 
@@ -48,7 +47,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
         {
             TItem result;
 
-            using (XmlReader reader = XmlReader.Create(stream))
+            using (var reader = XmlReader.Create(stream))
             {
                 result = (TItem)new System.Xml.Serialization.XmlSerializer(typeof(TItem)).Deserialize(reader);
             }

@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
         {
             //// <UnitTest name="   the name of the scenario   ">
 
-            return scenario.Attribute("name")?.Value ?? String.Empty;
+            return scenario.Attribute("name")?.Value ?? string.Empty;
         }
 
         internal static IEnumerable<XElement> AllExecutionResults(this XDocument document)

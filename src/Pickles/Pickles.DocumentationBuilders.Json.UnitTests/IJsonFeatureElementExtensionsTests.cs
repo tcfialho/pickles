@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using NUnit.Framework;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Json.UnitTests
@@ -31,7 +32,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.UnitTests
         [Test]
         public void AllTags_NullArgument_ThrowsNullReferenceException()
         {
-            Assert.Throws<NullReferenceException>(() => 
+            Assert.Throws<NullReferenceException>(() =>
                 ((IJsonFeatureElement)null).AllTags());
         }
 
@@ -40,7 +41,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.UnitTests
         {
             var scenario = new JsonScenario { Feature = new JsonFeature() };
 
-            IReadOnlyList<string> tags = scenario.AllTags();
+            var tags = scenario.AllTags();
 
             Assert.IsEmpty(tags);
         }
@@ -58,7 +59,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.UnitTests
                 }
             };
 
-            IReadOnlyList<string> tags = scenario.AllTags();
+            var tags = scenario.AllTags();
 
             CollectionAssert.AreEquivalent(new[] { "tag1", "tag2" }, tags);
         }
@@ -78,7 +79,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.UnitTests
                 }
             };
 
-            IReadOnlyList<string> tags = scenario.AllTags();
+            var tags = scenario.AllTags();
 
             CollectionAssert.AreEquivalent(new[] { "tag1", "tag2" }, tags);
         }
@@ -101,7 +102,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.UnitTests
                 }
             };
 
-            IReadOnlyList<string> tags = scenario.AllTags();
+            var tags = scenario.AllTags();
 
             CollectionAssert.AreEquivalent(new[] { "tag1" }, tags);
         }

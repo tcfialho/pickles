@@ -18,11 +18,13 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
 using System.Xml.Linq;
+
 using NFluent;
 using NFluent.Extensibility;
+using NFluent.Kernel;
+using NFluent.Messages;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -32,7 +34,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var actual = ExtensibilityHelper.ExtractChecker(check).Value;
 
-            XAttribute xmlAttribute = actual.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
+            var xmlAttribute = actual.Attributes().FirstOrDefault(attribute => attribute.Name.LocalName == name);
             Check.That(xmlAttribute).IsNotNull();
             // ReSharper disable once PossibleNullReferenceException
             Check.That(xmlAttribute.Value).IsEqualTo(value);
@@ -65,7 +67,7 @@ namespace PicklesDoc.Pickles.Test
 
             if (!XNode.DeepEquals(element, actual))
             {
-                var fluentMessage = FluentMessage.BuildMessage("The {0} is not equal to the given one (using deep comparison)").For("XML element").On(element.ToString()).And.WithGivenValue(actual.ToString());
+                var fluentMessage = FluentMessage.BuildMessage("The {0} is not equal to the given one (using deep comparison)").For(new EntityNamingLogic("XML element")).On(element.ToString()).And.WithGivenValue(actual.ToString());
 
                 throw new FluentCheckException(fluentMessage.ToString());
             }

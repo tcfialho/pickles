@@ -19,7 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System;
+
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -40,7 +42,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var testResults = new TestResult[0];
 
-            TestResult actual = testResults.Merge();
+            var actual = testResults.Merge();
 
             Check.That(actual).Equals(TestResult.Inconclusive);
         }
@@ -53,7 +55,7 @@ namespace PicklesDoc.Pickles.Test
                 TestResult.Passed
             };
 
-            TestResult actual = testResults.Merge();
+            var actual = testResults.Merge();
 
             Check.That(actual).Equals(TestResult.Passed);
         }
@@ -63,7 +65,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var testResults = new[] { TestResult.Passed, TestResult.Passed };
 
-            TestResult actual = testResults.Merge();
+            var actual = testResults.Merge();
 
             Check.That(actual).Equals(TestResult.Passed);
         }
@@ -73,7 +75,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var testResults = new[] { TestResult.Passed, TestResult.Passed, TestResult.Inconclusive };
 
-            TestResult actual = testResults.Merge();
+            var actual = testResults.Merge();
 
             Check.That(actual).Equals(TestResult.Inconclusive);
         }
@@ -83,7 +85,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var testResults = new[] { TestResult.Passed, TestResult.Inconclusive, TestResult.Failed };
 
-            TestResult actual = testResults.Merge();
+            var actual = testResults.Merge();
 
             Check.That(actual).Equals(TestResult.Failed);
         }

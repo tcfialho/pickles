@@ -18,11 +18,9 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
 using System.Reflection;
 using System.Text;
-using System.Xml.Linq;
 
 using NLog;
 
@@ -81,7 +79,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
                 return;
             }
 
-            string nodePath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
+            var nodePath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, node.RelativePathFromRoot);
             string htmlFilePath;
 
             if (node.NodeType == NodeType.Content)
@@ -107,7 +105,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         {
             using (var writer = new System.IO.StreamWriter(htmlFilePath, false, Encoding.UTF8))
             {
-                XDocument document = this.htmlDocumentFormatter.Format(node, features, this.configuration.FeatureFolder);
+                var document = this.htmlDocumentFormatter.Format(node, features, this.configuration.FeatureFolder);
                 document.Save(writer);
                 writer.Close();
             }

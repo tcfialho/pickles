@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using NFluent;
 
 using NUnit.Framework;
@@ -39,7 +37,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.UnitTests
         [Test]
         public void SplitDescription_NullArgument_ReturnsEmptyArgument()
         {
-            string[] descriptions = WordDescriptionFormatter.SplitDescription(null);
+            var descriptions = WordDescriptionFormatter.SplitDescription(null);
 
             Check.That(descriptions.Length).IsEqualTo(0);
         }

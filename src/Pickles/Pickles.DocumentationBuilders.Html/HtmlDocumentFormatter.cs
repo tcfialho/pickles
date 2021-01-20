@@ -61,10 +61,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
             this.fileSystem = fileSystem;
         }
 
-        public XDocument Format(INode featureNode, Tree features, DirectoryInfoBase rootFolder)
+        public XDocument Format(INode featureNode, Tree features, IDirectoryInfo rootFolder)
         {
-            XNamespace xmlns = HtmlNamespace.Xhtml;
-            string featureNodeOutputPath = this.fileSystem.Path.Combine(
+            var xmlns = HtmlNamespace.Xhtml;
+            var featureNodeOutputPath = this.fileSystem.Path.Combine(
                 this.configuration.OutputFolder.FullName,
                 featureNode.RelativePathFromRoot);
             var featureNodeOutputUri = new Uri(featureNodeOutputPath);

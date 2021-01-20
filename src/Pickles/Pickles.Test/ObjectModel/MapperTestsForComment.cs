@@ -1,8 +1,8 @@
-﻿using System;
-using NFluent;
+﻿using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
-using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
@@ -15,7 +15,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         public void MapToComment_NullLocation_ReturnsNull()
         {
             var mapper = this.factory.CreateMapper();
-            Comment result = mapper.MapToComment(null);
+            var result = mapper.MapToComment(null);
             Check.That(result).IsNull();
         }
 
@@ -23,8 +23,8 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         public void MapToComment_RegularComment_ReturnsComment()
         {
             var mapper = this.factory.CreateMapper();
-            G.Comment comment = this.factory.CreateComment("# A comment", 1, 2);
-            Comment result = mapper.MapToComment(comment);
+            var comment = this.factory.CreateComment("# A comment", 1, 2);
+            var result = mapper.MapToComment(comment);
             Check.That(result).IsNotNull();
             Check.That(result.Text).IsEqualTo("# A comment");
             Check.That(result.Location.Line).IsEqualTo(1);

@@ -9,9 +9,9 @@ http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.ms
 
 ***************************************************************************/
 
-using System;
 using System.Linq;
 using System.Xml.Linq;
+
 using DocumentFormat.OpenXml.Packaging;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
@@ -21,18 +21,24 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         private static void AddElementIfMissing(XDocument partXDoc, XElement existing, string newElement)
         {
             if (existing != null)
+            {
                 return;
-            XElement newXElement = XElement.Parse(newElement);
+            }
+
+            var newXElement = XElement.Parse(newElement);
             newXElement.Attributes().Where(a => a.IsNamespaceDeclaration).Remove();
             partXDoc.Root.Add(newXElement);
         }
 
         private static void UpdateFontTablePart(WordprocessingDocument doc)
         {
-            FontTablePart fontTablePart = doc.MainDocumentPart.FontTablePart;
+            var fontTablePart = doc.MainDocumentPart.FontTablePart;
             if (fontTablePart == null)
+            {
                 throw new OpenXmlPowerToolsException("Document does not contain font table part");
-            XDocument fontTableXDoc = fontTablePart.GetXDocument();
+            }
+
+            var fontTableXDoc = fontTablePart.GetXDocument();
 
             AddElementIfMissing(fontTableXDoc,
                 fontTableXDoc
@@ -76,7 +82,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                     </w:rPr>
                   </w:style>");
 
-            for (int i = 1; i <= 1; ++i)
+            for (var i = 1; i <= 1; ++i)
             {
                 AddElementIfMissing(
                     partXDoc,
@@ -86,7 +92,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                                 (string)e.Attribute(W.type) == "paragraph" &&
                                 (string)e.Attribute(W.styleId) == ("TOC" + i.ToString()))
                         .FirstOrDefault(),
-                    String.Format(
+                    string.Format(
                         @"<w:style w:type='paragraph' w:styleId='TOC{0}' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                             <w:name w:val='toc {0}'/>
                             <w:basedOn w:val='Normal'/>
@@ -100,7 +106,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                           </w:style>",
                         i));
             }
-            for (int i = 2; i <= 6; ++i)
+            for (var i = 2; i <= 6; ++i)
             {
                 AddElementIfMissing(
                     partXDoc,
@@ -110,7 +116,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                                 (string)e.Attribute(W.type) == "paragraph" &&
                                 (string)e.Attribute(W.styleId) == ("TOC" + i.ToString()))
                         .FirstOrDefault(),
-                    String.Format(
+                    string.Format(
                         @"<w:style w:type='paragraph' w:styleId='TOC{0}' xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
                             <w:name w:val='toc {0}'/>
                             <w:basedOn w:val='Normal'/>
@@ -196,18 +202,24 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         {
             StylesPart stylesPart = doc.MainDocumentPart.StyleDefinitionsPart;
             if (stylesPart == null)
+            {
                 throw new OpenXmlPowerToolsException("Document does not contain styles part");
-            XDocument stylesXDoc = stylesPart.GetXDocument();
+            }
+
+            var stylesXDoc = stylesPart.GetXDocument();
             UpdateAStylePartForToc(stylesXDoc);
             stylesPart.PutXDocument();
         }
 
         private static void UpdateStylesWithEffectsPartForToc(WordprocessingDocument doc)
         {
-            StylesWithEffectsPart stylesWithEffectsPart = doc.MainDocumentPart.StylesWithEffectsPart;
+            var stylesWithEffectsPart = doc.MainDocumentPart.StylesWithEffectsPart;
             if (stylesWithEffectsPart == null)
+            {
                 throw new OpenXmlPowerToolsException("Document does not contain styles with effects part");
-            XDocument stylesWithEffectsXDoc = stylesWithEffectsPart.GetXDocument();
+            }
+
+            var stylesWithEffectsXDoc = stylesWithEffectsPart.GetXDocument();
             UpdateAStylePartForToc(stylesWithEffectsXDoc);
             stylesWithEffectsPart.PutXDocument();
         }
@@ -256,18 +268,24 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         {
             StylesPart stylesPart = doc.MainDocumentPart.StyleDefinitionsPart;
             if (stylesPart == null)
+            {
                 throw new OpenXmlPowerToolsException("Document does not contain styles part");
-            XDocument stylesXDoc = stylesPart.GetXDocument();
+            }
+
+            var stylesXDoc = stylesPart.GetXDocument();
             UpdateAStylePartForTof(stylesXDoc);
             stylesPart.PutXDocument();
         }
 
         private static void UpdateStylesWithEffectsPartForTof(WordprocessingDocument doc)
         {
-            StylesWithEffectsPart stylesWithEffectsPart = doc.MainDocumentPart.StylesWithEffectsPart;
+            var stylesWithEffectsPart = doc.MainDocumentPart.StylesWithEffectsPart;
             if (stylesWithEffectsPart == null)
+            {
                 throw new OpenXmlPowerToolsException("Document does not contain styles with effects part");
-            XDocument stylesWithEffectsXDoc = stylesWithEffectsPart.GetXDocument();
+            }
+
+            var stylesWithEffectsXDoc = stylesWithEffectsPart.GetXDocument();
             UpdateAStylePartForTof(stylesWithEffectsXDoc);
             stylesWithEffectsPart.PutXDocument();
         }
@@ -280,15 +298,20 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             UpdateStylesWithEffectsPartForToc(doc);
 
             if (title == null)
+            {
                 title = "Contents";
+            }
+
             if (rightTabPos == null)
+            {
                 rightTabPos = 9350;
+            }
 
             // {0} tocTitle (default = "Contents")
             // {1} rightTabPosition (default = 9350)
             // {2} switches
 
-            String xmlString =
+            var xmlString =
                 @"<w:sdt xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
   <w:sdtPr>
     <w:docPartObj>
@@ -347,15 +370,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
   </w:sdtContent>
 </w:sdt>";
 
-            XElement sdt = XElement.Parse(String.Format(xmlString, title, rightTabPos, switches));
-            XDocument mainXDoc = doc.MainDocumentPart.GetXDocument();
+            var sdt = XElement.Parse(string.Format(xmlString, title, rightTabPos, switches));
+            var mainXDoc = doc.MainDocumentPart.GetXDocument();
             addBefore.AddBeforeSelf(sdt);
             doc.MainDocumentPart.PutXDocument();
 
-            XDocument settingsXDoc = doc.MainDocumentPart.DocumentSettingsPart.GetXDocument();
-            XElement updateFields = settingsXDoc.Descendants(W.updateFields).FirstOrDefault();
+            var settingsXDoc = doc.MainDocumentPart.DocumentSettingsPart.GetXDocument();
+            var updateFields = settingsXDoc.Descendants(W.updateFields).FirstOrDefault();
             if (updateFields != null)
+            {
                 updateFields.Attribute(W.val).Value = "true";
+            }
             else
             {
                 updateFields = new XElement(W.updateFields,
@@ -372,12 +397,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             UpdateStylesWithEffectsPartForTof(doc);
 
             if (rightTabPos == null)
+            {
                 rightTabPos = 9350;
+            }
 
             // {0} rightTabPosition (default = 9350)
             // {1} switches
 
-            string xmlString =
+            var xmlString =
                 @"<w:p xmlns:w='http://schemas.openxmlformats.org/wordprocessingml/2006/main'>
   <w:pPr>
     <w:pStyle w:val='TableofFigures'/>
@@ -401,15 +428,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
     <w:fldChar w:fldCharType='end'/>
   </w:r>
 </w:p>";
-            XElement paragraph = XElement.Parse(String.Format(xmlString, rightTabPos, switches));
-            XDocument mainXDoc = doc.MainDocumentPart.GetXDocument();
+            var paragraph = XElement.Parse(string.Format(xmlString, rightTabPos, switches));
+            var mainXDoc = doc.MainDocumentPart.GetXDocument();
             addBefore.AddBeforeSelf(paragraph);
             doc.MainDocumentPart.PutXDocument();
 
-            XDocument settingsXDoc = doc.MainDocumentPart.DocumentSettingsPart.GetXDocument();
-            XElement updateFields = settingsXDoc.Descendants(W.updateFields).FirstOrDefault();
+            var settingsXDoc = doc.MainDocumentPart.DocumentSettingsPart.GetXDocument();
+            var updateFields = settingsXDoc.Descendants(W.updateFields).FirstOrDefault();
             if (updateFields != null)
+            {
                 updateFields.Attribute(W.val).Value = "true";
+            }
             else
             {
                 updateFields = new XElement(W.updateFields,

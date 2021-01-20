@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections;
 using System.Xml.Linq;
 
@@ -46,10 +45,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests.AutomationLaye
                 }
             }
 
-            set
-            {
-                this.Current["Feature"] = value;
-            }
+            set => this.Current["Feature"] = value;
         }
 
         public IContainer Container { get; set; }
@@ -68,10 +64,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests.AutomationLaye
                 }
             }
 
-            set
-            {
-                this.Current["Html"] = value;
-            }
+            set => this.Current["Html"] = value;
         }
     }
 }

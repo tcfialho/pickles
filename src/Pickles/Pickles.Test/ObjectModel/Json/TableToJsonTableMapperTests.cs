@@ -18,10 +18,11 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Json;
@@ -38,7 +39,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         {
             var mapper = CreateMapper();
 
-            JsonTable actual = mapper.Map(null);
+            var actual = mapper.Map(null);
 
             Check.That(actual).IsNull();
         }
@@ -51,7 +52,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         [Test]
         public void Map_TableWithHeaderRow_ReturnsJsonTableWithoutHeaderRow()
         {
-            var table = new Table {  HeaderRow = null };
+            var table = new Table { HeaderRow = null };
 
             var mapper = CreateMapper();
 

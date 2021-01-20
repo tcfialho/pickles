@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Word.Extensions;
@@ -43,7 +42,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
         {
             if (this.configuration.HasTestResults)
             {
-                TestResult testResult = this.testResults.GetScenarioResult(scenario);
+                var testResult = this.testResults.GetScenarioResult(scenario);
                 if (testResult == TestResult.Passed)
                 {
                     body.GenerateParagraph("Passed", "Passed");
@@ -67,7 +66,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
                 body.GenerateParagraph(scenario.Description, "Normal");
             }
 
-            foreach (Step step in scenario.Steps)
+            foreach (var step in scenario.Steps)
             {
                 this.wordStepFormatter.Format(body, step);
             }

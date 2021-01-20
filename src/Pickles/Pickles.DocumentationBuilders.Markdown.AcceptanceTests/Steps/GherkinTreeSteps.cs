@@ -18,12 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.ObjectModel;
 using PicklesDoc.Pickles.Test;
-using System;
-using TechTalk.SpecFlow;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Steps
 {
@@ -33,8 +33,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         [Given(@"I have a feature called '(.*)'")]
         public void GivenIHaveAFeatureCalled(string p0)
         {
-            var newFeature = new Feature();
-            newFeature.Name = p0;
+            var newFeature = new Feature
+            {
+                Name = p0
+            };
 
             var relPath = "fakedir";
             var location = FileSystem.FileInfo.FromFileName(@"c:\");
@@ -169,7 +171,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
                 NativeKeyword = keyword,
                 Name = stepName
             };
-            
+
             var stepTable = ConvertSpecflowTableToPicklesTable(table);
 
             step.TableArgument = stepTable;
@@ -193,7 +195,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         [Given(@"I have an examples table")]
         public void GivenIHaveAnExamplesTable(TechTalk.SpecFlow.Table table)
         {
-            ScenarioOutline lastScenario = TryToGetLastScenario() as ScenarioOutline;
+            var lastScenario = TryToGetLastScenario() as ScenarioOutline;
 
             var examplesTable = ConvertSpecflowTableToExamplesTable(table);
 
@@ -211,7 +213,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         [Given(@"I have an examples table with results")]
         public void Given_I_Have_An_Examples_Table_With_Results(TechTalk.SpecFlow.Table table)
         {
-            ScenarioOutline lastScenario = TryToGetLastScenario() as ScenarioOutline;
+            var lastScenario = TryToGetLastScenario() as ScenarioOutline;
 
             lastScenario.Result = TestResult.Inconclusive;
 
@@ -233,7 +235,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         {
             var lastScenario = TryToGetLastScenario();
 
-            TestResult result = TestResult.NotProvided;
+            var result = TestResult.NotProvided;
 
             switch (outcome)
             {
@@ -326,13 +328,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         private ObjectModel.ExampleTable ConvertSpecflowTableToExamplesWithResultsTable(TechTalk.SpecFlow.Table specflowTable)
         {
             // Rest In Peace, Marshall 2018-12-12
-            var columnCount = specflowTable.Header.Count -1;
-            var resultLocation = specflowTable.Header.Count -1;
+            var columnCount = specflowTable.Header.Count - 1;
+            var resultLocation = specflowTable.Header.Count - 1;
 
             var headerRow = new string[columnCount];
 
-            int i = 0;
-            foreach(var header in specflowTable.Header)
+            var i = 0;
+            foreach (var header in specflowTable.Header)
             {
                 headerRow[i] = header;
                 i++;
@@ -353,7 +355,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
             {
                 var tableRow = new string[columnCount];
 
-                int r = 0;
+                var r = 0;
                 foreach (var rowValue in row.Values)
                 {
                     tableRow[r] = rowValue;

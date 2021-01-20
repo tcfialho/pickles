@@ -20,6 +20,7 @@
 
 using System;
 using System.Linq;
+
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -44,10 +45,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             if (!string.IsNullOrEmpty(step.DocStringArgument))
             {
-                string[] lines = step.DocStringArgument.Split(
+                var lines = step.DocStringArgument.Split(
                     new[] { Environment.NewLine },
                     StringSplitOptions.RemoveEmptyEntries);
-                foreach (string line in lines)
+                foreach (var line in lines)
                 {
                     body.GenerateParagraph(line, "Quote");
                 }

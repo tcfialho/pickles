@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.VsTest
@@ -37,9 +38,8 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             var element = (XElement)scenarioElement;
             var elementName = element.Name().ToUpperInvariant();
 
-            bool isMatch;
 
-            if (IsVariantWithExampleGroupMatch(scenarioOutline, exampleValues, elementName, out isMatch))
+            if (IsVariantWithExampleGroupMatch(scenarioOutline, exampleValues, elementName, out var isMatch))
             {
                 return isMatch;
             }
@@ -71,13 +71,12 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
 
             if (match.Success)
             {
-                int exampleGroupNumber = int.Parse(match.Groups[ExampleGroup].Value);
+                var exampleGroupNumber = int.Parse(match.Groups[ExampleGroup].Value);
 
                 var exampleSet = scenarioOutline.Examples?[exampleGroupNumber];
                 if (exampleSet != null)
                 {
-                    int variantNumber;
-                    if (int.TryParse(match.Groups[VariantNumberGroup].Value, out variantNumber))
+                    if (int.TryParse(match.Groups[VariantNumberGroup].Value, out var variantNumber))
                     {
                         var examples = exampleSet.TableArgument.DataRows;
                         var example = examples[variantNumber];
@@ -101,8 +100,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             var match = VariantRegex.Match(elementName);
             if (match.Success)
             {
-                int variantNumber;
-                if (int.TryParse(match.Groups[VariantNumberGroup].Value, out variantNumber))
+                if (int.TryParse(match.Groups[VariantNumberGroup].Value, out var variantNumber))
                 {
                     List<TableRow> examples = null;
                     if (scenarioOutline.Examples?.Count == 1)
@@ -140,15 +138,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.VsTest
             var match = ExampleGroupRegex.Match(elementName);
             if (match.Success)
             {
-                string exampleGroupName = match.Groups[ExampleGroupNameGroup].Value;
+                var exampleGroupName = match.Groups[ExampleGroupNameGroup].Value;
 
                 var exampleSet = scenarioOutline.Examples?.FirstOrDefault(x => Normalize(x.Name) == exampleGroupName);
 
                 var variantMatch = VariantRegex.Match(elementName);
                 if (variantMatch.Success)
                 {
-                    int variantNumber;
-                    if (int.TryParse(variantMatch.Groups[VariantNumberGroup].Value, out variantNumber))
+                    if (int.TryParse(variantMatch.Groups[VariantNumberGroup].Value, out var variantNumber))
                     {
                         isMatch = exampleSet.TableArgument.DataRows[variantNumber].Cells.SequenceEqual(exampleValues);
                         return true;

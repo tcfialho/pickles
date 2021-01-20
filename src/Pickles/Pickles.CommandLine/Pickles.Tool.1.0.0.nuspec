@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Pickles.Tool</id>
+    <version>1.0.0</version>
+    <title>This is the .NET Core Global Tool allowing usage of Pickles - The Open Source Living Documentation Generator</title>
+    <authors>PicklesDoc and contributors</authors>
+    <owners>Jeffrey Cameron,Dirk Rombauts</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+    <projectUrl>http://www.picklesdoc.com/</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/picklesdoc/pickles/master/pickles.png</iconUrl>
+    <description>**Pickles** is an open source **living documentation** generator that works on feature files written in the *Gherkin* language, popularized in tools like *Cucumber* and *SpecFlow*.
+
+        *Pickles* can be incorporated into your build process to produce living documentation in a format that is more accessible to your clients. *Gherkin* language files are written in plain text and stored in your source folder. This can make them inaccessible to clients who may not know how to work with source control or who are not interested in seeing all of the source code, just the features.
+
+        *Pickles* can produce output in different formats:
+
+        - Static HTML: a set of HTML files with minimal JavaScript
+        - Dynamic HTML: a JavaScript-rich single page app with integrated search
+        - Word: Microsoft Word
+        - Excel: Microsoft Excel
+        - JSON: a custom JSON format
+        - Markdown: a simple output format
+
+        Optionally, *Pickles* can **integrate test results**, so that your stakeholders know which scenarios pass validation. *Pickles* supports these test formats:
+
+        - NUnit
+        - MSTest
+        - XUnit
+        - SpecRun
+        - Cucumber JSON</description>
+    <summary>A documentation generator for features written in the Gherkin language</summary>
+    <releaseNotes>https://github.com/picklesdoc/pickles/blob/master/CHANGELOG.md</releaseNotes>
+    <copyright>Copyright © 2010-2012 Jeffrey Cameron, Copyright © 2013-present PicklesDoc and contributors</copyright>
+    <tags>SpecificationByExample BDD SpecFlow Gherkin Cucumber SpecByEx LivingDocumentation Documentation</tags>
+  </metadata>
+  <files>
+    <file src="tools\netcoreapp3.1\any\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll" target="tools\netcoreapp3.1\any\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll" />
+    <file src="tools\netcoreapp3.1\any\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll" target="tools\netcoreapp3.1\any\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll" />
+    <file src="tools\netcoreapp3.1\any\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll" target="tools\netcoreapp3.1\any\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll" />
+    <file src="tools\netcoreapp3.1\any\Autofac.dll" target="tools\netcoreapp3.1\any\Autofac.dll" />
+    <file src="tools\netcoreapp3.1\any\ClosedXML.dll" target="tools\netcoreapp3.1\any\ClosedXML.dll" />
+    <file src="tools\netcoreapp3.1\any\DocumentFormat.OpenXml.dll" target="tools\netcoreapp3.1\any\DocumentFormat.OpenXml.dll" />
+    <file src="tools\netcoreapp3.1\any\ExcelNumberFormat.dll" target="tools\netcoreapp3.1\any\ExcelNumberFormat.dll" />
+    <file src="tools\netcoreapp3.1\any\FeatureSwitcher.dll" target="tools\netcoreapp3.1\any\FeatureSwitcher.dll" />
+    <file src="tools\netcoreapp3.1\any\Gherkin.dll" target="tools\netcoreapp3.1\any\Gherkin.dll" />
+    <file src="tools\netcoreapp3.1\any\Jint.dll" target="tools\netcoreapp3.1\any\Jint.dll" />
+    <file src="tools\netcoreapp3.1\any\MarkdownDeep.Core.dll" target="tools\netcoreapp3.1\any\MarkdownDeep.Core.dll" />
+    <file src="tools\netcoreapp3.1\any\Microsoft.Win32.SystemEvents.dll" target="tools\netcoreapp3.1\any\Microsoft.Win32.SystemEvents.dll" />
+    <file src="tools\netcoreapp3.1\any\NDesk.Options.dll" target="tools\netcoreapp3.1\any\NDesk.Options.dll" />
+    <file src="tools\netcoreapp3.1\any\Newtonsoft.Json.dll" target="tools\netcoreapp3.1\any\Newtonsoft.Json.dll" />
+    <file src="tools\netcoreapp3.1\any\NLog.config" target="tools\netcoreapp3.1\any\NLog.config" />
+    <file src="tools\netcoreapp3.1\any\NLog.dll" target="tools\netcoreapp3.1\any\NLog.dll" />
+    <file src="tools\netcoreapp3.1\any\Pickles.deps.json" target="tools\netcoreapp3.1\any\Pickles.deps.json" />
+    <file src="tools\netcoreapp3.1\any\Pickles.dll" target="tools\netcoreapp3.1\any\Pickles.dll" />
+    <file src="tools\netcoreapp3.1\any\Pickles.dll.config" target="tools\netcoreapp3.1\any\Pickles.dll.config" />
+    <file src="tools\netcoreapp3.1\any\Pickles.exe" target="tools\netcoreapp3.1\any\Pickles.exe" />
+    <file src="tools\netcoreapp3.1\any\Pickles.pdb" target="tools\netcoreapp3.1\any\Pickles.pdb" />
+    <file src="tools\netcoreapp3.1\any\Pickles.runtimeconfig.json" target="tools\netcoreapp3.1\any\Pickles.runtimeconfig.json" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Cucumber.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Cucumber.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Cucumber.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Cucumber.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Dhtml.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Dhtml.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Dhtml.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Dhtml.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Excel.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Excel.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Excel.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Excel.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Html.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Html.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Html.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Html.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Json.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Json.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Json.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Json.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Markdown.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Markdown.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Markdown.dll.config" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Markdown.dll.config" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Markdown.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Markdown.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Word.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Word.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Word.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.DocumentationBuilders.Word.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.Library.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.Library.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.Library.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.Library.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.ObjectModel.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.ObjectModel.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.ObjectModel.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.ObjectModel.pdb" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.TestFrameworks.dll" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.TestFrameworks.dll" />
+    <file src="tools\netcoreapp3.1\any\PicklesDoc.Pickles.TestFrameworks.pdb" target="tools\netcoreapp3.1\any\PicklesDoc.Pickles.TestFrameworks.pdb" />
+    <file src="tools\netcoreapp3.1\any\Strike.Jint.dll" target="tools\netcoreapp3.1\any\Strike.Jint.dll" />
+    <file src="tools\netcoreapp3.1\any\System.Diagnostics.DiagnosticSource.dll" target="tools\netcoreapp3.1\any\System.Diagnostics.DiagnosticSource.dll" />
+    <file src="tools\netcoreapp3.1\any\System.Drawing.Common.dll" target="tools\netcoreapp3.1\any\System.Drawing.Common.dll" />
+    <file src="tools\netcoreapp3.1\any\System.IO.Abstractions.dll" target="tools\netcoreapp3.1\any\System.IO.Abstractions.dll" />
+    <file src="tools\netcoreapp3.1\any\System.IO.Packaging.dll" target="tools\netcoreapp3.1\any\System.IO.Packaging.dll" />
+    <file src="tools\netcoreapp3.1\any\Utf8Json.dll" target="tools\netcoreapp3.1\any\Utf8Json.dll" />
+  </files>
+</package>

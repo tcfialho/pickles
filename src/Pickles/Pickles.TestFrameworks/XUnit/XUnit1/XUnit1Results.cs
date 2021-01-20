@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 {
     public class XUnit1Results : MultipleTestRunsBase

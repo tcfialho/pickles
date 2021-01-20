@@ -25,9 +25,9 @@ namespace PicklesDoc.Pickles
 {
     public interface IConfiguration
     {
-        DirectoryInfoBase FeatureFolder { get; set; }
+        IDirectoryInfo FeatureFolder { get; set; }
 
-        DirectoryInfoBase OutputFolder { get; set; }
+        IDirectoryInfo OutputFolder { get; set; }
 
         DocumentationFormat DocumentationFormat { get; set; }
 
@@ -37,9 +37,9 @@ namespace PicklesDoc.Pickles
 
         bool HasTestResults { get; }
 
-        FileInfoBase TestResultsFile { get; }
+        IFileInfo TestResultsFile { get; }
 
-        IEnumerable<FileInfoBase> TestResultsFiles { get; }
+        IEnumerable<IFileInfo> TestResultsFiles { get; }
 
         string SystemUnderTestName { get; set; }
 
@@ -50,9 +50,9 @@ namespace PicklesDoc.Pickles
         string ExcludeTags { get; set; }
         string HideTags { get; set; }
 
-        void AddTestResultFile(FileInfoBase fileInfoBase);
+        void AddTestResultFile(IFileInfo IFileInfo);
 
-        void AddTestResultFiles(IEnumerable<FileInfoBase> fileInfoBases);
+        void AddTestResultFiles(IEnumerable<IFileInfo> IFileInfos);
 
         void EnableExperimentalFeatures();
 

@@ -21,7 +21,9 @@
 using System;
 using System.IO.Abstractions;
 using System.Reflection;
+
 using NDesk.Options;
+
 using PicklesDoc.Pickles.Extensions;
 
 using TextWriter = System.IO.TextWriter;
@@ -147,9 +149,8 @@ namespace PicklesDoc.Pickles.CommandLine
                 configuration.HideTags = this.hideTags;
             }
 
-            bool enableComments;
 
-            if (bool.TryParse(this.enableCommentsValue, out enableComments) && enableComments == false)
+            if (bool.TryParse(this.enableCommentsValue, out var enableComments) && enableComments == false)
             {
                 configuration.DisableComments();
             }

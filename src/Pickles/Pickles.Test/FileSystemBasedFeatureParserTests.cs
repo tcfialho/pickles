@@ -20,7 +20,9 @@
 
 using System;
 using System.IO.Abstractions.TestingHelpers;
+
 using NFluent;
+
 using NUnit.Framework;
 
 namespace PicklesDoc.Pickles.Test

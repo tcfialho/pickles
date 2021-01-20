@@ -19,8 +19,11 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System.IO.Abstractions.TestingHelpers;
+
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 
 namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
@@ -36,7 +39,7 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
             var fileSystem = new MockFileSystem();
             var file = fileSystem.FileInfo.FromFileName("image.png");
 
-            bool isRelevant = fileDetector.IsRelevant(file);
+            var isRelevant = fileDetector.IsRelevant(file);
 
             Check.That(isRelevant).IsTrue();
         }

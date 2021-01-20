@@ -18,10 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
-
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 {
@@ -29,7 +26,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
     {
         private readonly XDocumentLoader documentLoader = new XDocumentLoader();
 
-        public SingleTestRunBase Load(FileInfoBase fileInfo)
+        public SingleTestRunBase Load(IFileInfo fileInfo)
         {
             return new NUnit3SingleResult(this.documentLoader.Load(fileInfo));
         }

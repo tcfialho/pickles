@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using ClosedXML.Excel;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -49,23 +48,25 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
         public void Format(IXLWorksheet worksheet, ScenarioOutline scenarioOutline, ref int row)
         {
-            int originalRow = row;
+            var originalRow = row;
             worksheet.Cell(row, "B").Style.Font.SetBold();
             worksheet.Cell(row++, "B").Value = scenarioOutline.Name;
 
             if (scenarioOutline.Tags != null && scenarioOutline.Tags.Count != 0)
             {
-              worksheet.Cell(row, "B").Value = "Tags:";
-              worksheet.Cell(row, "C").Value = String.Join(", ", scenarioOutline.Tags);
-              worksheet.Cell(row, "B").Style.Font.Italic = true;
-              worksheet.Cell(row, "B").Style.Font.FontColor = XLColor.DavysGrey;
-              worksheet.Cell(row, "C").Style.Font.Italic = true;
-              worksheet.Cell(row, "C").Style.Font.FontColor = XLColor.DavysGrey;
-              row++;
+                worksheet.Cell(row, "B").Value = "Tags:";
+                worksheet.Cell(row, "C").Value = string.Join(", ", scenarioOutline.Tags);
+                worksheet.Cell(row, "B").Style.Font.Italic = true;
+                worksheet.Cell(row, "B").Style.Font.FontColor = XLColor.DavysGrey;
+                worksheet.Cell(row, "C").Style.Font.Italic = true;
+                worksheet.Cell(row, "C").Style.Font.FontColor = XLColor.DavysGrey;
+                row++;
             }
 
-            if (! string.IsNullOrWhiteSpace(scenarioOutline.Description))
+            if (!string.IsNullOrWhiteSpace(scenarioOutline.Description))
+            {
                 worksheet.Cell(row++, "C").Value = scenarioOutline.Description;
+            }
 
             var results = this.testResults.GetScenarioOutlineResult(scenarioOutline);
             if (this.configuration.HasTestResults && (results != TestResult.Inconclusive))
@@ -75,7 +76,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                     : XLColor.CandyAppleRed);
             }
 
-            foreach (Step step in scenarioOutline.Steps)
+            foreach (var step in scenarioOutline.Steps)
             {
                 this.excelStepFormatter.Format(worksheet, step, ref row);
             }
@@ -90,17 +91,19 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
                 if (example.Tags != null && example.Tags.Count != 0)
                 {
-                  worksheet.Cell(row, "C").Value = "Tags:";
-                  worksheet.Cell(row, "D").Value = String.Join(", ", example.Tags);
-                  worksheet.Cell(row, "C").Style.Font.Italic = true;
-                  worksheet.Cell(row, "C").Style.Font.FontColor = XLColor.DavysGrey;
-                  worksheet.Cell(row, "D").Style.Font.Italic = true;
-                  worksheet.Cell(row, "D").Style.Font.FontColor = XLColor.DavysGrey;
-                  row++;
+                    worksheet.Cell(row, "C").Value = "Tags:";
+                    worksheet.Cell(row, "D").Value = string.Join(", ", example.Tags);
+                    worksheet.Cell(row, "C").Style.Font.Italic = true;
+                    worksheet.Cell(row, "C").Style.Font.FontColor = XLColor.DavysGrey;
+                    worksheet.Cell(row, "D").Style.Font.Italic = true;
+                    worksheet.Cell(row, "D").Style.Font.FontColor = XLColor.DavysGrey;
+                    row++;
                 }
 
-                if (! string.IsNullOrWhiteSpace(example.Description))
+                if (!string.IsNullOrWhiteSpace(example.Description))
+                {
                     worksheet.Cell(row++, "C").Value = example.Description;
+                }
 
                 this.excelTableFormatter.Format(worksheet, example.TableArgument, ref row);
             }

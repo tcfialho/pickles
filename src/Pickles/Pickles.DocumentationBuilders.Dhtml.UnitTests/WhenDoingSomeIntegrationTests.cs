@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using NFluent;
 
 using NUnit.Framework;
@@ -34,8 +32,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Dhtml.UnitTests
         [Test]
         public void TestTheResourceWriter()
         {
-            var conf = new Configuration();
-            conf.OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"d:\output");
+            var conf = new Configuration
+            {
+                OutputFolder = FileSystem.DirectoryInfo.FromDirectoryName(@"d:\output")
+            };
             var resourceWriter = new DhtmlResourceWriter(FileSystem, conf);
             resourceWriter.WriteTo(conf.OutputFolder.FullName);
         }
@@ -43,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Dhtml.UnitTests
         [Test]
         public void CanAddFunctionWrapperAroundJson()
         {
-            string filePath = @"d:\output\pickledFeatures.json";
+            var filePath = @"d:\output\pickledFeatures.json";
             FileSystem.AddFile(filePath, "\r\n[]\r\n");
 
             var jsonTweaker = new JsonTweaker(FileSystem);
@@ -58,8 +58,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Dhtml.UnitTests
         [Test]
         public void CanRenameJsonFile()
         {
-            string oldfilePath = @"d:\output\pickledFeatures.json";
-            string newFilePath = @"d:\output\pickledFeatures.js";
+            var oldfilePath = @"d:\output\pickledFeatures.json";
+            var newFilePath = @"d:\output\pickledFeatures.js";
 
             FileSystem.AddFile(oldfilePath, "test data");
 

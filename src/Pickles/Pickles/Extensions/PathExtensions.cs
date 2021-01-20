@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Abstractions;
 using System.Linq;
 
@@ -39,14 +40,14 @@ namespace PicklesDoc.Pickles.Extensions
                 throw new ArgumentNullException("to");
             }
 
-            string fromString = AddTrailingSlashToDirectoriesForUriMethods(from, fileSystem);
-            string toString = AddTrailingSlashToDirectoriesForUriMethods(to, fileSystem);
+            var fromString = AddTrailingSlashToDirectoriesForUriMethods(from, fileSystem);
+            var toString = AddTrailingSlashToDirectoriesForUriMethods(to, fileSystem);
 
             var fromUri = new Uri(fromString);
             var toUri = new Uri(toString);
 
-            Uri relativeUri = fromUri.MakeRelativeUri(toUri);
-            string relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+            var relativeUri = fromUri.MakeRelativeUri(toUri);
+            var relativePath = Uri.UnescapeDataString(relativeUri.ToString());
 
             return relativePath.Replace('/', fileSystem.Path.DirectorySeparatorChar);
         }
@@ -65,7 +66,7 @@ namespace PicklesDoc.Pickles.Extensions
             return path.TrimEnd('\\');
         }
 
-        public static string MakeRelativePath(FileSystemInfoBase from, FileSystemInfoBase to, IFileSystem fileSystem)
+        public static string MakeRelativePath(IFileSystemInfo from, IFileSystemInfo to, IFileSystem fileSystem)
         {
             if (from == null)
             {
@@ -85,16 +86,22 @@ namespace PicklesDoc.Pickles.Extensions
             var path = fileSystem.Path.GetDirectoryName(fileFullName);
             var wildcardFileName = fileSystem.Path.GetFileName(fileFullName);
             // GetFiles returns an array with 1 empty string when wildcard match is not found.
+
+            if (!File.Exists(Path.Combine(path, wildcardFileName)))
+            {
+                return new string[0];
+            }
+
             return fileSystem.Directory.GetFiles(path, wildcardFileName).Where(x => !string.IsNullOrEmpty(x)).ToArray();
         }
 
-        public static IEnumerable<FileInfoBase> GetAllFilesFromPathAndFileNameWithOptionalSemicolonsAndWildCards(string fileFullName, IFileSystem fileSystem)
+        public static IEnumerable<IFileInfo> GetAllFilesFromPathAndFileNameWithOptionalSemicolonsAndWildCards(string fileFullName, IFileSystem fileSystem)
         {
             var files = fileFullName.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            return (IEnumerable<FileInfoBase>)files.SelectMany(f => GetAllFilesFromPathAndFileNameWithOptionalWildCards(f, fileSystem))
+            return files.SelectMany(f => GetAllFilesFromPathAndFileNameWithOptionalWildCards(f, fileSystem))
                     .Distinct()
                     .Select(f => fileSystem.FileInfo.FromFileName(f));
         }
-        
+
     }
 }

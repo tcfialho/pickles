@@ -32,14 +32,14 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             this.validExtensions = new List<string> { ".PNG", ".JPG", ".BMP", ".GIF" };
         }
 
-        public bool IsRelevant(FileInfoBase fileInfo)
+        public bool IsRelevant(IFileInfo fileInfo)
         {
             if (fileInfo == null)
             {
                 return false;
             }
 
-            string extension = fileInfo.Extension.ToUpperInvariant();
+            var extension = fileInfo.Extension.ToUpperInvariant();
 
             if (this.validExtensions.Contains(extension))
             {

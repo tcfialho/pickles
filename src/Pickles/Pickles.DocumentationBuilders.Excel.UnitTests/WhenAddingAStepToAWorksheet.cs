@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,8 +45,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 5;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 5;
                 excelStepFormatter.Format(worksheet, step, ref row);
 
                 Check.That(worksheet.Cell("C5").Value).IsEqualTo(step.NativeKeyword);
@@ -75,8 +74,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 5;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 5;
                 excelStepFormatter.Format(worksheet, step, ref row);
 
                 Check.That(worksheet.Cell("C5").Value).IsEqualTo(step.Comments.First().Text);
@@ -110,8 +109,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 5;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 5;
                 excelStepFormatter.Format(worksheet, step, ref row);
 
                 Check.That(worksheet.Cell("C5").Value).IsEqualTo(step.Comments[0].Text);
@@ -146,8 +145,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 5;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 5;
                 excelStepFormatter.Format(worksheet, step, ref row);
 
                 Check.That(worksheet.Cell("C5").Value).IsEqualTo(step.Comments.First(o => o.Type == CommentType.StepComment).Text);

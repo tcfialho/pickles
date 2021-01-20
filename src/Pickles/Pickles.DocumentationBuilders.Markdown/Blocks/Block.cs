@@ -20,7 +20,7 @@
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 {
-    class Block
+    internal class Block
     {
         protected Lines lines;
 
@@ -33,13 +33,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
             lines = new Lines();
         }
 
-        public Lines Lines
-        {
-            get
-            {
-                return lines;
-            }
-        }
+        public Lines Lines => lines;
 
         public new string ToString()
         {

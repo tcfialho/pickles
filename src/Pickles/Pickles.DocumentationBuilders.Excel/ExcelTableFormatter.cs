@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using ClosedXML.Excel;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -31,9 +30,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
         public void Format(IXLWorksheet worksheet, Table table, ref int row)
         {
-            int startRow = row;
-            int headerColumn = TableStartColumn;
-            foreach (string cell in table.HeaderRow.Cells)
+            var startRow = row;
+            var headerColumn = TableStartColumn;
+            foreach (var cell in table.HeaderRow.Cells)
             {
                 worksheet.Cell(row, headerColumn).Style.Font.SetBold();
                 worksheet.Cell(row, headerColumn).Style.Font.SetItalic();
@@ -43,10 +42,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
             row++;
 
-            foreach (TableRow dataRow in table.DataRows)
+            foreach (var dataRow in table.DataRows)
             {
-                int dataColumn = TableStartColumn;
-                foreach (string cell in dataRow.Cells)
+                var dataColumn = TableStartColumn;
+                foreach (var cell in dataRow.Cells)
                 {
                     worksheet.Cell(row, dataColumn++).Value = cell;
                 }
@@ -54,8 +53,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                 row++;
             }
 
-            int lastRow = row - 1;
-            int lastColumn = headerColumn - 1;
+            var lastRow = row - 1;
+            var lastColumn = headerColumn - 1;
 
             worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.TopBorder =
                 XLBorderStyleValues.Thin;
@@ -70,9 +69,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
         public void Format(IXLWorksheet worksheet, ExampleTable table, ref int row)
         {
-            int startRow = row;
-            int headerColumn = TableStartColumn;
-            foreach (string cell in table.HeaderRow.Cells)
+            var startRow = row;
+            var headerColumn = TableStartColumn;
+            foreach (var cell in table.HeaderRow.Cells)
             {
                 worksheet.Cell(row, headerColumn).Style.Font.SetBold();
                 worksheet.Cell(row, headerColumn).Style.Font.SetItalic();
@@ -82,10 +81,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
             row++;
 
-            foreach (TableRow dataRow in table.DataRows)
+            foreach (var dataRow in table.DataRows)
             {
-                int dataColumn = TableStartColumn;
-                foreach (string cell in dataRow.Cells)
+                var dataColumn = TableStartColumn;
+                foreach (var cell in dataRow.Cells)
                 {
                     worksheet.Cell(row, dataColumn++).Value = cell;
                 }
@@ -93,8 +92,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                 row++;
             }
 
-            int lastRow = row - 1;
-            int lastColumn = headerColumn - 1;
+            var lastRow = row - 1;
+            var lastColumn = headerColumn - 1;
 
             worksheet.Range(startRow, TableStartColumn, lastRow, lastColumn).Style.Border.TopBorder =
                 XLBorderStyleValues.Thin;

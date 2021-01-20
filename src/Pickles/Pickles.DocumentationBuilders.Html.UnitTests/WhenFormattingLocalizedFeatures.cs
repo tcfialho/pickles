@@ -19,10 +19,13 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System.IO;
+
 using Autofac;
+
 using NFluent;
+
 using NUnit.Framework;
-using PicklesDoc.Pickles.ObjectModel;
+
 using PicklesDoc.Pickles.Test;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
@@ -33,7 +36,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
         [Test]
         public void ThenShouldLocalizeExamplesKeyword()
         {
-            string featureText =
+            var featureText =
 @"# language: nl-NL
 Functionaliteit: Test het abstract scenario
 
@@ -50,7 +53,7 @@ Voorbeelden:
 ";
 
             var parser = new FeatureParser(this.Configuration);
-            Feature feature = parser.Parse(new StringReader(featureText));
+            var feature = parser.Parse(new StringReader(featureText));
 
             var formatter = Container.Resolve<HtmlFeatureFormatter>();
             var output = formatter.Format(feature);

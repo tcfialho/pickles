@@ -86,7 +86,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests.AutomationLaye
         {
             using (var sw = new System.IO.StringWriter())
             {
-                using (XmlWriter xw = XmlWriter.Create(sw, new XmlWriterSettings { Indent = true, NewLineHandling = NewLineHandling.Replace, NewLineChars = Environment.NewLine }))
+                using (var xw = XmlWriter.Create(sw, new XmlWriterSettings { Indent = true, NewLineHandling = NewLineHandling.Replace, NewLineChars = Environment.NewLine }))
                 {
                     xw.WriteRaw(xmlDocument);
                     xw.Flush();

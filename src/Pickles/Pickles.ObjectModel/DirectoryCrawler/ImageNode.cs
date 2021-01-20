@@ -27,24 +27,18 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class ImageNode : INode
     {
-        public ImageNode(FileSystemInfoBase location, string relativePathFromRoot)
+        public ImageNode(IFileSystemInfo location, string relativePathFromRoot)
         {
             this.OriginalLocation = location;
             this.OriginalLocationUrl = location.ToUri();
             this.RelativePathFromRoot = relativePathFromRoot;
         }
 
-        public NodeType NodeType
-        {
-            get { return NodeType.Data; }
-        }
+        public NodeType NodeType => NodeType.Data;
 
-        public string Name
-        {
-            get { return this.OriginalLocation.Name; }
-        }
+        public string Name => this.OriginalLocation.Name;
 
-        public FileSystemInfoBase OriginalLocation { get; }
+        public IFileSystemInfo OriginalLocation { get; }
 
         public Uri OriginalLocationUrl { get; }
 

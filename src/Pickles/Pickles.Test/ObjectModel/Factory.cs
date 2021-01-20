@@ -20,7 +20,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using PicklesDoc.Pickles.ObjectModel;
+
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
@@ -76,7 +78,7 @@ My doc string line 2");
 
         internal G.Step CreateStep(string keyword, string text, int locationLine, int locationColumn)
         {
-            var step =  new G.Step(this.CreateLocation(locationLine, locationColumn), keyword, text, null);
+            var step = new G.Step(this.CreateLocation(locationLine, locationColumn), keyword, text, null);
             return step;
         }
 
@@ -107,13 +109,14 @@ My doc string line 2");
 
         internal G.Scenario CreateScenario(string[] tags, string name, string description, G.Step[] steps, G.Location location = null)
         {
-            G.Scenario scenario = new G.Scenario(
+            var scenario = new G.Scenario(
                 tags.Select(this.CreateTag).ToArray(),
                 location ?? AnyLocation,
                 "Scenario",
                 name,
                 description,
-                steps);
+                steps,
+                null);
             return scenario;
         }
 
@@ -131,9 +134,9 @@ My doc string line 2");
             return examples;
         }
 
-        internal G.ScenarioOutline CreateScenarioOutline(string[] tags, string name, string description, G.Step[] steps, G.Examples[] examples)
+        internal G.Scenario CreateScenarioOutline(string[] tags, string name, string description, G.Step[] steps, G.Examples[] examples)
         {
-            G.ScenarioOutline scenarioOutline = new G.ScenarioOutline(
+            var scenarioOutline = new G.Scenario(
                 tags.Select(this.CreateTag).ToArray(),
                 AnyLocation,
                 "Scenario",
@@ -146,7 +149,7 @@ My doc string line 2");
 
         internal G.Background CreateBackground(string name, string description, G.Step[] steps)
         {
-            G.Background background = new G.Background(
+            var background = new G.Background(
                 AnyLocation,
                 "Background",
                 name,
@@ -155,9 +158,9 @@ My doc string line 2");
             return background;
         }
 
-        internal G.GherkinDocument CreateGherkinDocument(string name, string description, string[] tags = null, G.Background background = null, G.ScenarioDefinition[] scenarioDefinitions = null, G.Comment[] comments = null, G.Location location = null, string language = null)
+        internal G.GherkinDocument CreateGherkinDocument(string name, string description, string[] tags = null, G.Background background = null, G.StepsContainer[] scenarioDefinitions = null, G.Comment[] comments = null, G.Location location = null, string language = null)
         {
-            var nonNullScenarioDefinitions = scenarioDefinitions ?? new G.ScenarioDefinition[0];
+            var nonNullScenarioDefinitions = scenarioDefinitions ?? new G.StepsContainer[0];
             return new G.GherkinDocument(
                 new G.Feature(
                     (tags ?? new string[0]).Select(this.CreateTag).ToArray(),
@@ -166,7 +169,7 @@ My doc string line 2");
                     "Feature",
                     name,
                     description,
-                    background != null ? new G.ScenarioDefinition[] { background }.Concat(nonNullScenarioDefinitions).ToArray() : nonNullScenarioDefinitions),
+                    background != null ? new G.StepsContainer[] { background }.Concat(nonNullScenarioDefinitions).ToArray() : nonNullScenarioDefinitions),
                 comments);
         }
     }

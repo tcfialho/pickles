@@ -28,8 +28,8 @@ namespace PicklesDoc.Pickles.Extensions
         public static string ExpandWikiWord(this string word)
         {
             var sb = new StringBuilder();
-            char previous = char.MinValue;
-            foreach (char current in word.Where(x => char.IsLetterOrDigit(x)))
+            var previous = char.MinValue;
+            foreach (var current in word.Where(x => char.IsLetterOrDigit(x)))
             {
                 if (previous != char.MinValue && sb.Length > 1
                     && ((char.IsUpper(current) || char.IsDigit(current)) && char.IsLower(previous)))

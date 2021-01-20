@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 {
     public class MsTestResults : MultipleTestRunsBase

@@ -18,9 +18,10 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.Extensions;
 
 namespace PicklesDoc.Pickles.Test.Extensions
@@ -33,7 +34,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             var info = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
-            Uri uri = info.ToFileUriCombined("test.txt", FileSystem);
+            var uri = info.ToFileUriCombined("test.txt", FileSystem);
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/test.txt");
         }
@@ -41,7 +42,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToFileUriString_WithoutTrailingSlash_ValidOutputWithTrailingSlash()
         {
-            Uri uri = @"c:\temp\test.txt".ToFileUri();
+            var uri = @"c:\temp\test.txt".ToFileUri();
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/test.txt");
         }
@@ -49,7 +50,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToFolderUriString_WithTrailingSlash_ValidOutput()
         {
-            Uri uri = @"c:\temp\".ToFolderUri();
+            var uri = @"c:\temp\".ToFolderUri();
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
@@ -57,7 +58,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         [Test]
         public void ToFolderUriString_WithoutTrailingSlash_ValidOutputWithTrailingSlash()
         {
-            Uri uri = @"c:\temp".ToFolderUri();
+            var uri = @"c:\temp".ToFolderUri();
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
@@ -67,7 +68,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp\");
 
-            Uri uri = directoryInfo.ToUri();
+            var uri = directoryInfo.ToUri();
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
@@ -77,7 +78,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             var directoryInfo = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp");
 
-            Uri uri = directoryInfo.ToUri();
+            var uri = directoryInfo.ToUri();
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
@@ -87,7 +88,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             var fileInfo = FileSystem.FileInfo.FromFileName(@"c:\temp\test.txt");
 
-            Uri uri = fileInfo.ToUri();
+            var uri = fileInfo.ToUri();
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/test.txt");
         }
@@ -97,7 +98,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             var fsi = FileSystem.DirectoryInfo.FromDirectoryName(@"c:\temp\");
 
-            Uri uri = fsi.ToUri();
+            var uri = fsi.ToUri();
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/");
         }
@@ -107,7 +108,7 @@ namespace PicklesDoc.Pickles.Test.Extensions
         {
             var fsi = FileSystem.FileInfo.FromFileName(@"c:\temp\test.txt");
 
-            Uri uri = fsi.ToUri();
+            var uri = fsi.ToUri();
 
             Check.That(uri.ToString()).IsEqualTo("file:///c:/temp/test.txt");
         }

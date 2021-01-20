@@ -40,10 +40,7 @@ namespace PicklesDoc.Pickles.ObjectModel
             this.tableCells.AddRange(cells);
         }
 
-        public List<string> Cells
-        {
-            get { return this.tableCells; }
-        }
+        public List<string> Cells => this.tableCells;
 
     }
 
@@ -54,11 +51,11 @@ namespace PicklesDoc.Pickles.ObjectModel
             this.Result = TestResult.NotProvided;
         }
 
-        public TableRowWithTestResult(params string[] cells):base(cells)
+        public TableRowWithTestResult(params string[] cells) : base(cells)
         {
         }
 
-        public TableRowWithTestResult(IEnumerable<string> cells):base(cells)
+        public TableRowWithTestResult(IEnumerable<string> cells) : base(cells)
         {
         }
 

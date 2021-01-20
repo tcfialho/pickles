@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
@@ -84,7 +83,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return results.Merge(true);
         }
 
-        protected SingleTestRunBase ConstructSingleTestResult(FileInfoBase fileInfo)
+        protected SingleTestRunBase ConstructSingleTestResult(IFileInfo fileInfo)
         {
             return this.singleResultLoader.Load(fileInfo);
         }

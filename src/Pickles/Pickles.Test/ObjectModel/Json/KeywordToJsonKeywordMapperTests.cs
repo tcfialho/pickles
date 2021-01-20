@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Json;
@@ -37,7 +38,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonKeyword actual = mapper.Map(keyword);
+            var actual = mapper.Map(keyword);
 
             Check.That(actual).IsEqualTo(JsonKeyword.Given);
         }
@@ -54,7 +55,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonKeyword actual = mapper.Map(keyword);
+            var actual = mapper.Map(keyword);
 
             Check.That(actual).IsEqualTo(JsonKeyword.When);
         }
@@ -66,7 +67,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonKeyword actual = mapper.Map(keyword);
+            var actual = mapper.Map(keyword);
 
             Check.That(actual).IsEqualTo(JsonKeyword.Then);
         }
@@ -78,7 +79,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonKeyword actual = mapper.Map(keyword);
+            var actual = mapper.Map(keyword);
 
             Check.That(actual).IsEqualTo(JsonKeyword.And);
         }
@@ -90,7 +91,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonKeyword actual = mapper.Map(keyword);
+            var actual = mapper.Map(keyword);
 
             Check.That(actual).IsEqualTo(JsonKeyword.But);
         }

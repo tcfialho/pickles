@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using ClosedXML.Excel;
 
 using NUnit.Framework;
@@ -38,7 +36,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
             var excelTableOfContentsFormatter = new ExcelTableOfContentsFormatter();
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
+                var worksheet = workbook.AddWorksheet("SHEET1");
                 excelTableOfContentsFormatter.Format(workbook, null);
             }
         }

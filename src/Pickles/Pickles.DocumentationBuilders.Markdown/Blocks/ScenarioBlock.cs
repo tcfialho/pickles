@@ -22,7 +22,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 {
-    class ScenarioBlock : Block
+    internal class ScenarioBlock : Block
     {
         protected readonly Scenario scenario;
 
@@ -71,7 +71,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
         {
             var lines = new Lines();
 
-            if(scenario.Result != TestResult.NotProvided)
+            if (scenario.Result != TestResult.NotProvided)
             {
                 lines.Add(style.AsScenarioHeading(scenario.Name, scenario.Result));
             }

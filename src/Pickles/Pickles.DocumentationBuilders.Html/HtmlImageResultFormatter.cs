@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Text;
 using System.Xml.Linq;
 
@@ -105,7 +104,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         {
             if (this.configuration.HasTestResults)
             {
-                TestResult scenarioResult = this.results.GetFeatureResult(feature);
+                var scenarioResult = this.results.GetFeatureResult(feature);
 
                 return this.BuildImageElement(scenarioResult);
             }
@@ -117,7 +116,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         {
             if (this.configuration.HasTestResults)
             {
-                TestResult scenarioResult = this.results.GetFeatureResult(feature);
+                var scenarioResult = this.results.GetFeatureResult(feature);
 
                 return this.BuildImageElement(scenarioResult, "span");
             }
@@ -129,7 +128,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         {
             if (this.configuration.HasTestResults)
             {
-                TestResult scenarioResult = this.results.GetScenarioResult(scenario);
+                var scenarioResult = this.results.GetScenarioResult(scenario);
 
                 return this.BuildImageElement(scenarioResult);
             }
@@ -141,7 +140,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         {
             if (this.configuration.HasTestResults)
             {
-                TestResult scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
+                var scenarioResult = this.results.GetScenarioOutlineResult(scenarioOutline);
 
                 return this.BuildImageElement(scenarioResult);
             }
@@ -153,7 +152,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         {
             if (this.configuration.HasTestResults)
             {
-                TestResult exampleResult = this.results.GetExampleResult(scenarioOutline, exampleValues);
+                var exampleResult = this.results.GetExampleResult(scenarioOutline, exampleValues);
 
                 return this.BuildImageElement(exampleResult);
             }

@@ -18,11 +18,9 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using NFluent;
+
 using NUnit.Framework;
-using PicklesDoc.Pickles.ObjectModel;
-using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {
@@ -36,7 +34,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            Example example = mapper.MapToExample(null);
+            var example = mapper.MapToExample(null);
 
             Check.That(example).IsNull();
         }
@@ -69,29 +67,29 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToExample_RegularWithTagsExamples_ReturnsCorrectExample()
         {
-          var examples = this.factory.CreateExamples(
-              "Examples",
-              "My Description",
-              new[] { "Header 1", "Header 2" },
-              new[]
-              {
+            var examples = this.factory.CreateExamples(
+                "Examples",
+                "My Description",
+                new[] { "Header 1", "Header 2" },
+                new[]
+                {
                         new[] { "Row 1, Value 1", "Row 2, Value 2" },
                         new[] { "Row 2, Value 1", "Row 2, Value 2" }
-              },
-              new[] { "tag1", "tag2" }
-              );
+                },
+                new[] { "tag1", "tag2" }
+                );
 
-          var mapper = this.factory.CreateMapper();
+            var mapper = this.factory.CreateMapper();
 
-          var result = mapper.MapToExample(examples);
+            var result = mapper.MapToExample(examples);
 
-          Check.That(result.Name).IsEqualTo("Examples");
-          Check.That(result.Description).IsEqualTo("My Description");
-          Check.That(result.TableArgument.HeaderRow.Cells).ContainsExactly("Header 1", "Header 2");
-          Check.That(result.TableArgument.DataRows.Count).IsEqualTo(2);
-          Check.That(result.TableArgument.DataRows[0].Cells).ContainsExactly("Row 1, Value 1", "Row 2, Value 2");
-          Check.That(result.TableArgument.DataRows[1].Cells).ContainsExactly("Row 2, Value 1", "Row 2, Value 2");
-          Check.That(result.Tags).ContainsExactly("tag1", "tag2");
+            Check.That(result.Name).IsEqualTo("Examples");
+            Check.That(result.Description).IsEqualTo("My Description");
+            Check.That(result.TableArgument.HeaderRow.Cells).ContainsExactly("Header 1", "Header 2");
+            Check.That(result.TableArgument.DataRows.Count).IsEqualTo(2);
+            Check.That(result.TableArgument.DataRows[0].Cells).ContainsExactly("Row 1, Value 1", "Row 2, Value 2");
+            Check.That(result.TableArgument.DataRows[1].Cells).ContainsExactly("Row 2, Value 1", "Row 2, Value 2");
+            Check.That(result.Tags).ContainsExactly("tag1", "tag2");
         }
     }
 }

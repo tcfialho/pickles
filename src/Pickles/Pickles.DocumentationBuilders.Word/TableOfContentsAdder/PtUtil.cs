@@ -28,8 +28,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         public static string StringConcatenate(this IEnumerable<string> source)
         {
             var sb = new StringBuilder();
-            foreach (string s in source)
+            foreach (var s in source)
+            {
                 sb.Append(s);
+            }
+
             return sb.ToString();
         }
 
@@ -48,30 +51,34 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             IEnumerable<TSecond> second,
             Func<TFirst, TSecond, TResult> func)
         {
-            IEnumerator<TFirst> ie1 = first.GetEnumerator();
-            IEnumerator<TSecond> ie2 = second.GetEnumerator();
+            var ie1 = first.GetEnumerator();
+            var ie2 = second.GetEnumerator();
             while (ie1.MoveNext() && ie2.MoveNext())
+            {
                 yield return func(ie1.Current, ie2.Current);
+            }
         }
 
         public static IEnumerable<IGrouping<TKey, TSource>> GroupAdjacent<TSource, TKey>(
             this IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector)
         {
-            TKey last = default(TKey);
-            bool haveLast = false;
+            var last = default(TKey);
+            var haveLast = false;
             var list = new List<TSource>();
 
-            foreach (TSource s in source)
+            foreach (var s in source)
             {
-                TKey k = keySelector(s);
+                var k = keySelector(s);
                 if (haveLast)
                 {
                     if (!k.Equals(last))
                     {
                         yield return new GroupOfAdjacent<TSource, TKey>(list, last);
-                        list = new List<TSource>();
-                        list.Add(s);
+                        list = new List<TSource>
+                        {
+                            s
+                        };
                         last = k;
                     }
                     else
@@ -88,13 +95,15 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 }
             }
             if (haveLast)
+            {
                 yield return new GroupOfAdjacent<TSource, TKey>(list, last);
+            }
         }
 
         private static void InitializeReverseDocumentOrder(XElement element)
         {
             XElement prev = null;
-            foreach (XElement e in element.Elements())
+            foreach (var e in element.Elements())
             {
                 e.AddAnnotation(new ReverseDocumentOrderInfo { PreviousSibling = prev });
                 prev = e;
@@ -105,15 +114,21 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             this XElement element)
         {
             if (element.Annotation<ReverseDocumentOrderInfo>() == null)
+            {
                 InitializeReverseDocumentOrder(element.Parent);
-            XElement current = element;
+            }
+
+            var current = element;
             while (true)
             {
-                XElement previousElement = current
+                var previousElement = current
                     .Annotation<ReverseDocumentOrderInfo>()
                     .PreviousSibling;
                 if (previousElement == null)
+                {
                     yield break;
+                }
+
                 yield return previousElement;
                 current = previousElement;
             }
@@ -121,14 +136,19 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 
         public static string ToStringNewLineOnAttributes(this XElement element)
         {
-            var settings = new XmlWriterSettings();
-            settings.Indent = true;
-            settings.OmitXmlDeclaration = true;
-            settings.NewLineOnAttributes = true;
+            var settings = new XmlWriterSettings
+            {
+                Indent = true,
+                OmitXmlDeclaration = true,
+                NewLineOnAttributes = true
+            };
             var stringBuilder = new StringBuilder();
             using (var stringWriter = new StringWriter(stringBuilder))
-            using (XmlWriter xmlWriter = XmlWriter.Create(stringWriter, settings))
+            using (var xmlWriter = XmlWriter.Create(stringWriter, settings))
+            {
                 element.WriteTo(xmlWriter);
+            }
+
             return stringBuilder.ToString();
         }
 
@@ -147,7 +167,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             {
                 while (iteratorStack.Peek().MoveNext())
                 {
-                    XElement currentXElement = iteratorStack.Peek().Current;
+                    var currentXElement = iteratorStack.Peek().Current;
                     if (predicate(currentXElement))
                     {
                         yield return currentXElement;
@@ -165,10 +185,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             TResult seed,
             Func<TSource, TResult, TResult> projection)
         {
-            TResult nextSeed = seed;
-            foreach (TSource src in source)
+            var nextSeed = seed;
+            foreach (var src in source)
             {
-                TResult projectedValue = projection(src, nextSeed);
+                var projectedValue = projection(src, nextSeed);
                 nextSeed = projectedValue;
                 yield return projectedValue;
             }
@@ -176,9 +196,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 
         public static IEnumerable<TSource> SequenceAt<TSource>(this TSource[] source, int index)
         {
-            int i = index;
+            var i = index;
             while (i < source.Length)
+            {
                 yield return source[i++];
+            }
         }
     }
 
@@ -207,8 +229,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         IEnumerator<TSource>
             IEnumerable<TSource>.GetEnumerator()
         {
-            foreach (TSource s in this.GroupList)
+            foreach (var s in this.GroupList)
+            {
                 yield return s;
+            }
         }
 
         #endregion

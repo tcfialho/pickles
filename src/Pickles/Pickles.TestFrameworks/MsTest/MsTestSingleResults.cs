@@ -54,7 +54,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
             var featureExecutionIds = scenarios.ExecutionIdElements();
 
-            TestResult result = this.GetExecutionResult(featureExecutionIds);
+            var result = this.GetExecutionResult(featureExecutionIds);
 
             return result;
         }
@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
         private TestResult GetExecutionResult(IEnumerable<Guid> featureExecutionIds)
         {
-            TestResult result = featureExecutionIds.Select(this.GetExecutionResult).Merge();
+            var result = featureExecutionIds.Select(this.GetExecutionResult).Merge();
             return result;
         }
 
@@ -98,7 +98,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
 
             var executionIds = scenarios.Select(scenario => scenario.ExecutionIdElement());
 
-            TestResult result = this.GetExecutionResult(executionIds);
+            var result = this.GetExecutionResult(executionIds);
 
             return result;
         }
@@ -116,9 +116,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
         {
             var scenarios = this.GetScenariosForScenario(scenario);
 
-            Guid executionId = scenarios.Select(s => s.ExecutionIdElement()).FirstOrDefault();
+            var executionId = scenarios.Select(s => s.ExecutionIdElement()).FirstOrDefault();
 
-            TestResult testResult = this.GetExecutionResult(executionId);
+            var testResult = this.GetExecutionResult(executionId);
 
             return testResult;
         }
@@ -142,9 +142,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.MsTest
                 return TestResult.Inconclusive;
             }
 
-            Guid executionId = theScenario.ExecutionIdElement();
+            var executionId = theScenario.ExecutionIdElement();
 
-            TestResult testResult = this.GetExecutionResult(executionId);
+            var testResult = this.GetExecutionResult(executionId);
 
             return testResult;
         }

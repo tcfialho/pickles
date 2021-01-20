@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 using PicklesDoc.Pickles.ObjectModel;
-using System;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
@@ -41,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
                 Name = "Hello, World"
             };
 
-            var backgroundBlock = new BackgroundBlock(scenario,mockStyle);
+            var backgroundBlock = new BackgroundBlock(scenario, mockStyle);
             var actualString = backgroundBlock.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
             Assert.AreEqual(expectedString, actualString[0]);

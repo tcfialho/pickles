@@ -22,13 +22,14 @@ using System;
 using System.IO.Abstractions;
 using System.Linq;
 using System.Xml.Linq;
+
 using PicklesDoc.Pickles.Extensions;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class MarkdownNode : INode
     {
-        public MarkdownNode(FileSystemInfoBase location, string relativePathFromRoot, XElement markdownContent)
+        public MarkdownNode(IFileSystemInfo location, string relativePathFromRoot, XElement markdownContent)
         {
             this.OriginalLocation = location;
             this.OriginalLocationUrl = location.ToUri();
@@ -38,16 +39,13 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public XElement MarkdownContent { get; }
 
-        public NodeType NodeType
-        {
-            get { return NodeType.Content; }
-        }
+        public NodeType NodeType => NodeType.Content;
 
         public string Name
         {
             get
             {
-                XElement headerElement =
+                var headerElement =
                     this.MarkdownContent.Descendants().FirstOrDefault(element => element.Name.LocalName == "h1");
                 return headerElement != null
                     ? headerElement.Value
@@ -55,7 +53,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             }
         }
 
-        public FileSystemInfoBase OriginalLocation { get; }
+        public IFileSystemInfo OriginalLocation { get; }
 
         public Uri OriginalLocationUrl { get; }
 

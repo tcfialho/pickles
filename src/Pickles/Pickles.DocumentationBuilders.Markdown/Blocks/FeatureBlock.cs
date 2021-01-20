@@ -18,14 +18,15 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using PicklesDoc.Pickles.ObjectModel;
 using System;
+
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 {
-    class FeatureBlock : Block
+    internal class FeatureBlock : Block
     {
-        readonly Feature feature;
+        private readonly Feature feature;
 
         public FeatureBlock(Feature feature, Stylist style) : base(style)
         {
@@ -146,7 +147,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
         {
             var scenarioOutlineBlock = new ScenarioOutlineBlock(scenarioOutline, style);
 
-            return scenarioOutlineBlock.Lines;       
+            return scenarioOutlineBlock.Lines;
         }
     }
 }

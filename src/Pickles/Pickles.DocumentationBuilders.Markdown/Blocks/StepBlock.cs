@@ -19,13 +19,12 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using PicklesDoc.Pickles.ObjectModel;
-using System.Collections.Generic;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 {
-    class StepBlock : Block
+    internal class StepBlock : Block
     {
-        readonly Step step;
+        private readonly Step step;
 
         public StepBlock(Step step, Stylist style) : base(style)
         {

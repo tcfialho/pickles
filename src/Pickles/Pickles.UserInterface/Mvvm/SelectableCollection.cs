@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,7 +41,7 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
         {
             get
             {
-                SelectableItem<T> selected = this.FirstOrDefault(it => it.IsSelected);
+                var selected = this.FirstOrDefault(it => it.IsSelected);
                 return selected != null ? selected.Item : default(T);
             }
         }

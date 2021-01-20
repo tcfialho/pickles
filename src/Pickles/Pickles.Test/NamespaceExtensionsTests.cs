@@ -18,13 +18,13 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Xml.Linq;
+
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Html.Extensions;
-using PicklesDoc.Pickles.Extensions;
 
 namespace PicklesDoc.Pickles.Test
 {
@@ -45,7 +45,7 @@ namespace PicklesDoc.Pickles.Test
 
             tree1.MoveToNamespace(NewNamespace);
 
-            foreach (XElement node in tree1.DescendantsAndSelf())
+            foreach (var node in tree1.DescendantsAndSelf())
             {
                 Check.That(node).IsInNamespace(NewNamespace.NamespaceName);
             }

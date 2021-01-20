@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 using NUnit.Framework;
 
 namespace PicklesDoc.Pickles.Test
@@ -32,14 +33,14 @@ namespace PicklesDoc.Pickles.Test
         {
             get
             {
-                string[] resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
-                IEnumerable<string> features = resources.Where(name => name.EndsWith(".feature"));
-                IEnumerable<string> xhtmls = resources.Where(name => name.EndsWith(".html"));
+                var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+                var features = resources.Where(name => name.EndsWith(".feature"));
+                var xhtmls = resources.Where(name => name.EndsWith(".html"));
 
-                foreach (string feature in features)
+                foreach (var feature in features)
                 {
-                    string featureName = feature.Replace(".feature", string.Empty);
-                    string associatedXhtml =
+                    var featureName = feature.Replace(".feature", string.Empty);
+                    var associatedXhtml =
                         xhtmls.SingleOrDefault(
                             name =>
                                 string.Equals(name.Replace(".html", string.Empty), featureName, StringComparison.InvariantCultureIgnoreCase));
@@ -54,8 +55,8 @@ namespace PicklesDoc.Pickles.Test
                                 new System.IO.StreamReader(
                                     Assembly.GetExecutingAssembly().GetManifestResourceStream(associatedXhtml)))
                         {
-                            string featureText = featureStreamReader.ReadToEnd();
-                            string associatedXhtmlText = xhtmlStreamReader.ReadToEnd();
+                            var featureText = featureStreamReader.ReadToEnd();
+                            var associatedXhtmlText = xhtmlStreamReader.ReadToEnd();
 
                             yield return new TestCaseData(featureText, associatedXhtmlText);
                         }

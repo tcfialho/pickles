@@ -31,29 +31,29 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
             switch (keyword)
             {
                 case Keyword.Given:
-                {
-                    return JsonKeyword.Given;
-                }
+                    {
+                        return JsonKeyword.Given;
+                    }
 
                 case Keyword.When:
-                {
-                    return JsonKeyword.When;
-                }
+                    {
+                        return JsonKeyword.When;
+                    }
 
                 case Keyword.Then:
-                {
-                    return JsonKeyword.Then;
-                }
+                    {
+                        return JsonKeyword.Then;
+                    }
 
                 case Keyword.And:
-                {
-                    return JsonKeyword.And;
-                }
+                    {
+                        return JsonKeyword.And;
+                    }
 
                 case Keyword.But:
-                {
-                    return JsonKeyword.But;
-                }
+                    {
+                        return JsonKeyword.But;
+                    }
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(keyword), keyword, null);

@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using ClosedXML.Excel;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -43,14 +42,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
         public void Format(IXLWorksheet worksheet, Scenario scenario, ref int row)
         {
-            int originalRow = row;
+            var originalRow = row;
             worksheet.Cell(row, "B").Style.Font.SetBold();
             worksheet.Cell(row++, "B").Value = scenario.Name;
 
             if (scenario.Tags != null && scenario.Tags.Count != 0)
             {
                 worksheet.Cell(row, "B").Value = "Tags:";
-                worksheet.Cell(row, "C").Value = String.Join(", ", scenario.Tags);
+                worksheet.Cell(row, "C").Value = string.Join(", ", scenario.Tags);
                 worksheet.Cell(row, "B").Style.Font.Italic = true;
                 worksheet.Cell(row, "B").Style.Font.FontColor = XLColor.DavysGrey;
                 worksheet.Cell(row, "C").Style.Font.Italic = true;
@@ -69,7 +68,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                         : XLColor.CandyAppleRed);
             }
 
-            foreach (Step step in scenario.Steps)
+            foreach (var step in scenario.Steps)
             {
                 this.excelStepFormatter.Format(worksheet, step, ref row);
             }

@@ -23,7 +23,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
-    class MockStylist : Stylist
+    internal class MockStylist : Stylist
     {
         private const string oneParamDefaultFormat = ">>{0}<<";
         private const string twoParamDefaultFormat = oneParamDefaultFormat + ">>{1}<<";
@@ -65,7 +65,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 
         internal override string AsScenarioHeading(string scenarioName, TestResult result)
         {
-            return string.Format(ScenarioHeadingFormat, string.Concat("result ",scenarioName));
+            return string.Format(ScenarioHeadingFormat, string.Concat("result ", scenarioName));
         }
 
         public string ScenarioOutlineHeadingFormat { get; set; }

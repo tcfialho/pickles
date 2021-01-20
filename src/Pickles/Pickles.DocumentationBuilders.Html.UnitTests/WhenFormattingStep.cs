@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -52,7 +51,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var formatter = Container.Resolve<HtmlStepFormatter>();
-            XElement actual = formatter.Format(step);
+            var actual = formatter.Format(step);
 
             var expected = new XElement(
                 this.xmlns + "li",
@@ -86,7 +85,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var formatter = Container.Resolve<HtmlStepFormatter>();
-            XElement actual = formatter.Format(step);
+            var actual = formatter.Format(step);
 
             var expected = new XElement(
                 this.xmlns + "li",
@@ -113,7 +112,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             configuration.Language = "sv";
 
             var formatter = Container.Resolve<HtmlStepFormatter>();
-            XElement actual = formatter.Format(step);
+            var actual = formatter.Format(step);
 
             var expected = new XElement(
                 this.xmlns + "li",
@@ -143,7 +142,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var formatter = Container.Resolve<HtmlStepFormatter>();
-            XElement actual = formatter.Format(step);
+            var actual = formatter.Format(step);
 
             var expected = new XElement(
                 this.xmlns + "li",
@@ -204,7 +203,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var formatter = Container.Resolve<HtmlStepFormatter>();
-            XElement actual = formatter.Format(step);
+            var actual = formatter.Format(step);
 
             var expected = new XElement(
                 this.xmlns + "li",
@@ -242,7 +241,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var formatter = Container.Resolve<HtmlStepFormatter>();
-            XElement actual = formatter.Format(step);
+            var actual = formatter.Format(step);
 
             var expected = new XElement(
                 this.xmlns + "li",
@@ -281,7 +280,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var formatter = Container.Resolve<HtmlStepFormatter>();
-            XElement actual = formatter.Format(step);
+            var actual = formatter.Format(step);
 
             var expected = new XElement(
                 this.xmlns + "li",

@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,7 +43,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
                 return TestResult.Inconclusive;
             }
 
-            TestResult result =
+            var result =
                 specRunFeature.Scenarios.Select(specRunScenario => StringToTestResult(specRunScenario.Result)).Merge();
 
             return result;
@@ -59,14 +58,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
                 return TestResult.Inconclusive;
             }
 
-            SpecRunScenario[] specRunScenarios = FindSpecRunScenarios(scenarioOutline, specRunFeature);
+            var specRunScenarios = FindSpecRunScenarios(scenarioOutline, specRunFeature);
 
             if (specRunScenarios.Length == 0)
             {
                 return TestResult.Inconclusive;
             }
 
-            TestResult result = StringsToTestResult(specRunScenarios.Select(srs => srs.Result));
+            var result = StringsToTestResult(specRunScenarios.Select(srs => srs.Result));
 
             return result;
         }
@@ -132,19 +131,19 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             switch (result.ToLowerInvariant())
             {
                 case "passed":
-                {
-                    return TestResult.Passed;
-                }
+                    {
+                        return TestResult.Passed;
+                    }
 
                 case "failed":
-                {
-                    return TestResult.Failed;
-                }
+                    {
+                        return TestResult.Failed;
+                    }
 
                 default:
-                {
-                    return TestResult.Inconclusive;
-                }
+                    {
+                        return TestResult.Inconclusive;
+                    }
             }
         }
 
@@ -155,7 +154,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 
         private static SpecRunScenario FindSpecRunScenario(Scenario scenario, SpecRunFeature specRunFeature)
         {
-            SpecRunScenario result = specRunFeature.Scenarios.FirstOrDefault(d => d.Title.Equals(scenario.Name));
+            var result = specRunFeature.Scenarios.FirstOrDefault(d => d.Title.Equals(scenario.Name));
 
             return result;
         }

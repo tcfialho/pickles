@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Word.Extensions
@@ -41,8 +39,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.Extensions
             paragraphProperties.Append(paragraphStyleId);
 
             var run1 = new Run();
-            var text1 = new Text();
-            text1.Text = text;
+            var text1 = new Text
+            {
+                Text = text
+            };
 
             run1.Append(text1);
 

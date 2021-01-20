@@ -18,20 +18,22 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using NUnit.Framework;
-using PicklesDoc.Pickles.DataStructures;
-using PicklesDoc.Pickles.DirectoryCrawler;
-using PicklesDoc.Pickles.ObjectModel;
 using System;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 
+using NUnit.Framework;
+
+using PicklesDoc.Pickles.DataStructures;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.ObjectModel;
+
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
     [TestFixture]
-    class Documentation_Tests
+    internal class Documentation_Tests
     {
-        IFileSystem fileSystem = new MockFileSystem();
+        private readonly IFileSystem fileSystem = new MockFileSystem();
 
         [Test]
         public void New_Documentation_Produces_Default_Single_Page()
@@ -47,13 +49,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
         [Test]
         public void New_Documentation_With_Feature_Produces_Single_Page()
         {
-            var simpleFeature = new Feature();
-            simpleFeature.Name = "My Feature";
+            var simpleFeature = new Feature
+            {
+                Name = "My Feature"
+            };
             var relPath = "fakedir";
             var location = fileSystem.FileInfo.FromFileName(@"c:\");
             var newNode = new FeatureNode(location, relPath, simpleFeature);
-            var featureTree = new Tree(new FolderNode(location, relPath));
-            featureTree.Add(newNode);
+            var featureTree = new Tree(new FolderNode(location, relPath))
+            {
+                newNode
+            };
 
             var documentation = new Documentation(featureTree);
             var actualPageCount = documentation.PageCount;

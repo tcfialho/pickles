@@ -56,7 +56,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 
         protected override XElement GetScenarioElement(Scenario scenario)
         {
-            XElement featureElement = this.GetFeatureElement(scenario.Feature);
+            var featureElement = this.GetFeatureElement(scenario.Feature);
             XElement scenarioElement = null;
             if (featureElement != null)
             {
@@ -76,7 +76,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 
         protected override XElement GetScenarioOutlineElement(ScenarioOutline scenarioOutline)
         {
-            XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
+            var featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement scenarioOutlineElement = null;
             if (featureElement != null)
             {
@@ -103,7 +103,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit3
 
         protected override XElement GetExamplesElement(ScenarioOutline scenarioOutline, string[] values)
         {
-            XElement featureElement = this.GetFeatureElement(scenarioOutline.Feature);
+            var featureElement = this.GetFeatureElement(scenarioOutline.Feature);
             XElement examplesElement = null;
             if (featureElement != null)
             {

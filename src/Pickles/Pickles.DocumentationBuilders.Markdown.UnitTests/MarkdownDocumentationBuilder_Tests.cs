@@ -18,16 +18,20 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using Autofac;
-using NUnit.Framework;
-using PicklesDoc.Pickles.DataStructures;
-using PicklesDoc.Pickles.DirectoryCrawler;
-using PicklesDoc.Pickles.ObjectModel;
 using System;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Reflection;
+
+using Autofac;
+
 using NFluent;
+
+using NUnit.Framework;
+
+using PicklesDoc.Pickles.DataStructures;
+using PicklesDoc.Pickles.DirectoryCrawler;
+using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
@@ -112,7 +116,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 
             var actualFile = fileSystem.File.ReadAllLines(defaultOutputFile);
 
-            for (int i = 0; i < expectedFile.Length; ++i)
+            for (var i = 0; i < expectedFile.Length; ++i)
             {
                 Check.That(actualFile[i]).Contains(expectedFile[i]);
             }
@@ -139,19 +143,23 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             configuration.OutputFolder = fileSystem.DirectoryInfo.FromDirectoryName(outputFolder);
             var markdownDocumentationBuilder = container.Resolve<MarkdownDocumentationBuilder>();
 
-            var simpleFeature = new Feature();
-            simpleFeature.Name = "Simple Feature";
+            var simpleFeature = new Feature
+            {
+                Name = "Simple Feature"
+            };
             var relPath = "fakedir";
             var location = fileSystem.FileInfo.FromFileName(@"c:\");
             var newNode = new FeatureNode(location, relPath, simpleFeature);
-            var featureTree = new Tree(new FolderNode(location, relPath));
-            featureTree.Add(newNode);
+            var featureTree = new Tree(new FolderNode(location, relPath))
+            {
+                newNode
+            };
 
             markdownDocumentationBuilder.Build(featureTree);
 
             var actualFile = fileSystem.File.ReadAllLines(defaultOutputFile);
 
-            for (int i = 0; i < expectedFile.Length; ++i)
+            for (var i = 0; i < expectedFile.Length; ++i)
             {
                 Check.That(actualFile[i]).Contains(expectedFile[i]);
             }

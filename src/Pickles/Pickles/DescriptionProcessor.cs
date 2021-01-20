@@ -44,14 +44,14 @@ namespace PicklesDoc.Pickles
             {
                 while (ThereAreNonEmptyLines(splitLines) && AllLinesAreEitherEmptyOrStartWithASpaceOrTab(splitLines))
                 {
-                    for (int i = 0; i < splitLines.Length; i++)
+                    for (var i = 0; i < splitLines.Length; i++)
                     {
                         RemoveEmptySpaceFromNonEmptyLines(splitLines, i);
                     }
                 }
             }
 
-            for (int index = 0; index < splitLines.Length; index++)
+            for (var index = 0; index < splitLines.Length; index++)
             {
                 splitLines[index] = splitLines[index].Replace("\\#", "#");
             }

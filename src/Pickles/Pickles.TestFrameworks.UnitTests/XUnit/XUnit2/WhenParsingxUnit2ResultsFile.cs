@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2;
@@ -129,5 +127,5 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.XUnit.XUnit2
         {
             base.ThenCanReadResultOfScenarioWithSpanishCharacters();
         }
-  }
+    }
 }

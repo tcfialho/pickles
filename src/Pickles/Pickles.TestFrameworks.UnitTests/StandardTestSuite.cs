@@ -38,7 +38,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var results = ParseResultsFile();
 
             var feature = this.AdditionFeature();
-            TestResult result = results.GetFeatureResult(feature);
+            var result = results.GetFeatureResult(feature);
 
             Check.That(result).IsEqualTo(TestResult.Failed);
         }
@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             feature.AddBackground(background);
             var results = ParseResultsFile();
 
-            TestResult result = results.GetScenarioResult(background);
+            var result = results.GetScenarioResult(background);
 
             Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         {
             var results = ParseResultsFile();
 
-            TestResult result = results.GetFeatureResult(this.InconclusiveFeature());
+            var result = results.GetFeatureResult(this.InconclusiveFeature());
 
             Check.That(result).IsEqualTo(TestResult.Inconclusive);
         }
@@ -69,7 +69,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         {
             var results = ParseResultsFile();
 
-            TestResult result = results.GetFeatureResult(this.FailingFeature());
+            var result = results.GetFeatureResult(this.FailingFeature());
 
             Check.That(result).IsEqualTo(TestResult.Failed);
         }
@@ -78,7 +78,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         {
             var results = ParseResultsFile();
 
-            TestResult result = results.GetFeatureResult(this.PassingFeature());
+            var result = results.GetFeatureResult(this.PassingFeature());
 
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
@@ -88,14 +88,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var results = ParseResultsFile();
             var scenarioOutline = new ScenarioOutline { Name = "Adding several numbers", Feature = this.AdditionFeature() };
 
-            TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
+            var result = results.GetScenarioOutlineResult(scenarioOutline);
 
             Check.That(result).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90", "180" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "40", "50", "90", "180" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130", "260" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "60", "70", "130", "260" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
         }
 
@@ -104,7 +104,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
             var results = ParseResultsFile();
             var passedScenario = new Scenario { Name = "Add two numbers", Feature = this.AdditionFeature() };
 
-            TestResult result = results.GetScenarioResult(passedScenario);
+            var result = results.GetScenarioResult(passedScenario);
 
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
@@ -113,7 +113,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
         {
             var results = ParseResultsFile();
             var scenario = new Scenario { Name = "Fail to add two numbers", Feature = this.AdditionFeature() };
-            TestResult result = results.GetScenarioResult(scenario);
+            var result = results.GetScenarioResult(scenario);
 
             Check.That(result).IsEqualTo(TestResult.Failed);
         }
@@ -173,10 +173,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with backslashes in the examples", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"c:\Temp\" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
         }
 
@@ -188,10 +188,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var scenarioOutline = new ScenarioOutline { Name = "Deal correctly with parenthesis in the examples", Feature = feature };
 
-            TestResult exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
+            var exampleResultOutline = results.GetScenarioOutlineResult(scenarioOutline);
             Check.That(exampleResultOutline).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"This is a description (and more)" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { @"This is a description (and more)" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
         }
 
@@ -251,7 +251,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
             var feature = new Feature { Name = "Scenarios With Special Characters" };
 
-            var scenario = new Scenario{ Name = "This is a scenario with parentheses, hyphen and comma (10-20, 30-40)", Feature = feature };
+            var scenario = new Scenario { Name = "This is a scenario with parentheses, hyphen and comma (10-20, 30-40)", Feature = feature };
 
             var actualResult = results.GetScenarioResult(scenario);
             Check.That(actualResult).IsEqualTo(TestResult.Passed);
@@ -272,15 +272,15 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
         public void ThenCanReadResultOfScenarioOutlineWithUmlauts()
         {
-          var results = ParseResultsFile();
+            var results = ParseResultsFile();
 
-          var feature = new Feature { Name = "Scenarios With Special Characters" };
+            var feature = new Feature { Name = "Scenarios With Special Characters" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline with german umlauts äöüß ÄÖÜ", Feature = feature };
+            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline with german umlauts äöüß ÄÖÜ", Feature = feature };
 
-          var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "pass_1" });
+            var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "pass_1" });
 
-          Check.That(actualResult).IsEqualTo(TestResult.Passed);
+            Check.That(actualResult).IsEqualTo(TestResult.Passed);
         }
 
         public void ThenCanReadResultOfScenarioWithDanishCharacters()
@@ -311,15 +311,15 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests
 
         public void ThenCanReadResultOfScenarioOutlineWithAmpersand()
         {
-          var results = ParseResultsFile();
+            var results = ParseResultsFile();
 
-          var feature = new Feature { Name = "Scenarios With Special Characters" };
+            var feature = new Feature { Name = "Scenarios With Special Characters" };
 
-          var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline with ampersand &", Feature = feature };
+            var scenarioOutline = new ScenarioOutline { Name = "This is a scenario outline with ampersand &", Feature = feature };
 
-          var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "pass_1" });
+            var actualResult = results.GetExampleResult(scenarioOutline, new string[] { "pass_1" });
 
-          Check.That(actualResult).IsEqualTo(TestResult.Passed);
+            Check.That(actualResult).IsEqualTo(TestResult.Passed);
         }
 
         private Feature AdditionFeature()

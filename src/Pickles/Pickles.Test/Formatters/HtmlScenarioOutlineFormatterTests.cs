@@ -18,13 +18,14 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 using Autofac;
+
 using NFluent;
+
 using NSubstitute;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
@@ -57,21 +58,23 @@ namespace PicklesDoc.Pickles.Test.Formatters
 
         private static ScenarioOutline BuildMinimalScenarioOutline()
         {
-            var examples = new List<Example>();
-            examples.Add(new Example
+            var examples = new List<Example>
             {
-                Description = "My Example Description",
-                TableArgument = new ExampleTable
+                new Example
                 {
-                    HeaderRow = new TableRow("Cell1"),
-                    DataRows =
+                    Description = "My Example Description",
+                    TableArgument = new ExampleTable
+                    {
+                        HeaderRow = new TableRow("Cell1"),
+                        DataRows =
                         new List<TableRow>(
                             new[]
                             {
                                 new TableRowWithTestResult("Value1")
                             })
-                },
-            });
+                    },
+                }
+            };
             var scenarioOutline = new ScenarioOutline
             {
                 Description = "My Outline Description",
@@ -102,11 +105,11 @@ namespace PicklesDoc.Pickles.Test.Formatters
         [Test]
         public void Li_Element_Must_Not_Have_Id_Attribute()
         {
-            ScenarioOutline scenarioOutline = BuildMinimalScenarioOutline();
+            var scenarioOutline = BuildMinimalScenarioOutline();
 
-            XElement li = this.formatter.Format(scenarioOutline, 1);
+            var li = this.formatter.Format(scenarioOutline, 1);
 
-            XAttribute idAttribute = li.Attribute("id");
+            var idAttribute = li.Attribute("id");
 
             Check.That(idAttribute).IsNull();
         }

@@ -20,6 +20,7 @@
 
 using System;
 using System.IO.Abstractions;
+
 using PicklesDoc.Pickles.Extensions;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -27,7 +28,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 {
     public class FeatureNode : INode
     {
-        public FeatureNode(FileSystemInfoBase location, string relativePathFromRoot, Feature feature)
+        public FeatureNode(IFileSystemInfo location, string relativePathFromRoot, Feature feature)
         {
             this.OriginalLocation = location;
             this.OriginalLocationUrl = location.ToUri();
@@ -37,17 +38,11 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
 
         public Feature Feature { get; }
 
-        public NodeType NodeType
-        {
-            get { return NodeType.Content; }
-        }
+        public NodeType NodeType => NodeType.Content;
 
-        public string Name
-        {
-            get { return this.Feature.Name; }
-        }
+        public string Name => this.Feature.Name;
 
-        public FileSystemInfoBase OriginalLocation { get; }
+        public IFileSystemInfo OriginalLocation { get; }
 
         public Uri OriginalLocationUrl { get; }
 

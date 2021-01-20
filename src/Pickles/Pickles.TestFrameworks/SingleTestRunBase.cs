@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -58,11 +57,11 @@ namespace PicklesDoc.Pickles.TestFrameworks
 
         protected TestResult DetermineAggregateResult(IEnumerable<TestResult> exampleResults)
         {
-            int passedCount = 0;
-            int failedCount = 0;
-            int skippedCount = 0;
+            var passedCount = 0;
+            var failedCount = 0;
+            var skippedCount = 0;
 
-            foreach (TestResult result in exampleResults)
+            foreach (var result in exampleResults)
             {
                 if (result == TestResult.Inconclusive)
                 {

@@ -18,15 +18,16 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
 using System.Linq;
 using System.Reflection;
-using System.Xml.Linq;
+
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+
 using NLog;
+
 using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder;
@@ -64,10 +65,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
         public void Build(Tree features)
         {
-            string filename = string.IsNullOrEmpty(this.configuration.SystemUnderTestName)
+            var filename = string.IsNullOrEmpty(this.configuration.SystemUnderTestName)
                 ? "features.docx"
                 : this.configuration.SystemUnderTestName + ".docx";
-            string documentFileName = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, filename);
+            var documentFileName = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, filename);
             if (this.fileSystem.File.Exists(documentFileName))
             {
                 try
@@ -83,11 +84,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             using (var stream = this.fileSystem.File.Create(documentFileName))
             using (
-                WordprocessingDocument wordProcessingDocument = WordprocessingDocument.Create(
+                var wordProcessingDocument = WordprocessingDocument.Create(
                     stream,
                     WordprocessingDocumentType.Document))
             {
-                MainDocumentPart mainDocumentPart = wordProcessingDocument.AddMainDocumentPart();
+                var mainDocumentPart = wordProcessingDocument.AddMainDocumentPart();
                 this.wordStyleApplicator.AddStylesPartToPackage(wordProcessingDocument);
                 this.wordStyleApplicator.AddStylesWithEffectsPartToPackage(wordProcessingDocument);
                 this.wordFontApplicator.AddFontTablePartToPackage(wordProcessingDocument);
@@ -115,9 +116,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word
 
             // HACK - Add the table of contents
             using (var stream = this.fileSystem.File.Open(documentFileName, System.IO.FileMode.Open))
-            using (WordprocessingDocument wordProcessingDocument = WordprocessingDocument.Open(stream, true))
+            using (var wordProcessingDocument = WordprocessingDocument.Open(stream, true))
             {
-                XElement firstPara = wordProcessingDocument
+                var firstPara = wordProcessingDocument
                     .MainDocumentPart
                     .GetXDocument()
                     .Descendants(W.p)

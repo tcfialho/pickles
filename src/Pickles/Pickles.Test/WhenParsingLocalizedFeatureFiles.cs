@@ -18,13 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
 
-using Autofac;
-
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.Extensions;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -38,7 +37,7 @@ namespace PicklesDoc.Pickles.Test
         [Test]
         public void WhenIndicatingTheLanguageInTheFeature_ThenCanParseMostBasicFeatureSuccessfully()
         {
-            string featureText =
+            var featureText =
                 @"# language: sv
 # ignorera denna kommentar
 Egenskap: Test egenskap
@@ -53,7 +52,7 @@ Egenskap: Test egenskap
 
             var configuration = this.Configuration;
             var parser = this.CreateParser(configuration);
-            Feature feature = parser.Parse(new StringReader(featureText));
+            var feature = parser.Parse(new StringReader(featureText));
 
             Check.That(feature).IsNotNull();
             Check.That(feature.Name).IsEqualTo("Test egenskap");
@@ -63,25 +62,25 @@ Så att beställaren kan förstå dem".ComparisonNormalize());
             Check.That(feature.FeatureElements.Count).IsEqualTo(1);
             Check.That(feature.Tags.Count).IsEqualTo(0);
 
-            IFeatureElement scenario = feature.FeatureElements.First();
+            var scenario = feature.FeatureElements.First();
             Check.That(scenario.Name).IsEqualTo("Ett scenario");
             Check.That(scenario.Description).IsEqualTo(string.Empty);
             Check.That(scenario.Steps.Count).IsEqualTo(3);
             Check.That(scenario.Tags.Count).IsEqualTo(0);
 
-            Step givenStep = scenario.Steps[0];
+            var givenStep = scenario.Steps[0];
             Check.That(givenStep.Keyword).IsEqualTo(Keyword.Given);
             Check.That(givenStep.Name).IsEqualTo("en egenskap");
             Check.That(givenStep.DocStringArgument).IsNull();
             Check.That(givenStep.TableArgument).IsNull();
 
-            Step whenStep = scenario.Steps[1];
+            var whenStep = scenario.Steps[1];
             Check.That(whenStep.Keyword).IsEqualTo(Keyword.When);
             Check.That(whenStep.Name).IsEqualTo("den körs");
             Check.That(whenStep.DocStringArgument).IsNull();
             Check.That(whenStep.TableArgument).IsNull();
 
-            Step thenStep = scenario.Steps[2];
+            var thenStep = scenario.Steps[2];
             Check.That(thenStep.Keyword).IsEqualTo(Keyword.Then);
             Check.That(thenStep.Name).IsEqualTo("skall jag se att det inträffat");
             Check.That(thenStep.DocStringArgument).IsNull();
@@ -96,7 +95,7 @@ Så att beställaren kan förstå dem".ComparisonNormalize());
         [Test]
         public void WhenSettingTheLanguageInTheConfiguration_ThenCanParseMostBasicFeatureSuccessfully()
         {
-            string featureText =
+            var featureText =
                 @"# ignorera denna kommentar
 Egenskap: Test egenskap
   Som svensk användare
@@ -113,7 +112,7 @@ Egenskap: Test egenskap
             configuration.Language = "sv";
 
             var parser = this.CreateParser(configuration);
-            Feature feature = parser.Parse(new StringReader(featureText));
+            var feature = parser.Parse(new StringReader(featureText));
 
             Check.That(feature).IsNotNull();
             Check.That(feature.Name).IsEqualTo("Test egenskap");
@@ -123,25 +122,25 @@ Så att beställaren kan förstå dem".ComparisonNormalize());
             Check.That(feature.FeatureElements.Count).IsEqualTo(1);
             Check.That(feature.Tags.Count).IsEqualTo(0);
 
-            IFeatureElement scenario = feature.FeatureElements.First();
+            var scenario = feature.FeatureElements.First();
             Check.That(scenario.Name).IsEqualTo("Ett scenario");
             Check.That(scenario.Description).IsEqualTo(string.Empty);
             Check.That(scenario.Steps.Count).IsEqualTo(3);
             Check.That(scenario.Tags.Count).IsEqualTo(0);
 
-            Step givenStep = scenario.Steps[0];
+            var givenStep = scenario.Steps[0];
             Check.That(givenStep.Keyword).IsEqualTo(Keyword.Given);
             Check.That(givenStep.Name).IsEqualTo("en egenskap");
             Check.That(givenStep.DocStringArgument).IsNull();
             Check.That(givenStep.TableArgument).IsNull();
 
-            Step whenStep = scenario.Steps[1];
+            var whenStep = scenario.Steps[1];
             Check.That(whenStep.Keyword).IsEqualTo(Keyword.When);
             Check.That(whenStep.Name).IsEqualTo("den körs");
             Check.That(whenStep.DocStringArgument).IsNull();
             Check.That(whenStep.TableArgument).IsNull();
 
-            Step thenStep = scenario.Steps[2];
+            var thenStep = scenario.Steps[2];
             Check.That(thenStep.Keyword).IsEqualTo(Keyword.Then);
             Check.That(thenStep.Name).IsEqualTo("skall jag se att det inträffat");
             Check.That(thenStep.DocStringArgument).IsNull();
@@ -151,7 +150,7 @@ Så att beställaren kan förstå dem".ComparisonNormalize());
         [Test]
         public void WhenIndicatingTheLanguageAndCultureInTheFeature_ThenCanParseTheFeature()
         {
-            string featureText =
+            var featureText =
        @"# language: nl-BE
 Functionaliteit: Test de Cultuur
 
@@ -163,7 +162,7 @@ Scenario: Het Scenario
 
             var configuration = this.Configuration;
             var parser = this.CreateParser(configuration);
-            Feature feature = parser.Parse(new StringReader(featureText));
+            var feature = parser.Parse(new StringReader(featureText));
 
             Check.That(feature).IsNotNull();
         }

@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
+
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.Json;
 using PicklesDoc.Pickles.ObjectModel;
@@ -35,7 +37,7 @@ namespace PicklesDoc.Pickles.Test.Formatters.JSON
         private const string FeaturePath = @"AdvancedFeature.feature";
 
         private FeatureNode featureDirectoryNode;
-        private FileInfoBase featureFileInfo;
+        private IFileInfo featureFileInfo;
         private JsonFeatureWithMetaInfo featureWithMeta;
         private Feature testFeature;
 

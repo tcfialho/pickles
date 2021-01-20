@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -61,7 +60,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
             return new JsonTable
             {
                 HeaderRow = this.tableHeaderMapper.Map(table.HeaderRow),
-                DataRows = (table.DataRows ?? new List<TableRow>()).Select(x=>this.tableRowMapper.MapwWithTestResult(x as TableRowWithTestResult)).ToList()
+                DataRows = (table.DataRows ?? new List<TableRow>()).Select(x => this.tableRowMapper.MapwWithTestResult(x as TableRowWithTestResult)).ToList()
             };
         }
     }

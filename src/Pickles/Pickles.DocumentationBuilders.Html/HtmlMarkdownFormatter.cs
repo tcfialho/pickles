@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Xml.Linq;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Html.Extensions;
@@ -40,7 +39,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
         public XElement Format(string text)
         {
             // HACK - we add the div around the markdown content because XElement requires a single root element from which to parse and Markdown.Transform() returns a series of elements
-            XElement xElement = XElement.Parse("<div>" + this.markdown.Transform(text) + "</div>");
+            var xElement = XElement.Parse("<div>" + this.markdown.Transform(text) + "</div>");
             xElement.SetAttributeValue("id", "markdown");
 
             xElement.MoveToNamespace(this.xmlns);

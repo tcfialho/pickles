@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Xml.Linq;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Html.Extensions
@@ -35,7 +34,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.Extensions
         /// <param name="newNamespace">The new namespace for the element.</param>
         public static void MoveToNamespace(this XElement element, XNamespace newNamespace)
         {
-            foreach (XElement el in element.DescendantsAndSelf())
+            foreach (var el in element.DescendantsAndSelf())
             {
                 el.Name = newNamespace.GetName(el.Name.LocalName);
             }

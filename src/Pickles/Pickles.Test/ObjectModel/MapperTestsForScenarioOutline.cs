@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
+
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
@@ -36,7 +38,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            ScenarioOutline result = mapper.MapToScenarioOutline(null);
+            var result = mapper.MapToScenarioOutline(null);
 
             Check.That(result).IsNull();
         }
@@ -69,7 +71,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            ScenarioOutline result = mapper.MapToScenarioOutline(scenarioOutline);
+            var result = mapper.MapToScenarioOutline(scenarioOutline);
 
             Check.That(result.Name).IsEqualTo("My scenario title");
 
@@ -103,12 +105,12 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
                 new string[0],
                 "My $super%-crypTIC @(SCENARIO)+= *Title#^!   It's Got \\| Some W1ld?/ Ch<>arac~`ters + Cyrilic Жят ед ыррор",
                 string.Empty,
-                new G.Step[0], 
+                new G.Step[0],
                 new G.Examples[0]);
 
             var mapper = this.factory.CreateMapper();
 
-            ScenarioOutline result = mapper.MapToScenarioOutline(scenarioOutline);
+            var result = mapper.MapToScenarioOutline(scenarioOutline);
 
             Check.That(result.Slug).IsEqualTo("my-super-cryptic-scenario-title-its-got-some-w1ld-characters-cyrilic");
         }
@@ -125,7 +127,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            ScenarioOutline result = mapper.MapToScenarioOutline(scenarioOutline);
+            var result = mapper.MapToScenarioOutline(scenarioOutline);
 
             Check.That(result.Description).IsEqualTo(string.Empty);
         }
@@ -142,7 +144,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var gherkinDocument = this.factory.CreateGherkinDocument(
                 "My Feature",
                 "My Description",
-                scenarioDefinitions: new G.ScenarioDefinition[] { scenarioOutline });
+                scenarioDefinitions: new G.Scenario[] { scenarioOutline });
 
 
             var mapper = this.factory.CreateMapper();

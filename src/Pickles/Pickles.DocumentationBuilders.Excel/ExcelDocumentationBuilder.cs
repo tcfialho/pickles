@@ -18,11 +18,13 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
 using System.Reflection;
+
 using ClosedXML.Excel;
+
 using NLog;
+
 using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles.DirectoryCrawler;
 
@@ -59,7 +61,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                 Log.Info("Writing Excel workbook to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            string spreadsheetPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
+            var spreadsheetPath = this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, "features.xlsx");
             using (var workbook = new XLWorkbook())
             {
                 foreach (var node in features)
@@ -68,7 +70,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                         node as FeatureNode;
                     if (featureDirectoryTreeNode != null)
                     {
-                        IXLWorksheet worksheet =
+                        var worksheet =
                             workbook.AddWorksheet(
                                 this.excelSheetNameGenerator.GenerateSheetName(
                                     workbook,

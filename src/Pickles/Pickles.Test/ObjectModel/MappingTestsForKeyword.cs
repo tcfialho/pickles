@@ -18,11 +18,11 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
-using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
 {

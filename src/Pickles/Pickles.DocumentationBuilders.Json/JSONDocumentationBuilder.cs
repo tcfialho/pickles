@@ -53,10 +53,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json
             this.languageServicesRegistry = languageServicesRegistry;
         }
 
-        public string OutputFilePath
-        {
-            get { return this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, JsonFileName); }
-        }
+        public string OutputFilePath => this.fileSystem.Path.Combine(this.configuration.OutputFolder.FullName, JsonFileName);
 
         #region IDocumentationBuilder Members
 

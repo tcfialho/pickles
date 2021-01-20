@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 using Autofac;
@@ -51,8 +50,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 3;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 3;
                 excelScenarioFormatter.Format(worksheet, scenario, ref row);
 
                 Check.That(worksheet.Cell("B3").Value).IsEqualTo(scenario.Name);
@@ -79,8 +78,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 3;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 3;
                 excelScenarioFormatter.Format(worksheet, scenario, ref row);
 
                 Check.That(worksheet.Cell("B3").Value).IsEqualTo(scenario.Name);

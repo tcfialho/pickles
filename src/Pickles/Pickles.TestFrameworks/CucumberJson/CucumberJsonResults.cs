@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson
 {
     public class CucumberJsonResults : MultipleTestRunsBase

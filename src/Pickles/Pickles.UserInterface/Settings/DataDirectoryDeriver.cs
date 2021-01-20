@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Deployment.Application;
 using System.Reflection;
 
 namespace PicklesDoc.Pickles.UserInterface.Settings
@@ -34,7 +32,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
             }
             else
             {
-                Assembly entryAssembly = Assembly.GetEntryAssembly();
+                var entryAssembly = Assembly.GetEntryAssembly();
 
                 if (entryAssembly != null)
                 {

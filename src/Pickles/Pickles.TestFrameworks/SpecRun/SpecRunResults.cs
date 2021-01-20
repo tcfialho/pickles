@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
     public class SpecRunResults : MultipleTestRunsBase

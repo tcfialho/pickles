@@ -17,12 +17,12 @@ using System.IO.Abstractions;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+
 using DocumentFormat.OpenXml.Packaging;
 
-using FileMode = System.IO.FileMode;
 using FileAccess = System.IO.FileAccess;
+using FileMode = System.IO.FileMode;
 using MemoryStream = System.IO.MemoryStream;
-using Stream = System.IO.Stream;
 using StreamReader = System.IO.StreamReader;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
@@ -61,7 +61,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         {
             var mem = new MemoryStream();
             mem.Write(this.DocumentByteArray, 0, this.DocumentByteArray.Length);
-            WordprocessingDocument doc = WordprocessingDocument.Open(mem, true);
+            var doc = WordprocessingDocument.Open(mem, true);
             return doc;
         }
 
@@ -73,8 +73,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         public void Save()
         {
             if (this.FileName == null)
+            {
                 throw new OpenXmlPowerToolsException(
                     "Attempting to Save a document that has no file name.  Use SaveAs instead.");
+            }
+
             this.fileSystem.File.WriteAllBytes(this.FileName, this.DocumentByteArray);
         }
     }
@@ -2488,30 +2491,41 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         {
             var partXDocument = part.Annotation<XDocument>();
             if (partXDocument != null)
+            {
                 return partXDocument;
-            using (Stream partStream = part.GetStream())
-            using (XmlReader partXmlReader = XmlReader.Create(partStream))
+            }
+
+            using (var partStream = part.GetStream())
+            using (var partXmlReader = XmlReader.Create(partStream))
+            {
                 partXDocument = XDocument.Load(partXmlReader);
+            }
+
             part.AddAnnotation(partXDocument);
             return partXDocument;
         }
 
         public static void PutXDocument(this OpenXmlPart part)
         {
-            XDocument partXDocument = part.GetXDocument();
+            var partXDocument = part.GetXDocument();
             if (partXDocument != null)
             {
-                using (Stream partStream = part.GetStream(FileMode.Create, FileAccess.Write))
-                using (XmlWriter partXmlWriter = XmlWriter.Create(partStream))
+                using (var partStream = part.GetStream(FileMode.Create, FileAccess.Write))
+                using (var partXmlWriter = XmlWriter.Create(partStream))
+                {
                     partXDocument.Save(partXmlWriter);
+                }
             }
         }
 
         public static void PutXDocument(this OpenXmlPart part, XDocument document)
         {
-            using (Stream partStream = part.GetStream(FileMode.Create, FileAccess.Write))
-            using (XmlWriter partXmlWriter = XmlWriter.Create(partStream))
+            using (var partStream = part.GetStream(FileMode.Create, FileAccess.Write))
+            using (var partXmlWriter = XmlWriter.Create(partStream))
+            {
                 document.Save(partXmlWriter);
+            }
+
             part.RemoveAnnotations<XDocument>();
             part.AddAnnotation(document);
         }
@@ -2519,10 +2533,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         public static IEnumerable<XElement> LogicalChildrenContent(this XElement element)
         {
             if (element.Name == W.document)
+            {
                 return element.Descendants(W.body).Take(1);
+            }
+
             if (element.Name == W.body ||
                 element.Name == W.tc ||
                 element.Name == W.txbxContent)
+            {
                 return element
                     .DescendantsTrimmed(e =>
                         e.Name == W.tbl ||
@@ -2530,15 +2548,24 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                     .Where(e =>
                         e.Name == W.p ||
                         e.Name == W.tbl);
+            }
+
             if (element.Name == W.tbl)
+            {
                 return element
                     .DescendantsTrimmed(W.tr)
                     .Where(e => e.Name == W.tr);
+            }
+
             if (element.Name == W.tr)
+            {
                 return element
                     .DescendantsTrimmed(W.tc)
                     .Where(e => e.Name == W.tc);
+            }
+
             if (element.Name == W.p)
+            {
                 return element
                     .DescendantsTrimmed(e => e.Name == W.r ||
                                              e.Name == W.pict ||
@@ -2546,11 +2573,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                     .Where(e => e.Name == W.r ||
                                 e.Name == W.pict ||
                                 e.Name == W.drawing);
+            }
+
             if (element.Name == W.r)
+            {
                 return element
                     .DescendantsTrimmed(e => W.SubRunLevelContent.Contains(e.Name))
                     .Where(e => W.SubRunLevelContent.Contains(e.Name));
+            }
+
             if (element.Name == MC.AlternateContent)
+            {
                 return element
                     .DescendantsTrimmed(e =>
                         e.Name == W.pict ||
@@ -2559,19 +2592,28 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                     .Where(e =>
                         e.Name == W.pict ||
                         e.Name == W.drawing);
+            }
+
             if (element.Name == W.pict || element.Name == W.drawing)
+            {
                 return element
                     .DescendantsTrimmed(W.txbxContent)
                     .Where(e => e.Name == W.txbxContent);
+            }
+
             return XElement.EmptySequence;
         }
 
         public static IEnumerable<XElement> LogicalChildrenContent(
             this IEnumerable<XElement> source)
         {
-            foreach (XElement e1 in source)
-                foreach (XElement e2 in e1.LogicalChildrenContent())
+            foreach (var e1 in source)
+            {
+                foreach (var e2 in e1.LogicalChildrenContent())
+                {
                     yield return e2;
+                }
+            }
         }
 
         public static IEnumerable<XElement> LogicalChildrenContent(
@@ -2583,9 +2625,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         public static IEnumerable<XElement> LogicalChildrenContent(
             this IEnumerable<XElement> source, XName name)
         {
-            foreach (XElement e1 in source)
-                foreach (XElement e2 in e1.LogicalChildrenContent(name))
+            foreach (var e1 in source)
+            {
+                foreach (var e2 in e1.LogicalChildrenContent(name))
+                {
                     yield return e2;
+                }
+            }
         }
 
         // Used to track changes to parts
@@ -2597,11 +2643,14 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         {
             var xdoc = part.Annotation<XDocument>();
             if (xdoc != null)
+            {
                 return xdoc;
+            }
+
             try
             {
                 using (var sr = new StreamReader(part.GetStream()))
-                using (XmlReader xr = XmlReader.Create(sr))
+                using (var xr = XmlReader.Create(sr))
                 {
                     xdoc = XDocument.Load(xr);
                     xdoc.Changed += ElementChanged;
@@ -2620,7 +2669,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
 
         private static void ElementChangedHandler(object sender, XObjectChangeEventArgs e)
         {
-            XDocument xDocument = ((XObject)sender).Document;
+            var xDocument = ((XObject)sender).Document;
             if (xDocument != null)
             {
                 xDocument.Changing -= ElementChanged;
@@ -2635,8 +2684,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
         public static void FlushTrackedXDocuments(this OpenXmlPackage doc)
         {
             var visited = new HashSet<OpenXmlPart>();
-            foreach (IdPartPair item in doc.Parts)
+            foreach (var item in doc.Parts)
+            {
                 FlushPart(item.OpenXmlPart, visited);
+            }
         }
 
         private static void FlushPart(OpenXmlPart part, HashSet<OpenXmlPart> visited)
@@ -2645,7 +2696,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             var xdoc = part.Annotation<XDocument>();
             if (xdoc != null && xdoc.Annotation<ChangedSemaphore>() != null)
             {
-                using (XmlWriter xw = XmlWriter.Create(part.GetStream(FileMode.Create, FileAccess.Write)))
+                using (var xw = XmlWriter.Create(part.GetStream(FileMode.Create, FileAccess.Write)))
                 {
                     xdoc.Save(xw);
                 }
@@ -2653,9 +2704,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 xdoc.Changing += ElementChanged;
                 xdoc.Changed += ElementChanged;
             }
-            foreach (IdPartPair item in part.Parts)
+            foreach (var item in part.Parts)
+            {
                 if (!visited.Contains(item.OpenXmlPart))
+                {
                     FlushPart(item.OpenXmlPart, visited);
+                }
+            }
         }
 
         #region Nested type: ChangedSemaphore
@@ -2678,13 +2733,13 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
     {
         private static string[] GetTokens(string field)
         {
-            State state = State.InWhiteSpace;
-            int tokenStart = 0;
-            char quoteStart = char.MinValue;
+            var state = State.InWhiteSpace;
+            var tokenStart = 0;
+            var quoteStart = char.MinValue;
             var tokens = new List<string>();
-            for (int c = 0; c < field.Length; c++)
+            for (var c = 0; c < field.Length; c++)
             {
-                if (Char.IsWhiteSpace(field[c]))
+                if (char.IsWhiteSpace(field[c]))
                 {
                     if (state == State.InToken)
                     {
@@ -2698,7 +2753,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                         state = State.InQuotedToken;
                     }
                     if (state == State.OnClosingQuote)
+                    {
                         state = State.InWhiteSpace;
+                    }
+
                     continue;
                 }
                 if (field[c] == '\\')
@@ -2768,7 +2826,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
                 }
             }
             if (state == State.InToken)
+            {
                 tokens.Add(field.Substring(tokenStart, field.Length - tokenStart));
+            }
+
             return tokens.ToArray();
         }
 
@@ -2782,13 +2843,22 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Word.TableOfContentsAdder
             };
 
             if (field.Length == 0)
+            {
                 return emptyField;
-            string fieldType = field.TrimStart().Split(' ').FirstOrDefault();
+            }
+
+            var fieldType = field.TrimStart().Split(' ').FirstOrDefault();
             if (fieldType == null || fieldType.ToUpper() != "HYPERLINK")
+            {
                 return emptyField;
-            string[] tokens = GetTokens(field);
+            }
+
+            var tokens = GetTokens(field);
             if (tokens.Length == 0)
+            {
                 return emptyField;
+            }
+
             var fieldInfo = new FieldInfo
             {
                 FieldType = tokens[0],

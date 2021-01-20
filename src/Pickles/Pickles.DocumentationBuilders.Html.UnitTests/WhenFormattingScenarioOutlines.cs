@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 using Autofac;
@@ -51,8 +50,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-            var examples = new List<Example>();
-            examples.Add(example);
+            var examples = new List<Example>
+            {
+                example
+            };
 
             var scenarioOutline = new ScenarioOutline
             {
@@ -83,8 +84,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-            var examples = new List<Example>();
-            examples.Add(example);
+            var examples = new List<Example>
+            {
+                example
+            };
 
             var scenarioOutline = new ScenarioOutline
             {
@@ -114,8 +117,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var example = new Example { Name = "Some examples", Description = "An example", TableArgument = table };
-            var examples = new List<Example>();
-            examples.Add(example);
+            var examples = new List<Example>
+            {
+                example
+            };
 
             var scenarioOutline = new ScenarioOutline
             {
@@ -151,8 +156,10 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
         public void ThenCanFormatScenarioOutlineWithMissingTableFromExampleCorrectly()
         {
             var example = new Example { Name = "Some examples", Description = "An example" };
-            var examples = new List<Example>();
-            examples.Add(example);
+            var examples = new List<Example>
+            {
+                example
+            };
 
             var scenarioOutline = new ScenarioOutline
             {

@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
@@ -36,7 +34,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
         public JsonTableRow Map(TableRow tableRow)
         {
             if (tableRow == null)
+            {
                 return null;
+            }
 
             return new JsonTableRow(tableRow.Cells.ToArray());
         }
@@ -44,7 +44,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper
         public JsonTableRow MapwWithTestResult(TableRowWithTestResult tableRow)
         {
             if (tableRow == null)
+            {
                 return null;
+            }
 
             return new JsonTableRowWithTestResult(tableRow.Cells.ToArray(), this.testResultMapper.Map(tableRow.Result));
         }

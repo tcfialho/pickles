@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Json;
@@ -34,7 +35,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         public void Map_NullTableRow_ReturnsNull()
         {
             var mapper = CreateTableRowMapper();
-            var actual = mapper.Map((TableRow) null);
+            var actual = mapper.Map(null);
 
             Check.That(actual).IsNull();
         }

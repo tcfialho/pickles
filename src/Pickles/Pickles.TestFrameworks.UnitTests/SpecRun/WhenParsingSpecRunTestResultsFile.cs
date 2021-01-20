@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.TestFrameworks.SpecRun;
@@ -127,7 +125,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.SpecRun
         [Test]
         public new void ThenCanReadResultOfScenarioOutlineWithUmlauts()
         {
-          base.ThenCanReadResultOfScenarioOutlineWithUmlauts();
+            base.ThenCanReadResultOfScenarioOutlineWithUmlauts();
         }
 
         [Test]

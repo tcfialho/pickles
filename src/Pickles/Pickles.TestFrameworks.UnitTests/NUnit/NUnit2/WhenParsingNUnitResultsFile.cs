@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.TestFrameworks.NUnit.NUnit2;
@@ -151,7 +149,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         [Test]
         public new void ThenCanReadResultOfScenarioOutlineWithUmlauts()
         {
-          base.ThenCanReadResultOfScenarioOutlineWithUmlauts();
+            base.ThenCanReadResultOfScenarioOutlineWithUmlauts();
         }
 
         [Test]
@@ -164,7 +162,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
         [Test]
         public new void ThenCanReadResultOfScenarioOutlineWithAmpersand()
         {
-          base.ThenCanReadResultOfScenarioOutlineWithAmpersand();
+            base.ThenCanReadResultOfScenarioOutlineWithAmpersand();
         }
 
         [Test]

@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.ObjectModel;
+
 using G = Gherkin.Ast;
 
 namespace PicklesDoc.Pickles.Test.ObjectModel
@@ -36,7 +38,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         {
             var mapper = this.factory.CreateMapper();
 
-            Scenario result = mapper.MapToScenario((G.Background)null);
+            var result = mapper.MapToScenario((G.Background)null);
 
             Check.That(result).IsNull();
         }
@@ -44,7 +46,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToScenarioBackground_RegularBackground_ReturnsScenario()
         {
-            G.Background background = this.factory.CreateBackground(
+            var background = this.factory.CreateBackground(
                 "Background",
                 "Description of the Background",
                 new[]
@@ -54,7 +56,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            Scenario result = mapper.MapToScenario(background);
+            var result = mapper.MapToScenario(background);
 
             Check.That(result.Name).IsEqualTo("Background");
             Check.That(result.Description).IsEqualTo("Description of the Background");
@@ -67,7 +69,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
         [Test]
         public void MapToScenario_BackgroundWithNullDescription_ReturnsScenarioWithEmptyDescription()
         {
-            G.Background background = this.factory.CreateBackground(
+            var background = this.factory.CreateBackground(
                 "Background",
                 null,
                 new[]
@@ -77,7 +79,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
 
             var mapper = this.factory.CreateMapper();
 
-            Scenario result = mapper.MapToScenario(background);
+            var result = mapper.MapToScenario(background);
 
             Check.That(result.Description).IsEqualTo(string.Empty);
         }
@@ -100,7 +102,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel
             var gherkinDocument = this.factory.CreateGherkinDocument(
                 "My Feature",
                 "My Description",
-                scenarioDefinitions: new G.ScenarioDefinition[] { scenario },
+                scenarioDefinitions: new G.Scenario[] { scenario },
                 background: background);
 
 

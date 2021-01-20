@@ -37,10 +37,7 @@ namespace PicklesDoc.Pickles.UserInterface
             this.InitializeComponent();
         }
 
-        private MainViewModel ViewModel
-        {
-            get { return this.DataContext as MainViewModel; }
-        }
+        private MainViewModel ViewModel => this.DataContext as MainViewModel;
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -74,11 +71,11 @@ namespace PicklesDoc.Pickles.UserInterface
             switch (propertyChangedEventArgs.PropertyName)
             {
                 case "IsRunning":
-                {
-                    this.progressIndicator.Visibility = this.ViewModel.IsRunning ? Visibility.Visible : Visibility.Hidden;
-                    this.taskBarItemInfo.ProgressState = this.ViewModel.IsRunning ? TaskbarItemProgressState.Indeterminate : TaskbarItemProgressState.None;
-                    break;
-                }
+                    {
+                        this.progressIndicator.Visibility = this.ViewModel.IsRunning ? Visibility.Visible : Visibility.Hidden;
+                        this.taskBarItemInfo.ProgressState = this.ViewModel.IsRunning ? TaskbarItemProgressState.Indeterminate : TaskbarItemProgressState.None;
+                        break;
+                    }
             }
         }
     }

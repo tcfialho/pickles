@@ -21,11 +21,13 @@
 using System;
 using System.IO.Abstractions;
 using System.Reflection;
+
 using Autofac;
+
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+
 using PicklesDoc.Pickles.Extensions;
-using System.Linq;
 
 namespace PicklesDoc.Pickles.MSBuild
 {
@@ -55,7 +57,7 @@ namespace PicklesDoc.Pickles.MSBuild
 
         public string ExcludeTags { get; set; }
 
-        public string HideTags { get; set; }         
+        public string HideTags { get; set; }
 
         public override bool Execute()
         {
@@ -120,7 +122,7 @@ namespace PicklesDoc.Pickles.MSBuild
             {
                 configuration.DocumentationFormat = (DocumentationFormat)Enum.Parse(typeof(DocumentationFormat), this.DocumentationFormat, true);
             }
-            
+
             if (!string.IsNullOrEmpty(this.ExcludeTags))
             {
                 configuration.ExcludeTags = this.ExcludeTags;
@@ -131,9 +133,8 @@ namespace PicklesDoc.Pickles.MSBuild
                 configuration.HideTags = this.HideTags;
             }
 
-            bool shouldEnableExperimentalFeatures;
 
-            if (bool.TryParse(this.IncludeExperimentalFeatures, out shouldEnableExperimentalFeatures))
+            if (bool.TryParse(this.IncludeExperimentalFeatures, out var shouldEnableExperimentalFeatures))
             {
                 if (shouldEnableExperimentalFeatures)
                 {
@@ -141,9 +142,8 @@ namespace PicklesDoc.Pickles.MSBuild
                 }
             }
 
-            bool shouldEnableComments;
 
-            if (bool.TryParse(this.EnableComments, out shouldEnableComments))
+            if (bool.TryParse(this.EnableComments, out var shouldEnableComments))
             {
                 if (!shouldEnableComments)
                 {

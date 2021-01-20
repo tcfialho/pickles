@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 using PicklesDoc.Pickles.ObjectModel;
-using System;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
@@ -35,9 +37,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             {
             };
 
-            var table = new Table();
-            table.HeaderRow = new TableRow(new[] { "Col1", "Col2" });
-            table.DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>();
+            var table = new Table
+            {
+                HeaderRow = new TableRow(new[] { "Col1", "Col2" }),
+                DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>()
+            };
             table.DataRows.Add(new TableRow(new[] { "Col1Row1", "Col2Row1" }));
             table.DataRows.Add(new TableRow(new[] { "Col1Row2", "Col2Row2" }));
 
@@ -58,9 +62,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             {
             };
 
-            var table = new Table();
-            table.HeaderRow = new TableRow(new[] { "Col1", "Col2" });
-            table.DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>();
+            var table = new Table
+            {
+                HeaderRow = new TableRow(new[] { "Col1", "Col2" }),
+                DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>()
+            };
             table.DataRows.Add(new TableRow(new[] { "Col1Row1", "<Col2Row1>" }));
             table.DataRows.Add(new TableRow(new[] { "<Col1Row2>", "Col2Row2" }));
 
@@ -81,9 +87,11 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             {
             };
 
-            var table = new Table();
-            table.HeaderRow = new TableRow(new[] { "Col1", "Col2" });
-            table.DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>();
+            var table = new Table
+            {
+                HeaderRow = new TableRow(new[] { "Col1", "Col2" }),
+                DataRows = new System.Collections.Generic.List<ObjectModel.TableRow>()
+            };
             AddRowWithResult(table, new[] { "Col1Row1", "Col2Row1" }, TestResult.Passed);
             AddRowWithResult(table, new[] { "Col1Row2", "Col2Row2" }, TestResult.Failed);
             AddRowWithResult(table, new[] { "Col1Row3", "Col2Row3" }, TestResult.Inconclusive);
@@ -101,7 +109,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             Assert.AreEqual(7, actualString.Length);
         }
 
-        private void AddRowWithResult(Table table,string[] data, TestResult result)
+        private void AddRowWithResult(Table table, string[] data, TestResult result)
         {
             var tableRowWithResult = new TableRowWithTestResult(data)
             {

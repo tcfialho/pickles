@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DocumentationBuilders.Json;
@@ -35,11 +36,11 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
         public void MapToScenario_Always_MapsFeatureProperty()
         {
             var feature = new Feature
-                              {
-                                  Name = "My Feature",
-                                  Description = "My Description",
-                                  FeatureElements = { new Scenario { Name = "My Feature" } }
-                              };
+            {
+                Name = "My Feature",
+                Description = "My Description",
+                FeatureElements = { new Scenario { Name = "My Feature" } }
+            };
 
             var mapper = new JsonMapper(new LanguageServicesRegistry());
 

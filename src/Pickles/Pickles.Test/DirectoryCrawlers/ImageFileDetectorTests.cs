@@ -18,9 +18,10 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions.TestingHelpers;
+
 using NFluent;
+
 using NUnit.Framework;
 
 using PicklesDoc.Pickles.DirectoryCrawler;
@@ -33,9 +34,9 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void IsRelevant_ByDefault_ReturnsFalse()
         {
-            ImageFileDetector fileDetector = CreateImageFileDetector();
+            var fileDetector = CreateImageFileDetector();
 
-            bool isRelevant = fileDetector.IsRelevant(null);
+            var isRelevant = fileDetector.IsRelevant(null);
 
             Check.That(isRelevant).IsFalse();
         }
@@ -51,12 +52,12 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [TestCase("image.gif")]
         public void IsRelevant_ValidFile_ReturnsTrue(string imageName)
         {
-            ImageFileDetector fileDetector = CreateImageFileDetector();
+            var fileDetector = CreateImageFileDetector();
 
             var fileSystem = new MockFileSystem();
             var file = fileSystem.FileInfo.FromFileName(imageName);
 
-            bool isRelevant = fileDetector.IsRelevant(file);
+            var isRelevant = fileDetector.IsRelevant(file);
 
             Check.That(isRelevant).IsTrue();
         }
@@ -64,12 +65,12 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void IsRelevant_InvalidFile_ReturnsFalse()
         {
-            ImageFileDetector fileDetector = CreateImageFileDetector();
+            var fileDetector = CreateImageFileDetector();
 
             var fileSystem = new MockFileSystem();
             var file = fileSystem.FileInfo.FromFileName("image.pdf");
 
-            bool isRelevant = fileDetector.IsRelevant(file);
+            var isRelevant = fileDetector.IsRelevant(file);
 
             Check.That(isRelevant).IsFalse();
         }
@@ -77,12 +78,12 @@ namespace PicklesDoc.Pickles.Test.DirectoryCrawlers
         [Test]
         public void IsRelevant_ValidFileWithMixedCaseExtension_ReturnsTrue()
         {
-            ImageFileDetector fileDetector = CreateImageFileDetector();
+            var fileDetector = CreateImageFileDetector();
 
             var fileSystem = new MockFileSystem();
             var file = fileSystem.FileInfo.FromFileName("image.PnG");
 
-            bool isRelevant = fileDetector.IsRelevant(file);
+            var isRelevant = fileDetector.IsRelevant(file);
 
             Check.That(isRelevant).IsTrue();
         }

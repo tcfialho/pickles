@@ -21,11 +21,11 @@
 using System;
 using System.IO.Abstractions;
 using System.Reflection;
-using System.Xml.Linq;
+
 using NLog;
+
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
 using PicklesDoc.Pickles.Extensions;
-using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DirectoryCrawler
 {
@@ -46,17 +46,17 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
             this.fileSystem = fileSystem;
         }
 
-        public INode Create(FileSystemInfoBase root, FileSystemInfoBase location, ParsingReport report)
+        public INode Create(IFileSystemInfo root, IFileSystemInfo location, ParsingReport report)
         {
-            string relativePathFromRoot = root == null ? @".\" : PathExtensions.MakeRelativePath(root, location, this.fileSystem);
+            var relativePathFromRoot = root == null ? @".\" : PathExtensions.MakeRelativePath(root, location, this.fileSystem);
 
-            var directory = location as DirectoryInfoBase;
+            var directory = location as IDirectoryInfo;
             if (directory != null)
             {
                 return new FolderNode(directory, relativePathFromRoot);
             }
 
-            var file = location as FileInfoBase;
+            var file = location as IFileInfo;
 
             if (file != null)
             {
@@ -64,7 +64,7 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 {
                     try
                     {
-                        Feature feature = this.featureParser.Parse(file.FullName);
+                        var feature = this.featureParser.Parse(file.FullName);
                         return feature != null ? new FeatureNode(file, relativePathFromRoot, feature) : null;
                     }
                     catch (FeatureParseException exception)
@@ -78,13 +78,13 @@ namespace PicklesDoc.Pickles.DirectoryCrawler
                 {
                     try
                     {
-                        XElement markdownContent =
+                        var markdownContent =
                             this.htmlMarkdownFormatter.Format(this.fileSystem.File.ReadAllText(file.FullName));
                         return new MarkdownNode(file, relativePathFromRoot, markdownContent);
                     }
                     catch (Exception exception)
                     {
-                        string description = "Error parsing the Markdown file located at " + file.FullName + ". Error: " + exception.Message;
+                        var description = "Error parsing the Markdown file located at " + file.FullName + ". Error: " + exception.Message;
                         report.Add(description);
                         Log.Error(description);
                         return null;

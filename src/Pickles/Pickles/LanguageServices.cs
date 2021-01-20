@@ -20,6 +20,7 @@
 
 using System;
 using System.Linq;
+
 using Gherkin;
 
 namespace PicklesDoc.Pickles
@@ -52,46 +53,22 @@ namespace PicklesDoc.Pickles
             this.ExamplesKeywords = this.GherkinDialect.ExamplesKeywords.Select(s => s.Trim()).ToArray();
         }
 
-        public string[] GivenStepKeywords
-        {
-            get { return this.givenStepKeywordsLazy.Value; }
-        }
+        public string[] GivenStepKeywords => this.givenStepKeywordsLazy.Value;
 
-        public string[] WhenStepKeywords
-        {
-            get { return this.whenStepKeywordsLazy.Value; }
-        }
+        public string[] WhenStepKeywords => this.whenStepKeywordsLazy.Value;
 
-        public string[] ThenStepKeywords
-        {
-            get { return this.thenStepKeywordsLazy.Value; }
-        }
+        public string[] ThenStepKeywords => this.thenStepKeywordsLazy.Value;
 
-        public string[] AndStepKeywords
-        {
-            get { return this.andStepKeywordsLazy.Value; }
-        }
+        public string[] AndStepKeywords => this.andStepKeywordsLazy.Value;
 
-        public string[] ButStepKeywords
-        {
-            get { return this.butStepKeywordsLazy.Value; }
-        }
+        public string[] ButStepKeywords => this.butStepKeywordsLazy.Value;
 
-        public string[] BackgroundKeywords
-        {
-            get { return this.backgroundKeywordsLazy.Value; }
-        }
+        public string[] BackgroundKeywords => this.backgroundKeywordsLazy.Value;
 
-        private GherkinDialect GherkinDialect
-        {
-            get { return this.gherkinDialectLazy.Value; }
-        }
+        private GherkinDialect GherkinDialect => this.gherkinDialectLazy.Value;
 
         public string[] ExamplesKeywords { get; }
 
-        public string Language
-        {
-            get { return this.GherkinDialect.Language; }
-        }
+        public string Language => this.GherkinDialect.Language;
     }
 }

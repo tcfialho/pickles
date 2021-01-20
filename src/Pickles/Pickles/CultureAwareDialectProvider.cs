@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 using Gherkin;
 using Gherkin.Ast;
 
@@ -43,7 +41,7 @@ namespace PicklesDoc.Pickles
             }
             catch (NoSuchLanguageException)
             {
-                string languageOnly = StripCulture(language);
+                var languageOnly = StripCulture(language);
 
                 result = base.GetDialect(languageOnly, location);
             }

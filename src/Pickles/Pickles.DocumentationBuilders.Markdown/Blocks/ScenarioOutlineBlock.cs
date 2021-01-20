@@ -22,7 +22,7 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks
 {
-    class ScenarioOutlineBlock : Block
+    internal class ScenarioOutlineBlock : Block
     {
         protected readonly ScenarioOutline scenarioOutline;
 

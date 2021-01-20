@@ -20,10 +20,14 @@
 
 using System;
 using System.IO;
+using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
+
 using NFluent;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.DocumentationBuilders.Html;
 
@@ -99,41 +103,37 @@ namespace PicklesDoc.Pickles.Test
 
             var report = new ParsingReport();
 
-            featureNodeFactory.Create(null, new BogusFileSystemInfoBase { fullName = "Totally Bad Name"}, report);
+            featureNodeFactory.Create(null, new BogusIFileSystemInfo { fullName = "Totally Bad Name" }, report);
 
             Check.That(report.First()).Contains(@"Totally Bad Name");
         }
 
-        private class BogusFileSystemInfoBase : System.IO.Abstractions.FileSystemInfoBase
+        private class BogusIFileSystemInfo : IFileSystemInfo
         {
-            internal string fullName;
+            public string fullName;
 
-            public override void Delete()
+            public IFileSystem FileSystem { get; }
+            public FileAttributes Attributes { get; set; }
+            public DateTime CreationTime { get; set; }
+            public DateTime CreationTimeUtc { get; set; }
+            public bool Exists { get; }
+            public string Extension { get; }
+            public string FullName => fullName;
+            public DateTime LastAccessTime { get; set; }
+            public DateTime LastAccessTimeUtc { get; set; }
+            public DateTime LastWriteTime { get; set; }
+            public DateTime LastWriteTimeUtc { get; set; }
+            public string Name { get; }
+
+            public void Delete()
             {
                 throw new NotImplementedException();
             }
 
-            public override void Refresh()
+            public void Refresh()
             {
                 throw new NotImplementedException();
             }
-
-            public override FileAttributes Attributes { get; set; }
-            public override DateTime CreationTime { get; set; }
-            public override DateTime CreationTimeUtc { get; set; }
-            public override bool Exists { get; }
-            public override string Extension { get; }
-
-            public override string FullName
-            {
-                get { return this.fullName; }
-            }
-
-            public override DateTime LastAccessTime { get; set; }
-            public override DateTime LastAccessTimeUtc { get; set; }
-            public override DateTime LastWriteTime { get; set; }
-            public override DateTime LastWriteTimeUtc { get; set; }
-            public override string Name { get; }
         }
 
         private class MockMarkdownProvider : IMarkdownProvider

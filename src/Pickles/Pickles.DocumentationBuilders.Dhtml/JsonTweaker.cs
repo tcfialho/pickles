@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Dhtml

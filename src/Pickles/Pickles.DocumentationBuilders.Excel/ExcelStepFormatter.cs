@@ -18,8 +18,8 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
+
 using ClosedXML.Excel;
 
 using PicklesDoc.Pickles.ObjectModel;
@@ -68,7 +68,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
                     row++;
                 }
             }
-            
+
 
             if (step.TableArgument != null)
             {

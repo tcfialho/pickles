@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using GalaSoft.MvvmLight;
 
 namespace PicklesDoc.Pickles.UserInterface.Mvvm
@@ -43,10 +41,7 @@ namespace PicklesDoc.Pickles.UserInterface.Mvvm
 
         public bool IsSelected
         {
-            get
-            {
-                return this.isSelected;
-            }
+            get => this.isSelected;
 
             set
             {

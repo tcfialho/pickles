@@ -18,13 +18,15 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using Autofac;
-using NUnit.Framework;
-using PicklesDoc.Pickles.DataStructures;
-using PicklesDoc.Pickles.Test;
 using System;
 using System.IO;
-using TechTalk.SpecFlow;
+
+using Autofac;
+
+using NUnit.Framework;
+
+using PicklesDoc.Pickles.DataStructures;
+using PicklesDoc.Pickles.Test;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Steps
 {
@@ -66,7 +68,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
                 var expectedRow = int.Parse(check["Line No."]);
 
                 Assert.IsTrue(resultArray.Length >= expectedRow, "Not enough lines in output");
-                Assert.AreEqual(expectedValue, resultArray[expectedRow-1]);
+                Assert.AreEqual(expectedValue, resultArray[expectedRow - 1]);
             }
         }
 
@@ -128,7 +130,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         [Then(@"the file '(.*)' exists")]
         public void Then_The_File_Exists(string expectedFile)
         {
-            Assert.IsTrue(this.FileSystem.File.Exists(expectedFile),string.Format("File \"{0}\" not found",expectedFile));
+            Assert.IsTrue(this.FileSystem.File.Exists(expectedFile), string.Format("File \"{0}\" not found", expectedFile));
         }
 
         // Duplicated logic from Builder class, should be moved to it's own class?
@@ -136,7 +138,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.AcceptanceTests.Step
         {
             var fileName = "features.md";
 
-            string defaultOutputFile = string.Empty;
+            var defaultOutputFile = string.Empty;
             if (configuration.OutputFolder == null)
             {
                 defaultOutputFile = Path.Combine(@"C:\testing", fileName);

@@ -21,8 +21,6 @@
 namespace PicklesDoc.Pickles.ObjectModel
 {
     using System.Collections.Generic;
-    using System.Text;
-    using System.Text.RegularExpressions;
 
     public abstract class ScenarioBase : IFeatureElement
     {

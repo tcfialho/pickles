@@ -27,7 +27,7 @@ namespace PicklesDoc.Pickles.TestFrameworks
         bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement);
     }
 
-    class ScenarioOutlineExampleMatcher : IScenarioOutlineExampleMatcher
+    internal class ScenarioOutlineExampleMatcher : IScenarioOutlineExampleMatcher
     {
         public bool IsMatch(ScenarioOutline scenarioOutline, string[] exampleValues, object scenarioElement)
         {

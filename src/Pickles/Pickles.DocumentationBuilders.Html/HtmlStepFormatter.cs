@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -44,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html
 
         protected XElement FormatComments(Step step, CommentType type)
         {
-            XElement comment = new XElement(this.xmlns + "span", new XAttribute("class", "comment"));
+            var comment = new XElement(this.xmlns + "span", new XAttribute("class", "comment"));
 
             foreach (var stepComment in step.Comments.Where(o => o.Type == type))
             {

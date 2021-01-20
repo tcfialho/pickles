@@ -18,9 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
-using System.Xml.Linq;
 
 using Autofac;
 
@@ -49,8 +47,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var htmlFeatureFormatter = Container.Resolve<HtmlScenarioFormatter>();
-            XElement featureElement = htmlFeatureFormatter.Format(scenario, 1);
-            XElement header = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
+            var featureElement = htmlFeatureFormatter.Format(scenario, 1);
+            var header = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
             Check.That(header).IsNotNull();
             Check.That(header).IsNamed("div");
@@ -81,8 +79,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             };
 
             var htmlFeatureFormatter = Container.Resolve<HtmlScenarioFormatter>();
-            XElement featureElement = htmlFeatureFormatter.Format(scenario, 1);
-            XElement header = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
+            var featureElement = htmlFeatureFormatter.Format(scenario, 1);
+            var header = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
             Check.That(header).IsNotNull();
             Check.That(header).IsNamed("div");
@@ -115,7 +113,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             feature.FeatureElements[0].Feature = feature;
 
             var htmlFeatureFormatter = Container.Resolve<HtmlFeatureFormatter>();
-            XElement featureElement = htmlFeatureFormatter.Format(feature);
+            var featureElement = htmlFeatureFormatter.Format(feature);
 
             var header = featureElement.Descendants().First(n => n.Attributes().Any(a => a.Name == "class" && a.Value == "scenario-heading"));
 
@@ -151,7 +149,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Html.UnitTests
             feature.FeatureElements[0].Feature = feature;
 
             var htmlFeatureFormatter = Container.Resolve<HtmlFeatureFormatter>();
-            XElement featureElement = htmlFeatureFormatter.Format(feature);
+            var featureElement = htmlFeatureFormatter.Format(feature);
 
             var header = featureElement.Descendants().First(n => n.Attributes().Any(a => a.Name == "class" && a.Value == "scenario-heading"));
 

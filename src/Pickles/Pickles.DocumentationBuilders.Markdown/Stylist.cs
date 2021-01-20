@@ -22,9 +22,9 @@ using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
 {
-    class Stylist
+    internal class Stylist
     {
-        public string TableResultHeading { get { return "Result"; } }
+        public string TableResultHeading => "Result";
 
         internal virtual string AsTitle(string title)
         {
@@ -66,12 +66,12 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
         {
             var resultTemplate = "![{0}]({1})";
 
-            string styledResult = "";
+            var styledResult = "";
 
             switch (testresult)
             {
                 case TestResult.Passed:
-                    styledResult = string.Format(resultTemplate,"Passed","pass.png");
+                    styledResult = string.Format(resultTemplate, "Passed", "pass.png");
                     break;
 
                 case TestResult.Failed:

@@ -19,21 +19,26 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.IO;
 using System.IO.Abstractions;
 using System.Reflection;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+
 using NLog;
+
 using PicklesDoc.Pickles.DirectoryCrawler;
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
 {
-    using Pickles;
-    using DocumentationBuilders;
     using System.Linq;
+
     using DataStructures;
+
+    using DocumentationBuilders;
+
+    using Pickles;
 
     public class CucumberDocumentationBuilder : IDocumentationBuilder
     {
@@ -59,7 +64,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
                 Log.Info("Writing Cucumber to {0}", this.configuration.OutputFolder.FullName);
             }
 
-            List<Feature> featuresToFormat = new List<Feature>();
+            var featuresToFormat = new List<Feature>();
 
             foreach (var node in features)
             {
@@ -106,7 +111,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
             });
 
 
-            JsonSerializerSettings settings = new JsonSerializerSettings
+            var settings = new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 NullValueHandling = NullValueHandling.Ignore,
@@ -130,7 +135,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Cucumber
 
         private void CreateFile(string outputFolderName, string jsonToWrite)
         {
-            using (StreamWriter writer = this.fileSystem.File.CreateText(outputFolderName))
+            using (var writer = this.fileSystem.File.CreateText(outputFolderName))
             {
                 writer.Write(jsonToWrite);
                 writer.Close();

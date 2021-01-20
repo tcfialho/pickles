@@ -31,7 +31,7 @@ namespace PicklesDoc.Pickles
 
         public string Transform(string text)
         {
-            string transform = this.markdown.Transform(text);
+            var transform = this.markdown.Transform(text);
 
             transform = transform.Replace("&nbsp;", string.Empty);
 

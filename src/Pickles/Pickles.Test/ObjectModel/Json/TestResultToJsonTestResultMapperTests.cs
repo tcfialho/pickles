@@ -19,9 +19,9 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NFluent;
+
 using NUnit.Framework;
 
-using PicklesDoc.Pickles.DocumentationBuilders.Json;
 using PicklesDoc.Pickles.DocumentationBuilders.Json.Mapper;
 using PicklesDoc.Pickles.ObjectModel;
 
@@ -37,7 +37,7 @@ namespace PicklesDoc.Pickles.Test.ObjectModel.Json
 
             var mapper = CreateMapper();
 
-            JsonTestResult actual = mapper.Map(testResult);
+            var actual = mapper.Map(testResult);
 
             Check.That(actual.WasExecuted).IsFalse();
             Check.That(actual.WasSuccessful).IsFalse();

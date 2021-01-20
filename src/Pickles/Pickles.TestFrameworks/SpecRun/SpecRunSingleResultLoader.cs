@@ -1,4 +1,4 @@
-﻿    //  --------------------------------------------------------------------------------------------------------------------
+﻿//  --------------------------------------------------------------------------------------------------------------------
 //  <copyright file="SpecRunSingleResultLoader.cs" company="PicklesDoc">
 //  Copyright 2011 Jeffrey Cameron
 //  Copyright 2012-present PicklesDoc team and community contributors
@@ -29,7 +29,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
 {
     public class SpecRunSingleResultLoader : ISingleResultLoader
     {
-        public SingleTestRunBase Load(FileInfoBase fileInfo)
+        public SingleTestRunBase Load(IFileInfo fileInfo)
         {
             var document = this.ReadResultsFile(fileInfo);
             var features = this.ToFeatures(document);
@@ -42,22 +42,22 @@ namespace PicklesDoc.Pickles.TestFrameworks.SpecRun
             return readResultsFile.Descendants("feature").Select(Factory.ToSpecRunFeature).ToList();
         }
 
-        private XDocument ReadResultsFile(FileInfoBase testResultsFile)
+        private XDocument ReadResultsFile(IFileInfo testResultsFile)
         {
             XDocument document;
             using (var stream = testResultsFile.OpenRead())
             {
                 using (var streamReader = new System.IO.StreamReader(stream))
                 {
-                    string content = streamReader.ReadToEnd();
+                    var content = streamReader.ReadToEnd();
 
-                    int begin = content.IndexOf("<!-- Pickles Begin", StringComparison.Ordinal);
+                    var begin = content.IndexOf("<!-- Pickles Begin", StringComparison.Ordinal);
 
                     content = content.Substring(begin);
 
                     content = content.Replace("<!-- Pickles Begin", string.Empty);
 
-                    int end = content.IndexOf("Pickles End -->", System.StringComparison.Ordinal);
+                    var end = content.IndexOf("Pickles End -->", System.StringComparison.Ordinal);
 
                     content = content.Substring(0, end);
 

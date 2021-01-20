@@ -18,9 +18,10 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
+
 using ClosedXML.Excel;
+
 using PicklesDoc.Pickles.DataStructures;
 using PicklesDoc.Pickles.DirectoryCrawler;
 
@@ -66,9 +67,9 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel
 
         public void Format(XLWorkbook workbook, Tree features)
         {
-            IXLWorksheet tocWorksheet = workbook.AddWorksheet("TOC", 0);
+            var tocWorksheet = workbook.AddWorksheet("TOC", 0);
 
-            int startRow = 1;
+            var startRow = 1;
             this.BuildTableOfContents(workbook, tocWorksheet, ref startRow, 1, features);
         }
     }

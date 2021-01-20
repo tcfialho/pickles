@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace PicklesDoc.Pickles.TestFrameworks.CucumberJson

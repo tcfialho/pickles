@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles.TestFrameworks
@@ -50,9 +48,6 @@ namespace PicklesDoc.Pickles.TestFrameworks
             return new TestResult();
         }
 
-        public bool SupportsExampleResults
-        {
-            get { return false; }
-        }
+        public bool SupportsExampleResults => false;
     }
 }

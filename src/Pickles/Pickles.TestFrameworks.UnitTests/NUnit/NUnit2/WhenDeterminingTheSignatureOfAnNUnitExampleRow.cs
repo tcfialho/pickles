@@ -18,9 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System.Text.RegularExpressions;
-
-
 using NFluent;
 
 using NUnit.Framework;
@@ -41,7 +38,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
             var exampleRow = new[] { "40", "50", "90" };
 
             var signatureBuilder = new NUnit2ExampleSignatureBuilder();
-            Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
+            var signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
             var isMatch = signature.IsMatch("Pickles.TestHarness.AdditionFeature.AddingSeveralNumbers(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());
             Check.That(isMatch).IsTrue();
@@ -71,7 +68,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
             var exampleRow = new[] { "40", "50", "90" };
 
             var signatureBuilder = new NUnit2ExampleSignatureBuilder();
-            Regex signature = signatureBuilder.Build(scenarioOutline, exampleRow);
+            var signature = signatureBuilder.Build(scenarioOutline, exampleRow);
 
             var isMatch = signature.IsMatch("Pickles.TestHarness.AdditionFeature.AddingSeveralNumbersFoo_BarFooBar(\"40\",\"50\",\"90\",System.String[])".ToLowerInvariant());
             Check.That(isMatch).IsTrue();

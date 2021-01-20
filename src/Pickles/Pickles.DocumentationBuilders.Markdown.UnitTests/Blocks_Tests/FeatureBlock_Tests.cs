@@ -18,10 +18,12 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using NUnit.Framework;
+
 using PicklesDoc.Pickles.DocumentationBuilders.Markdown.Blocks;
 using PicklesDoc.Pickles.ObjectModel;
-using System;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
 {
@@ -41,7 +43,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
                 Name = "Hello, World"
             };
 
-            var featureBlock = new FeatureBlock(feature,mockStyle);
+            var featureBlock = new FeatureBlock(feature, mockStyle);
             var actualString = featureBlock.ToString().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
             Assert.AreEqual(expectedString, actualString[0]);
@@ -58,7 +60,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown.UnitTests
             var feature = new Feature
             {
                 Name = "Feature with description",
-                Description = String.Concat(
+                Description = string.Concat(
                     "In order to determine that world is flat", Environment.NewLine,
                     "As a captain of a ship", Environment.NewLine,
                     "I want to sail beyond the horizion")

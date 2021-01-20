@@ -24,11 +24,11 @@ using System.Collections.Generic;
 
 namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
 {
-    class Lines : IEnumerable<string> 
+    internal class Lines : IEnumerable<string>
     {
-        private List<string> lines;
+        private readonly List<string> lines;
 
-        public int Count { get { return lines.Count;  } }
+        public int Count => lines.Count;
 
         public Lines()
         {
@@ -42,7 +42,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
 
         public void Add(Lines lines)
         {
-            foreach(var line in lines)
+            foreach (var line in lines)
             {
                 this.lines.Add(line);
             }
@@ -50,7 +50,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
 
         public void Add(List<string> lines)
         {
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 this.lines.Add(line);
             }
@@ -68,7 +68,7 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Markdown
 
         public override string ToString()
         {
-            string result = string.Empty;
+            var result = string.Empty;
 
             foreach (var line in lines)
             {

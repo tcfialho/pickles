@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.IO.Abstractions;
 
 namespace PicklesDoc.Pickles.UserInterface.Settings
@@ -51,7 +50,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
         /// <param name="item">The item.</param>
         public void Write(MainModel item)
         {
-            string path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
+            var path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
 
             using (var stream = this.fileSystem.File.Create(path))
             {
@@ -67,7 +66,7 @@ namespace PicklesDoc.Pickles.UserInterface.Settings
         {
             MainModel result;
 
-            string path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
+            var path = this.fileSystem.Path.Combine(this.dataDirectory, EntitiesNameV1 + ".xml");
 
             if (!this.fileSystem.File.Exists(path))
             {

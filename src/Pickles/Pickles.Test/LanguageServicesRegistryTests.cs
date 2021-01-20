@@ -19,6 +19,7 @@
 //  --------------------------------------------------------------------------------------------------------------------
 
 using NFluent;
+
 using NUnit.Framework;
 
 namespace PicklesDoc.Pickles.Test
@@ -31,7 +32,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var languageServicesRegistry = new LanguageServicesRegistry();
 
-            ILanguageServices languageServices = languageServicesRegistry.GetLanguageServicesForLanguage("en");
+            var languageServices = languageServicesRegistry.GetLanguageServicesForLanguage("en");
 
             Check.That(languageServices.Language).IsEqualTo("en");
         }
@@ -41,7 +42,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var languageServicesRegistry = new LanguageServicesRegistry();
 
-            string defaultLanguage = languageServicesRegistry.DefaultLanguage;
+            var defaultLanguage = languageServicesRegistry.DefaultLanguage;
 
             Check.That(defaultLanguage).IsEqualTo("en");
         }
@@ -51,7 +52,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var languageServicesRegistry = new LanguageServicesRegistry();
 
-            ILanguageServices languageServices = languageServicesRegistry.GetLanguageServicesForLanguage(null);
+            var languageServices = languageServicesRegistry.GetLanguageServicesForLanguage(null);
 
             Check.That(languageServices.Language).IsEqualTo("en");
         }

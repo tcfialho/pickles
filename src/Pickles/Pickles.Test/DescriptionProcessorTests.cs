@@ -34,7 +34,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process((string)null);
+            var result = preProcessor.Process((string)null);
 
             Check.That(result).IsEqualTo(string.Empty);
         }
@@ -49,7 +49,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process("     ");
+            var result = preProcessor.Process("     ");
 
             Check.That(result).IsEqualTo(string.Empty);
         }
@@ -59,7 +59,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process(" abc");
+            var result = preProcessor.Process(" abc");
 
             Check.That(result).IsEqualTo("abc");
         }
@@ -69,7 +69,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process(" abc" + Environment.NewLine + " def");
+            var result = preProcessor.Process(" abc" + Environment.NewLine + " def");
 
             Check.That(result).IsEqualTo("abc" + Environment.NewLine + "def");
         }
@@ -79,7 +79,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process(
+            var result = preProcessor.Process(
                 "  As a math idiot" + Environment.NewLine +
                 "  In order to avoid mistakes" + Environment.NewLine +
                 "  I want to be told the sum of two numbers");
@@ -95,7 +95,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process(
+            var result = preProcessor.Process(
                 "  As a math idiot" + Environment.NewLine +
                 "  In order to avoid mistakes" + Environment.NewLine +
                 "  I want to be told the sum of two numbers" + Environment.NewLine +
@@ -115,7 +115,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process(
+            var result = preProcessor.Process(
                 "  As a math idiot" + Environment.NewLine +
                 "  In order to avoid mistakes" + Environment.NewLine +
                 "  I want to be told the sum of two numbers" + Environment.NewLine +
@@ -135,7 +135,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process(
+            var result = preProcessor.Process(
                 "     " + Environment.NewLine +
                 "     " + Environment.NewLine +
                 "     " + Environment.NewLine +
@@ -152,7 +152,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process(
+            var result = preProcessor.Process(
                 "" + '\t' + "As a math idiot" + Environment.NewLine +
                 "" + '\t' + "In order to avoid mistakes" + Environment.NewLine +
                 "" + '\t' + "I want to be told the sum of two numbers");
@@ -168,7 +168,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process("    \\# Header 1");
+            var result = preProcessor.Process("    \\# Header 1");
 
             Check.That(result).IsEqualTo("# Header 1");
         }
@@ -178,7 +178,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process("    \\#\\# Header 2");
+            var result = preProcessor.Process("    \\#\\# Header 2");
 
             Check.That(result).IsEqualTo("## Header 2");
         }
@@ -188,7 +188,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process("    \\#\\#\\# Header 3");
+            var result = preProcessor.Process("    \\#\\#\\# Header 3");
 
             Check.That(result).IsEqualTo("### Header 3");
         }
@@ -198,7 +198,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process("    \\#\\#\\#\\# Header 4");
+            var result = preProcessor.Process("    \\#\\#\\#\\# Header 4");
 
             Check.That(result).IsEqualTo("#### Header 4");
         }
@@ -208,7 +208,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process("    \\#\\#\\#\\#\\# Header 5");
+            var result = preProcessor.Process("    \\#\\#\\#\\#\\# Header 5");
 
             Check.That(result).IsEqualTo("##### Header 5");
         }
@@ -218,7 +218,7 @@ namespace PicklesDoc.Pickles.Test
         {
             var preProcessor = CreatePreProcessor();
 
-            string result = preProcessor.Process("    \\#\\#\\#\\#\\#\\# Header 6");
+            var result = preProcessor.Process("    \\#\\#\\#\\#\\#\\# Header 6");
 
             Check.That(result).IsEqualTo("###### Header 6");
         }

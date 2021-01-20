@@ -41,7 +41,7 @@ namespace PicklesDoc.Pickles.ObjectModel
                 throw new ArgumentNullException(nameof(testResults));
             }
 
-            TestResult[] items = testResults.ToArray();
+            var items = testResults.ToArray();
 
             if (!items.Any())
             {

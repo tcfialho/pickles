@@ -33,7 +33,9 @@
 */
 
 using System.IO.Abstractions;
+
 using CommonServiceLocator;
+
 using GalaSoft.MvvmLight.Ioc;
 
 using PicklesDoc.Pickles.UserInterface.Settings;
@@ -70,10 +72,7 @@ namespace PicklesDoc.Pickles.UserInterface.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainViewModel Main
-        {
-            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
-        }
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
         public static void Cleanup()
         {

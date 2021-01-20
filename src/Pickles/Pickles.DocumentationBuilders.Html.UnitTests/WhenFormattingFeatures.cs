@@ -18,9 +18,7 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Linq;
-using System.Xml.Linq;
 
 using Autofac;
 
@@ -70,8 +68,8 @@ I also enjoy ordering things
             };
 
             var htmlFeatureFormatter = Container.Resolve<HtmlFeatureFormatter>();
-            XElement featureElement = htmlFeatureFormatter.Format(feature);
-            XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
+            var featureElement = htmlFeatureFormatter.Format(feature);
+            var description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
             Check.That(description).IsNotNull();
             Check.That(description).IsNamed("div");
@@ -110,15 +108,15 @@ I want to see the descriptions written in markdown rendered with tables
             };
 
             var htmlFeatureFormatter = Container.Resolve<HtmlFeatureFormatter>();
-            XElement featureElement = htmlFeatureFormatter.Format(feature);
-            XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
+            var featureElement = htmlFeatureFormatter.Format(feature);
+            var description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
             Check.That(description).IsNotNull();
             Check.That(description).IsNamed("div");
             Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
             Check.That(description).HasAttribute("class", "description");
 
-            XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
+            var table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
 
             Check.That(table).IsNotNull();
         }
@@ -143,15 +141,15 @@ I want to see the descriptions written in markdown rendered with tables
             };
 
             var htmlFeatureFormatter = Container.Resolve<HtmlFeatureFormatter>();
-            XElement featureElement = htmlFeatureFormatter.Format(feature);
-            XElement description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
+            var featureElement = htmlFeatureFormatter.Format(feature);
+            var description = featureElement.Elements().FirstOrDefault(element => element.Name.LocalName == "div");
 
             Check.That(description).IsNotNull();
             Check.That(description).IsNamed("div");
             Check.That(description).IsInNamespace("http://www.w3.org/1999/xhtml");
             Check.That(description).HasAttribute("class", "description");
 
-            XElement table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
+            var table = description.Descendants().FirstOrDefault(el => el.Name.LocalName == "table");
 
             Check.That(table).IsNotNull();
         }

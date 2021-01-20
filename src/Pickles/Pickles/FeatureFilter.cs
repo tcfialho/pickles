@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles
@@ -19,7 +20,9 @@ namespace PicklesDoc.Pickles
         {
             if (this.FeatureShouldBeExcuded()
                 || this.AllFeatureElementsShouldBeExcluded())
+            {
                 return null;
+            }
 
             var wantedFeatures = this.feature.FeatureElements.Where(fe => fe.Tags.All(tag => !this.IsExcludedTag(tag))).ToList();
 

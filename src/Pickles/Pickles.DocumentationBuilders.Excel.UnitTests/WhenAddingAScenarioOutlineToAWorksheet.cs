@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 using Autofac;
@@ -41,13 +40,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
         public void ThenSingleScenarioOutlineAddedSuccessfully()
         {
             var excelScenarioFormatter = Container.Resolve<ExcelScenarioOutlineFormatter>();
-            var exampleTable = new ExampleTable();
-            exampleTable.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
-            exampleTable.DataRows =
-                new List<TableRow>(new[] { new TableRowWithTestResult("1", "2", "3", "4"), new TableRowWithTestResult("5", "6", "7", "8") });
+            var exampleTable = new ExampleTable
+            {
+                HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
+                DataRows =
+                new List<TableRow>(new[] { new TableRowWithTestResult("1", "2", "3", "4"), new TableRowWithTestResult("5", "6", "7", "8") })
+            };
             var example = new Example { Name = "Examples", Description = string.Empty, TableArgument = exampleTable };
-            var examples = new List<Example>();
-            examples.Add(example);
+            var examples = new List<Example>
+            {
+                example
+            };
             var scenarioOutline = new ScenarioOutline
             {
                 Name = "Test Feature",
@@ -59,8 +62,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 3;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 3;
                 excelScenarioFormatter.Format(worksheet, scenarioOutline, ref row);
 
                 Check.That(worksheet.Cell("B3").Value).IsEqualTo(scenarioOutline.Name);
@@ -87,13 +90,17 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
         public void ThenSingleScenarioOutlineWithStepsAddedSuccessfully()
         {
             var excelScenarioFormatter = Container.Resolve<ExcelScenarioOutlineFormatter>();
-            var exampleTable = new ExampleTable();
-            exampleTable.HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4");
-            exampleTable.DataRows =
-                new List<TableRow>(new[] { new TableRowWithTestResult("1", "2", "3", "4"), new TableRowWithTestResult("5", "6", "7", "8") });
+            var exampleTable = new ExampleTable
+            {
+                HeaderRow = new TableRow("Var1", "Var2", "Var3", "Var4"),
+                DataRows =
+                new List<TableRow>(new[] { new TableRowWithTestResult("1", "2", "3", "4"), new TableRowWithTestResult("5", "6", "7", "8") })
+            };
             var example = new Example { Name = "Examples", Description = string.Empty, TableArgument = exampleTable };
-            var examples = new List<Example>();
-            examples.Add(example);
+            var examples = new List<Example>
+            {
+                example
+            };
             var scenarioOutline = new ScenarioOutline
             {
                 Name = "Test Feature",
@@ -108,8 +115,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 3;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 3;
                 excelScenarioFormatter.Format(worksheet, scenarioOutline, ref row);
 
                 Check.That(worksheet.Cell("B3").Value).IsEqualTo(scenarioOutline.Name);
@@ -143,8 +150,8 @@ namespace PicklesDoc.Pickles.DocumentationBuilders.Excel.UnitTests
 
             using (var workbook = new XLWorkbook())
             {
-                IXLWorksheet worksheet = workbook.AddWorksheet("SHEET1");
-                int row = 3;
+                var worksheet = workbook.AddWorksheet("SHEET1");
+                var row = 3;
                 excelScenarioFormatter.Format(worksheet, scenarioOutline, ref row);
 
                 Check.That(worksheet.Cell("B5").Value).IsEqualTo("Voorbeelden");

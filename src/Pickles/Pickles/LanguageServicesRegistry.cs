@@ -39,9 +39,6 @@ namespace PicklesDoc.Pickles
             return services;
         }
 
-        public string DefaultLanguage
-        {
-            get { return "en"; }
-        }
+        public string DefaultLanguage => "en";
     }
 }

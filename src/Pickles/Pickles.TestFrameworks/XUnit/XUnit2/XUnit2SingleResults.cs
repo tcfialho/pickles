@@ -43,16 +43,16 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
                 return TestResult.Inconclusive;
             }
 
-            int passedCount = featureElement.passed;
-            int failedCount = featureElement.failed;
-            int skippedCount = featureElement.skipped;
+            var passedCount = featureElement.passed;
+            var failedCount = featureElement.failed;
+            var skippedCount = featureElement.skipped;
 
             return this.GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
         public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            IEnumerable<TestResult> exampleElements = this.GetScenarioOutlineElements(scenarioOutline).Select(this.GetResultFromElement);
+            var exampleElements = this.GetScenarioOutlineElements(scenarioOutline).Select(this.GetResultFromElement);
 
             return this.DetermineAggregateResult(exampleElements);
         }
@@ -67,7 +67,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
-            IEnumerable<assembliesAssemblyCollectionTest> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
+            var exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
             foreach (var exampleElement in exampleElements)
             {
@@ -109,7 +109,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
         {
             var featureElement = this.GetFeatureElement(scenario.Feature);
             if (featureElement == null)
+            {
                 return null;
+            }
 
             var query = from test in featureElement.test
                         where HasDescriptionTrait(test, scenario.Name)
@@ -122,7 +124,10 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit2
         {
             var featureElement = this.GetFeatureElement(scenario.Feature);
             if (featureElement == null)
+            {
                 return Enumerable.Empty<assembliesAssemblyCollectionTest>();
+            }
+
             var query = from test in featureElement.test
                         where HasDescriptionTrait(test, scenario.Name)
                         select test;

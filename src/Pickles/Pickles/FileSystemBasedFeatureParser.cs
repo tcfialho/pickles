@@ -21,7 +21,7 @@
 using System;
 using System.IO;
 using System.IO.Abstractions;
-using System.Text;
+
 using PicklesDoc.Pickles.ObjectModel;
 
 namespace PicklesDoc.Pickles
@@ -55,7 +55,7 @@ namespace PicklesDoc.Pickles
                     }
                     catch (FeatureParseException e)
                     {
-                        string message =
+                        var message =
                             $"There was an error parsing the feature file here: {this.fileSystem.Path.GetFullPath(filename)}" +
                             Environment.NewLine +
                             $"Errormessage was: '{e.Message}'";

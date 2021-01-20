@@ -18,7 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -39,29 +38,29 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
         public override TestResult GetFeatureResult(Feature feature)
         {
-            XElement featureElement = this.GetFeatureElement(feature);
+            var featureElement = this.GetFeatureElement(feature);
 
             if (featureElement == null)
             {
                 return TestResult.Inconclusive;
             }
 
-            int passedCount = int.Parse(featureElement.Attribute("passed").Value);
-            int failedCount = int.Parse(featureElement.Attribute("failed").Value);
-            int skippedCount = int.Parse(featureElement.Attribute("skipped").Value);
+            var passedCount = int.Parse(featureElement.Attribute("passed").Value);
+            var failedCount = int.Parse(featureElement.Attribute("failed").Value);
+            var skippedCount = int.Parse(featureElement.Attribute("skipped").Value);
 
             return this.GetAggregateResult(passedCount, failedCount, skippedCount);
         }
 
         public override TestResult GetScenarioOutlineResult(ScenarioOutline scenarioOutline)
         {
-            IEnumerable<TestResult> exampleResults = this.GetScenarioOutlineElements(scenarioOutline).Select(this.GetResultFromElement);
+            var exampleResults = this.GetScenarioOutlineElements(scenarioOutline).Select(this.GetResultFromElement);
             return this.DetermineAggregateResult(exampleResults);
         }
 
         public override TestResult GetScenarioResult(Scenario scenario)
         {
-            XElement scenarioElement = this.GetScenarioElement(scenario);
+            var scenarioElement = this.GetScenarioElement(scenario);
             return scenarioElement != null
                 ? this.GetResultFromElement(scenarioElement)
                 : TestResult.Inconclusive;
@@ -69,9 +68,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
         public override TestResult GetExampleResult(ScenarioOutline scenarioOutline, string[] exampleValues)
         {
-            IEnumerable<XElement> exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
+            var exampleElements = this.GetScenarioOutlineElements(scenarioOutline);
 
-            foreach (XElement exampleElement in exampleElements)
+            foreach (var exampleElement in exampleElements)
             {
                 if (this.ScenarioOutlineExampleMatcher.IsMatch(scenarioOutline, exampleValues, exampleElement))
                 {
@@ -89,7 +88,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
         private XElement GetFeatureElement(Feature feature)
         {
-            IEnumerable<XElement> featureQuery =
+            var featureQuery =
                 from clazz in this.resultsDocument.Root.Descendants("class")
                 from test in clazz.Descendants("test")
                 from trait in clazz.Descendants("traits").Descendants("trait")
@@ -101,9 +100,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
         private XElement GetScenarioElement(Scenario scenario)
         {
-            XElement featureElement = this.GetFeatureElement(scenario.Feature);
+            var featureElement = this.GetFeatureElement(scenario.Feature);
 
-            IEnumerable<XElement> scenarioQuery =
+            var scenarioQuery =
                 from test in featureElement.Descendants("test")
                 from trait in test.Descendants("traits").Descendants("trait")
                 where trait.Attribute("name").Value == "Description" && trait.Attribute("value").Value == scenario.Name
@@ -114,9 +113,9 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
 
         private IEnumerable<XElement> GetScenarioOutlineElements(ScenarioOutline scenario)
         {
-            XElement featureElement = this.GetFeatureElement(scenario.Feature);
+            var featureElement = this.GetFeatureElement(scenario.Feature);
 
-            IEnumerable<XElement> scenarioQuery =
+            var scenarioQuery =
                 from test in featureElement.Descendants("test")
                 from trait in test.Descendants("traits").Descendants("trait")
                 where trait.Attribute("name").Value == "Description" && trait.Attribute("value").Value == scenario.Name
@@ -128,7 +127,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.XUnit.XUnit1
         private TestResult GetResultFromElement(XElement element)
         {
             TestResult result;
-            XAttribute resultAttribute = element.Attribute("result");
+            var resultAttribute = element.Attribute("result");
             switch (resultAttribute.Value.ToLowerInvariant())
             {
                 case "pass":

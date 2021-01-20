@@ -18,8 +18,6 @@
 //  </copyright>
 //  --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using NFluent;
 
 using NUnit.Framework;
@@ -44,7 +42,7 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
             var results = ParseResultsFile();
 
             var feature = new Feature { Name = "FeatureWithMultipleResultsFiles" };
-            TestResult result = results.GetFeatureResult(feature);
+            var result = results.GetFeatureResult(feature);
 
             Check.That(result).IsEqualTo(TestResult.Passed);
         }
@@ -57,14 +55,14 @@ namespace PicklesDoc.Pickles.TestFrameworks.UnitTests.NUnit.NUnit2
             var feature = new Feature { Name = "FeatureWithMultipleResultsFiles" };
             var scenarioOutline = new ScenarioOutline { Name = "Some scenario outline", Feature = feature };
 
-            TestResult result = results.GetScenarioOutlineResult(scenarioOutline);
+            var result = results.GetScenarioOutlineResult(scenarioOutline);
 
             Check.That(result).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "false" });
+            var exampleResult1 = results.GetExampleResult(scenarioOutline, new[] { "false" });
             Check.That(exampleResult1).IsEqualTo(TestResult.Passed);
 
-            TestResult exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "true" });
+            var exampleResult2 = results.GetExampleResult(scenarioOutline, new[] { "true" });
             Check.That(exampleResult2).IsEqualTo(TestResult.Passed);
         }
     }
